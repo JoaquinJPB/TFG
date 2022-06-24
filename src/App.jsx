@@ -1,15 +1,13 @@
 import React from 'react'
-import MoviesGrid from './components/MoviesGrid';
-import styles from './styles/App.module.css'
+import ItemsGrid from './components/ItemsGrid';
+import items from "./movies.json"
+//import styles from './styles/App.module.css'
 
-function App() {
+const App = () => {
     return (
         <div>
-            <header>
-                <h1 className={styles.title}>Movies</h1>
-            </header>
             <main>
-                <MoviesGrid />
+                <ItemsGrid title={"Prueba"} subtitle={"qweqweqwewqe"} items={items}/>
             </main>
         </div>
     )

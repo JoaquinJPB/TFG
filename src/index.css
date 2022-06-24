@@ -4,3 +4,8 @@
     box-sizing: border-box;
     font-family: 'Ubuntu', sans-serif;
 }
+
+:root {
+    --primaryColor: #EC615B;
+    --secondaryColor: #5222D0;
+}
