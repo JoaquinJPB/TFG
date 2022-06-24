@@ -1,13 +1,16 @@
 import React from 'react'
-
-import SignUp from './components/Signup';
-import SignIn from './components/Signin';
+import MoviesGrid from './components/MoviesGrid';
+import styles from './styles/App.module.css'
 
 function App() {
     return (
         <div>
-            <SignUp />
-            <SignIn />
+            <header>
+                <h1 className={styles.title}>Movies</h1>
+            </header>
+            <main>
+                <MoviesGrid />
+            </main>
         </div>
     )
 }
