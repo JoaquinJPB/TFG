@@ -1,7 +1,7 @@
 import styles from '../styles/ItemsGrid.module.css'
 import ItemCard from "./ItemCard";
 
-const ItemsGrid = ({title, subtitle, items}) => {
+const ItemsGrid = ({title, subtitle, items, background}) => {
     return (
         <div>
             <div className={styles.moviesSection}>
@@ -17,7 +17,7 @@ const ItemsGrid = ({title, subtitle, items}) => {
                     </ul>
                 </div>    
                 <div>
-                    <img src={require('../images/Movies_Background.png')} alt="Seaching Movies Img" className={styles.imgBackground} />
+                    <img src={background} alt="Background section" className={styles.imgBackground} />
                 </div>
             </div>
         </div>
