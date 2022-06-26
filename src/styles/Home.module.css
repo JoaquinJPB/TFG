@@ -1,6 +1,7 @@
 .mainHome{
     display: flex;
     flex-direction: row;
+    margin-left: 2rem;
 }
 
 .mainHome section{
@@ -15,7 +16,7 @@
 }
 
 .headerSection h2 {
-    margin-top: 1rem;
+    margin-top: 3rem;
     font-size: 2rem;
     border-bottom: 4px solid var(--secondaryColor);
 }
@@ -25,6 +26,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    gap: 2rem;
 }
 
 .homeCards a:nth-child(even) div{

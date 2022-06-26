@@ -6,6 +6,7 @@
 
 .sectionsCardBody:hover{
     cursor: pointer;
+    opacity: .8;
 }
 
 .sectionsCardBody h3{

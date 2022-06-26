@@ -1,0 +1,14 @@
+
+.exercisesLayout{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+@media (max-width: 578px) {
+    
+    .exercisesLayout{
+        grid-template-columns: minmax(100px, 1fr);
+    }
+
+}

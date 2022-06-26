@@ -5,6 +5,11 @@
     box-shadow: -3px 7px 6px 2px rgba(82,34,208,1);
 }
 
+.movieCard:hover{
+    cursor: pointer;
+    opacity: .8;
+}
+
 .movieCard > div:nth-child(2){
     text-align: center;
     margin: .5rem 2rem;
