@@ -6,6 +6,8 @@ import { Books } from '../components/Books'
 import Recommendations from '../components/Recommendations'
 import Home from '../components/Home'
 import Advice from '../components/Advice'
+import Breathing from '../components/Breathing'
+import Meditation from '../components/Meditation'
 
 const LandingPage = () => {
     return (
@@ -13,6 +15,8 @@ const LandingPage = () => {
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/advice' element={<Advice />} />
+                <Route path='/breathing' element={<Breathing />} />
+                <Route path='/meditation' element={<Meditation />} />
                 <Route path='/recommendations/movies' element={<Movies />} />
                 <Route path='/recommendations/books' element={<Books />}  />
                 <Route path='/recommendations/videogames' element={<Videogames />}/>
