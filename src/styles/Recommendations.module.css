@@ -4,35 +4,42 @@
     flex-direction: row;
 }
 
-.header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.title{
-    color: var(--primaryColor);
-    text-align: center;
-    font-size: 2.5rem;
-    border-bottom: 4px solid var(--secondaryColor);
-    margin-top: 2rem;
-}
-
-.subtitle{
-    text-align: center;
-    margin-top: 1rem;
-    font-size: 2rem;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .sectionCards{
     margin-top: 2rem;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+}
+
+.sectionCards > * {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);;
 }
 
 .recommendationRightBody{
     margin-right: 3rem;
+}
+
+@media (max-width: 578px) {
+    .recommendationBody{
+        flex-direction: column;
+    }
+
+    .recommendationRightBody{
+        margin-right: 0;
+    }
+
+    .recommendationBody section > img{
+        display: none;
+    }
+
+    .sectionCards{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .sectionCards > * {
+        grid-template-columns: minmax(100px, 1fr);
+        margin-bottom: 1.5rem;
+    }
 }

@@ -1,0 +1,21 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title{
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 2.5rem;
+    color: var(--primaryColor);
+    border-bottom: 4px solid var(--secondaryColor);
+}
+
+.subtitle{
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -1,0 +1,51 @@
+.mainHome{
+    display: flex;
+    flex-direction: row;
+}
+
+.mainHome section{
+    display: flex;
+    flex-direction: column;
+}
+
+.headerSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.headerSection h2 {
+    margin-top: 1rem;
+    font-size: 2rem;
+    border-bottom: 4px solid var(--secondaryColor);
+}
+
+.homeCards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.homeCards a:nth-child(even) div{
+    background-color: var(--primaryColor);
+}
+
+.homeCards a:nth-child(odd) div{
+    background-color: var(--secondaryColor);
+}
+
+@media (max-width: 578px) {
+    .homeCards{
+        flex-direction: column;
+    }
+
+    .mainHome{
+        flex-direction: column;
+    }
+
+    .mainHome section:nth-child(2) img{
+        display: none;
+    }
+
+}

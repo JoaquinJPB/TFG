@@ -7,6 +7,7 @@ import moviesImg from "../images/Movies_Background.png"
 import VideogamesImg from "../images/Videogames_Background.png"
 
 import styles from "../styles/Recommendations.module.css"
+import Header from "./Header"
 
 const Recomendations = () => {
     return (
@@ -15,12 +16,7 @@ const Recomendations = () => {
                 <img src={recomentationBackground} alt="Recomendaciones" />
             </section>
             <section className={styles.recommendationRightBody}>
-                <header>
-                    <div className={styles.header}>
-                        <h1 className={styles.title}>Recomendaciones</h1>
-                    </div>
-                    <p className={styles.subtitle}>En este apartado enconctraras una gran cantidad de recomendaciones tanto de libros, películas, y videojuegos para comprender y sobrellevar la ansiedad social de la mejor forma posible. </p>
-                </header>
+                <Header title={"Recomendaciones"} subtitle={"En este apartado enconctraras una gran cantidad de recomendaciones tanto de libros, películas, y videojuegos para comprender y sobrellevar la ansiedad social de la mejor forma posible."}/>
                 <div className={styles.sectionCards}>
                     <SectionCard title={"Lectura"} img={booksImg} route={'books'}/>
                     <SectionCard title={"Películas"} img={moviesImg} route={'movies'} />
