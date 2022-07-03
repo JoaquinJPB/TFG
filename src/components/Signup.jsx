@@ -134,7 +134,11 @@ const SignUp = () =>  {
                         type="submit"
                         fullWidth
                         variant="contained"
-                        sx={{ mt: 3, mb: 2 , backgroundColor: 'var(--secondaryColor)', fontWeight: 'bold', fontSize: '1.25rem'}}
+                        sx={{ mt: 3, mb: 2 , backgroundColor: 'var(--secondaryColor)', fontWeight: 'bold', fontSize: '1.25rem' ,
+                        '&:hover': {
+                            backgroundColor: 'var(--primaryColor)',
+                        }
+                        }}
                         >
                         Sign Up
                         </Button>
