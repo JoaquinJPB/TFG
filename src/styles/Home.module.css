@@ -37,6 +37,7 @@
     background-color: var(--secondaryColor);
 }
 
+
 @media (max-width: 578px) {
     .homeCards{
         flex-direction: column;

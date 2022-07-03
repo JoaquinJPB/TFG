@@ -1,0 +1,50 @@
+.navigation{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.navigation div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+}
+
+.navigation div:nth-child(1){
+    flex: 30%;
+    justify-content: flex-start;
+}
+
+.navigation div:nth-child(1) img{
+    width: 100px;
+    margin-left: .5rem;
+}
+
+.navigation div:nth-child(2){
+    flex: 40%;
+    justify-content: space-evenly;
+}
+
+.navigation div:nth-child(3){
+    flex: 10%;
+    justify-content: flex-end;
+}
+
+.navigation div:nth-child(3) svg{  
+    font-size: 2rem !important;
+    margin: 0 1rem 0 1rem;
+}
+
+.navigation a{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primaryColor);
+    transition: border-bottom 0.1s;
+}
+
+.navigation a:hover{
+    border-bottom: 4px solid var(--secondaryColor);
+
+}

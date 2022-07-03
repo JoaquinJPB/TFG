@@ -1,7 +1,7 @@
 
 import imgAdviceBackground from "../images/Advice_Background.png"
 import exercises from "../exercises.json"
-import SectionComponent from "./SectionComponent"
+import SectionComponent from "../components/SectionComponent"
 
 const Advice = () => {
     return (

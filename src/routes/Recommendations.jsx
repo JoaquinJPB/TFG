@@ -1,5 +1,5 @@
 
-import SectionCard from "./SectionCard"
+import SectionCard from "../components/SectionCard"
 
 import recomentationBackground from "../images/Recommendations_Background.png"
 import booksImg from "../images/Books_Background.png"
@@ -7,7 +7,7 @@ import moviesImg from "../images/Movies_Background.png"
 import VideogamesImg from "../images/Videogames_Background.png"
 
 import styles from "../styles/Recommendations.module.css"
-import Header from "./Header"
+import Header from "../components/Header"
 
 const Recomendations = () => {
     return (

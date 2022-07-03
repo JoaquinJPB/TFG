@@ -1,4 +1,4 @@
-import SectionComponent from "./SectionComponent"
+import SectionComponent from "../components/SectionComponent"
 
 import imgBreathingBackground from "../images/Breathing_Background.png"
 import exercises from "../exercises.json"

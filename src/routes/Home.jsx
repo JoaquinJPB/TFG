@@ -1,12 +1,12 @@
 
 import styles from '../styles/Home.module.css'
-import HomeSectionCard from './HomeSectionCard'
+import HomeSectionCard from '../components/HomeSectionCard'
 
 import imgBreathing from '../images/breathing_section.png'
 import imgMeditation from '../images/meditation_section.png'
 import imgRecommendations from '../images/recommendations_section.png'
 import imgAdvice from '../images/advice_section.png'
-import Header from './Header'
+import Header from '../components/Header'
 
 import imgHome from '../images/Welcome_Background.png'
 
