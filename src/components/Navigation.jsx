@@ -19,7 +19,7 @@ const Navigation = () => {
                     <Link to='/advice' >Consejos</Link>
                 </div>
                 <div>
-                    <Link to='/recommendations'>Mi Perfil</Link>
+                    <Link to='/user_id'>Mi Perfil</Link>
                     <AccountCircleIcon />
                 </div>
             </nav>
