@@ -1,45 +1,44 @@
-
-.recommendationBody{
-    display: flex;
-    flex-direction: row;
+.recommendationBody {
+  display: flex;
+  flex-direction: row;
 }
 
-.sectionCards{
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: row;
+.sectionCards {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
 }
 
 .sectionCards > * {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
-.recommendationRightBody{
-    margin-right: 3rem;
+.recommendationRightBody {
+  margin-right: 3rem;
 }
 
 @media (max-width: 578px) {
-    .recommendationBody{
-        flex-direction: column;
-    }
+  .recommendationBody {
+    flex-direction: column;
+  }
 
-    .recommendationRightBody{
-        margin-right: 0;
-    }
+  .recommendationRightBody {
+    margin-right: 0;
+  }
 
-    .recommendationBody section > img{
-        display: none;
-    }
+  .recommendationBody section > img {
+    display: none;
+  }
 
-    .sectionCards{
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+  .sectionCards {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .sectionCards > * {
-        grid-template-columns: minmax(100px, 1fr);
-        margin-bottom: 1.5rem;
-    }
+  .sectionCards > * {
+    grid-template-columns: minmax(100px, 1fr);
+    margin-bottom: 1.5rem;
+  }
 }

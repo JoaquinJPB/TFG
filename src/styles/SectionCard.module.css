@@ -1,26 +1,25 @@
-
-.sectionsCardBody{
-    border: 4px solid var(--secondaryColor);
-    border-radius: 2rem;
+.sectionsCardBody {
+  border: 4px solid var(--secondaryColor);
+  border-radius: 2rem;
 }
 
-.sectionsCardBody:hover{
-    cursor: pointer;
-    opacity: .8;
+.sectionsCardBody:hover {
+  cursor: pointer;
+  opacity: 0.8;
 }
 
-.sectionsCardBody h3{
-    color: var(--primaryColor);
-    text-align: center;
-    font-size: 2rem;
-    margin-top: .5rem;
+.sectionsCardBody h3 {
+  color: var(--primaryColor);
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 0.5rem;
 }
 
 .sectionsCardBody img {
-    width: 300px;
-    height: 220px;
+  width: 300px;
+  height: 220px;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
