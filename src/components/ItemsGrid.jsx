@@ -5,10 +5,10 @@ import ItemCard from "./ItemCard";
 const ItemsGrid = ({ title, subtitle, items, background }) => {
   return (
     <main>
-      <section className={styles.moviesSection}>
+      <section className={styles.gridSection}>
         <div>
           <Header title={title} subtitle={subtitle} />
-          <ul className={styles.moviesGrid}>
+          <ul className={styles.itemsGrid}>
             {items.map((item) => (
               <ItemCard key={item.id} item={item} />
             ))}

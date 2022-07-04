@@ -1,9 +1,9 @@
-.moviesSection {
+.gridSection {
   display: flex;
   flex-direction: row;
 }
 
-.moviesGrid {
+.itemsGrid{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2.5rem;
@@ -11,22 +11,16 @@
   justify-content: center;
 }
 
-.div1 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .imgBackground {
   margin-top: 12rem;
 }
 
 @media (max-width: 578px) {
-  .moviesSection {
+  .gridSection {
     flex-direction: column;
   }
 
-  .moviesGrid {
+  .itemsGrid {
     grid-template-columns: minmax(100px, 1fr);
   }
 

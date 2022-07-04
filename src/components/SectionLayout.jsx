@@ -1,11 +1,11 @@
 import Header from "./Header";
 import ExerciseGrid from "./ExerciseGrid";
 
-import styles from "../styles/Advice.module.css";
+import styles from "../styles/SectionLayout.module.css";
 
-const SectionComponent = ({ title, subtitle, img, exercises }) => {
+const SectionLayout = ({ title, subtitle, img, exercises }) => {
   return (
-    <main className={styles.adviceBody}>
+    <main className={styles.sectionLayoutBody}>
       <section>
         <Header title={title} subtitle={subtitle} />
         <img src={img} alt="Advice" />
@@ -20,4 +20,4 @@ const SectionComponent = ({ title, subtitle, img, exercises }) => {
   );
 };
 
-export default SectionComponent;
+export default SectionLayout;

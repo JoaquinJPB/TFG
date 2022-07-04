@@ -1,26 +1,26 @@
-.adviceBody {
+.sectionLayoutBody {
   display: flex;
   flex-direction: row;
 }
 
-.adviceBody section div {
+.sectionLayoutBody section div {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.adviceBody section div h3 {
+.sectionLayoutBody section div h3 {
   margin: 2.5rem 0;
   font-size: 2rem;
   border-bottom: 4px solid var(--secondaryColor);
 }
 
 @media (max-width: 578px) {
-  .adviceBody {
+  .sectionLayoutBody {
     flex-direction: column;
   }
 
-  .adviceBody section:nth-child(1) img {
+  .sectionLayoutBody section:nth-child(1) img {
     display: none;
   }
 }
