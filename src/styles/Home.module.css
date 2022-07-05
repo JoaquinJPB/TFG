@@ -1,7 +1,7 @@
 .mainHome {
   display: flex;
   flex-direction: row;
-  margin-left: 2rem;
+  margin: 0 2rem 0 2rem;
 }
 
 .mainHome section {
@@ -22,11 +22,9 @@
 }
 
 .homeCards {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1rem;
 }
 
 .homeCards a:nth-child(even) div {
@@ -37,17 +35,46 @@
   background-color: var(--secondaryColor);
 }
 
+.mainHome section:nth-child(2) img{
+  margin-top: 3rem;
+}
+
 @media (max-width: 578px) {
   .homeCards {
-    flex-direction: column;
+    grid-template-columns: repeat(1, 1fr);
+    align-items: center;
+    justify-items: center;
   }
 
   .mainHome {
     flex-direction: column;
-    margin: 0 1rem 0 1rem;
+    margin: 0 1rem 2rem 1rem;
   }
 
   .mainHome section:nth-child(2) img {
     display: none;
   }
+}
+
+@media (min-width: 579px) and (max-width: 1024px){
+  
+  .mainHome {
+    flex-direction: column;
+  }
+
+  .homeCards {
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    justify-items: center;
+  }
+
+  .mainHome section:nth-child(2){
+    justify-content: center;
+    align-items: center;
+  }
+
+  .mainHome section:nth-child(2) img{
+    width: 550px;
+  }
+
 }
