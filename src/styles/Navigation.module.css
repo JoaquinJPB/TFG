@@ -1,11 +1,14 @@
 .navigation {
+  position: fixed;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  width: 100%;
+  z-index: 10;
+  background-color: white;
 }
 
-.navigation div {
+.navigation div{
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -21,19 +24,10 @@
   margin-left: 0.5rem;
 }
 
-.navigation div:nth-child(2) {
-  flex: 40%;
+.navItems {
+  flex: 70%;
   justify-content: space-evenly;
-}
-
-.navigation div:nth-child(3) {
-  flex: 10%;
-  justify-content: flex-end;
-}
-
-.navigation div:nth-child(3) svg {
-  font-size: 2rem !important;
-  margin: 0 1rem 0 1rem;
+  align-items: center;
 }
 
 .navigation a {
@@ -46,3 +40,63 @@
 .navigation a:hover {
   border-bottom: 4px solid var(--secondaryColor);
 }
+
+.list {
+  list-style-type: none;
+  height: 100%;
+  display: flex;
+  gap: 2.5rem;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.buttonContainer {
+  display: none !important;
+}
+
+@media screen and (max-width: 500px){
+
+  .list {
+      flex-direction: column;
+      height: auto;
+  }
+
+  .items:nth-child(1){
+      margin-top: 1rem;
+  }
+  .items {
+      width: 100%;
+      text-align: center;
+      padding-top: 1rem;
+  }
+
+  .navigation{
+    position: fixed;
+  }
+
+  .buttonContainer {
+    display: block !important;
+    position: fixed;
+    top: 0;
+    right: 0;
+  }
+
+  .navigation div:nth-child(1) {
+    display: none;
+  }
+
+  .navigation a {
+    border-bottom: 4px solid transparent;
+  }
+
+  .navigation a:hover {
+    border-bottom: 4px solid var(--secondaryColor);
+  }
+
+}
+
+
+
+
+
