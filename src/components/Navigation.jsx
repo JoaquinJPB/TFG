@@ -34,7 +34,7 @@ const Navigation = () => {
         <div>
           <img src={iconWebPage} alt="Icon Web Page" />
         </div>
-        {(toggleMenu || screenWidth > 500) && (
+        {(toggleMenu || screenWidth > 578) && (
           <div className={style.navItems}>
             <ul className={style.list}>
               <Link to="/" className={style.items}>Inicio</Link>

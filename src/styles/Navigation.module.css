@@ -55,7 +55,7 @@
   display: none !important;
 }
 
-@media screen and (max-width: 500px){
+@media screen and (max-width: 578px){
 
   .list {
       flex-direction: column;

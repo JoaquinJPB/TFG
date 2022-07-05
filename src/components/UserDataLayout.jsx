@@ -14,7 +14,7 @@ const UserDataLayout = ({ userName, fullName, userEmail, itemsFav }) => {
     <section className={styles.sectionProfile}>
       <div>
         <Header title={"Mi perfil"} subtitle={""} />
-        <div>
+        <div className={styles.userDataSection}>
           <img src={userImg} alt="Imagen de perfil" />
           <div>
             <h2>{userName}</h2>
@@ -37,7 +37,7 @@ const UserDataLayout = ({ userName, fullName, userEmail, itemsFav }) => {
           </div>
         </div>
         <Header title={"Contenido favorito"} subtitle={""} />
-        <article>
+        <article className={styles.favItems}>
           <ul className={stylesGrid.itemsGrid}>
             {itemsFav.map((item) => (
               <ItemCard key={item.id} item={item} />

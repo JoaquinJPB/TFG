@@ -3,16 +3,16 @@
   flex-direction: row;
 }
 
-.sectionProfile > div:nth-child(1) {
+.sectionProfile {
+  margin: 0 2rem 0 2rem;
+}
+
+.sectionProfile header {
+  display: flex;
   align-items: flex-start;
-  margin-left: 2rem;
 }
 
-.sectionProfile > div:nth-child(1) header div {
-  align-items: flex-start !important;
-}
-
-.sectionProfile > div:nth-child(1) > div{
+.userDataSection{
   display: flex;
   flex-direction: row;
 }
@@ -21,33 +21,61 @@
   margin-bottom: 1rem;
 }
 
-.sectionProfile div:nth-child(1) > div img{
+.userDataSection img{
   border: 4px solid var(--secondaryColor);
 }
 
-.sectionProfile div:nth-child(1) div div{
+.userDataSection div{
   display: flex;
   flex-direction: column;
   margin: 1.5rem 0 0 1.5rem;
 }
 
-.sectionProfile div:nth-child(1) div div h2{
+.userDataSection h2{
   font-size: 2.5rem;
   font-weight: bold;
 }
 
-.sectionProfile div:nth-child(1) div div span{
+.userDataSection span{
   margin-top: .5rem;
   font-size: 1.5rem;
   font-weight: lighter;
 }
 
-.sectionProfile article ul{
+.favItems ul{
   padding: 0 !important;
 }
 
 .sectionProfile > div:nth-child(2){
-  margin-left: 3rem;
+  margin: 2rem 0 0 2rem;
+}
+
+@media (max-width: 578px) {
+
+  .userDataSection, 
+  .sectionProfile header {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .userDataSection div{
+    text-align: center;
+  }
+
+  .userDataSection img{
+    width: 250px;
+  }
+
+  .userDataSection div{
+    margin: 1rem 0 0 0;
+  }
+
+  .sectionProfile > div:nth-child(2){
+    display: none;
+  }
+
+
 }
 
 
