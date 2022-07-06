@@ -3,24 +3,30 @@
   flex-direction: row;
 }
 
-.sectionCards {
-  margin-top: 2rem;
+.recommendationBody section {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
+  flex: 50%;
 }
 
-.sectionCards > * {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.recommendationRightBody {
+.recommendationBody section:last-child {
   margin-right: 3rem;
 }
 
-@media (max-width: 578px) {
+.sectionCards {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  align-items: center;
+  justify-items: center;
+}
+
+@media (max-width: 1024px) {
   .recommendationBody {
     flex-direction: column;
+    margin: 0 1rem;
   }
 
   .recommendationRightBody {
@@ -37,8 +43,22 @@
     align-items: center;
   }
 
-  .sectionCards > * {
-    grid-template-columns: minmax(100px, 1fr);
-    margin-bottom: 1.5rem;
+  .sectionCards {
+    grid-template-columns: repeat(1, 1fr);
+    margin-bottom: 2rem;
   }
+
+  .recommendationBody section:last-child{
+    margin-right: 0;
+  }
+}
+
+@media (min-width: 579px) and (max-width: 1024px){
+
+  .recommendationBody section > img {
+    display:block;
+    width: 550px;
+    border: 2px solid red;
+  }
+
 }

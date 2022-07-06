@@ -1,6 +1,6 @@
 .exerciseBodyCard {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   border: 3px solid var(--secondaryColor);
   border-radius: 1.5rem;
 }
@@ -22,7 +22,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  border-left: 3px solid var(--secondaryColor);
+  border-top: 3px solid var(--secondaryColor);
   padding: 0.5rem;
 }
 .exerciseBodyCard div h4 {

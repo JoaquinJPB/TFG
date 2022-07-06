@@ -28,6 +28,8 @@ const Navigation = () => {
     };
   }, []);
 
+  console.log((toggleMenu || screenWidth > 1024))
+
   return (
     <main>
       <nav className={style.navigation}>

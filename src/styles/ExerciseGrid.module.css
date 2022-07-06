@@ -2,12 +2,12 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
-  margin: 0 2rem 0 2rem;
+  margin: 0 2rem 2rem 2rem;
 }
 
 @media (max-width: 578px) {
   .exercisesLayout {
-    grid-template-columns: minmax(100px, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
-
+  
 }

@@ -55,6 +55,10 @@
   display: none !important;
 }
 
+.content section{
+  margin-top: 98px;
+}
+
 @media screen and (max-width: 1024px){
 
   .list {
@@ -93,6 +97,10 @@
 
   .navigation a:hover {
     border-bottom: 4px solid var(--secondaryColor);
+  }
+
+  .content section{
+    margin-top: 48px;
   }
 
 }

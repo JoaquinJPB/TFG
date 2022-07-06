@@ -8,11 +8,11 @@ const SectionLayout = ({ title, subtitle, img, exercises }) => {
     <main className={styles.sectionLayoutBody}>
       <section>
         <Header title={title} subtitle={subtitle} />
-        <img src={img} alt="Advice" />
+        <img src={img} alt={title} />
       </section>
       <section>
         <div>
-          <h3>Consejos</h3>
+          <h3>Ejercicios</h3>
         </div>
         <ExerciseGrid exercises={exercises} />
       </section>

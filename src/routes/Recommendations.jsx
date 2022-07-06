@@ -22,8 +22,14 @@ const Recomendations = () => {
           }
         />
         <div className={styles.sectionCards}>
-          <SectionCard title={"Lectura"} img={booksImg} route={"books"} />
-          <SectionCard title={"Películas"} img={moviesImg} route={"movies"} />
+          <SectionCard 
+            title={"Lectura"} 
+            img={booksImg} 
+            route={"books"} />
+          <SectionCard 
+          title={"Películas"} 
+          img={moviesImg} 
+          route={"movies"} />
           <SectionCard
             title={"Videojuegos"}
             img={VideogamesImg}

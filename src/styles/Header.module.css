@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 96px;
 }
 
 .title {
@@ -17,12 +16,4 @@
   text-align: center;
   font-size: 2rem;
   margin-top: 1rem;
-}
-
-@media (max-width: 578px) {
-
-  .header{
-    margin-top: 48px;
-  }
-
 }
