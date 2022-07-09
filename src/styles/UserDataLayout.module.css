@@ -1,13 +1,13 @@
-.sectionProfile{
+.articleProfile{
   display: flex;
   flex-direction: row;
 }
 
-.sectionProfile {
+.articleProfile {
   margin: 0 2rem 0 2rem;
 }
 
-.sectionProfile header {
+.articleProfile header {
   display: flex;
   align-items: flex-start;
 }
@@ -17,7 +17,7 @@
   flex-direction: row;
 }
 
-.sectionProfile div:nth-child(1) h1{
+.articleProfile section:nth-child(1) h1{
   margin-bottom: 1rem;
 }
 
@@ -42,18 +42,22 @@
   font-weight: lighter;
 }
 
+.favItems{
+  margin-top: 1rem !important;
+}
+
 .favItems ul{
   padding: 0 !important;
 }
 
-.sectionProfile > div:nth-child(2){
+.articleProfile > section:nth-child(2){
   margin: 2rem 0 0 2rem;
 }
 
 @media (max-width: 578px) {
 
   .userDataSection, 
-  .sectionProfile header {
+  .articleProfile header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -68,13 +72,24 @@
   }
 
   .userDataSection div{
-    margin: 1rem 0 0 0;
+    margin: 1rem 0 1rem 0;
   }
 
-  .sectionProfile > div:nth-child(2){
+  .articleProfile > section:nth-child(2){
     display: none;
   }
 
+  .favItems{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem 0 2rem 0;
+  }
+
+}
+
+@media (min-width: 579px) and (max-width: 1024px) {
 
 }
 

@@ -1,32 +1,93 @@
 .itemCard {
-  list-style: none;
-  font-size: 1.5rem;
-  display: flex;
-  box-shadow: -3px 7px 6px 2px rgba(82, 34, 208, 1);
-}
-
-.itemCard:hover {
-  cursor: pointer;
-  opacity: 0.8;
-}
-
-.itemCard div:nth-child(2) {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  margin: 0.5rem 2rem;
-}
-
-.itemCard  > div:nth-child(2) h3 {
-  font-size: 1.5rem;
-}
-
-.itemCard  > div:nth-child(2) p {
-  margin-top: 0.5rem;
-  font-size: 1rem;
-}
-
-.itemImage {
   width: 200px;
+  height: 250px;
+  border-radius: 1em;
+  padding: 1.9rem;
+  background: #f5f5f5;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  transition: 0.4s ease-out;
+  box-shadow: 0px 7px 20px rgba(43, 8, 37, 0.2);
+}
+
+.itemCard:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
   height: 100%;
+  z-index: 2;
+  transition: 0.5s;
+}
+
+.itemCardInfo {
+  position: relative;
+  z-index: 3;
+  color: #f5f5f5;
+  opacity: 0;
+  transform: translateY(20%);
+  transition: 0.5s;
+}
+/*Text*/
+.textTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: black;
+}
+
+.textSubtitle {
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+  margin: 5px 0 15px 0;
+  color: black;
+}
+
+/*Button*/
+.cardButton {
+  padding: 0.6rem;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  background: var(--secondaryColor);
+  color: white;
+  font-weight: bold;
+  transition: 0.4s ease;
+}
+
+/*Image*/
+.itemImage {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 1em;
+}
+
+/*Hover*/
+.itemCard:hover {
+  transform: translateY(5%);
+}
+
+.itemCard:hover img {
+  opacity: 0.2;
+}
+
+.itemCard:hover:before {
+  opacity: 1;
+}
+
+.itemCard:hover .itemCardInfo {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cardButton:hover {
+  background: var(--primaryColor);
+  opacity: 0.4;
+  color: #f5f5f5;
+  cursor: pointer;
 }

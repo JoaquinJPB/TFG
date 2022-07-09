@@ -1,11 +1,11 @@
-.gridSection {
+.gridArticle {
   display: flex;
   flex-direction: row;
 }
 
 .itemsGrid{
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 2.5rem;
   padding: 2.5rem;
   justify-content: center;
@@ -16,12 +16,14 @@
 }
 
 @media (max-width: 578px) {
-  .gridSection {
+  .gridArticle {
     flex-direction: column;
   }
 
   .itemsGrid {
-    grid-template-columns: minmax(1, 1fr);
+    grid-template-columns: repeat(1, 1fr);
+    align-items: center;
+    justify-items: center;
   }
 
   .imgBackground {

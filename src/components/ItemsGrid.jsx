@@ -4,8 +4,8 @@ import ItemCard from "./ItemCard";
 
 const ItemsGrid = ({ title, subtitle, items, background }) => {
   return (
-    <article>
-      <section className={styles.gridSection}>
+    <article className={styles.gridArticle}>
+      <section>
         <div>
           <Header title={title} subtitle={subtitle} />
           <ul className={styles.itemsGrid}>
@@ -14,13 +14,13 @@ const ItemsGrid = ({ title, subtitle, items, background }) => {
             ))}
           </ul>
         </div>
-        <div>
+      </section>
+      <section>
           <img
             src={background}
             alt="Background section"
             className={styles.imgBackground}
           />
-        </div>
       </section>
     </article>
   );

@@ -33,7 +33,7 @@
     margin-right: 0;
   }
 
-  .recommendationBody section > img {
+  .recommendationBody section:first-child {
     display: none;
   }
 
@@ -55,10 +55,21 @@
 
 @media (min-width: 579px) and (max-width: 1024px){
 
-  .recommendationBody section > img {
-    display:block;
-    width: 550px;
-    border: 2px solid red;
+  .recommendationBody section:first-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    order: 1;
   }
+
+  .sectionCards {
+    order: 2;
+  }
+
+  .recommendationBody section:first-child img {
+    width: 550px;
+  }
+
 
 }

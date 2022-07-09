@@ -11,8 +11,8 @@ import stylesGrid from "../styles/ItemsGrid.module.css";
 
 const UserDataLayout = ({ userName, fullName, userEmail, itemsFav }) => {
   return (
-    <section className={styles.sectionProfile}>
-      <div>
+    <article className={styles.articleProfile}>
+      <section>
         <Header title={"Mi perfil"} subtitle={""} />
         <div className={styles.userDataSection}>
           <img src={userImg} alt="Imagen de perfil" />
@@ -37,18 +37,18 @@ const UserDataLayout = ({ userName, fullName, userEmail, itemsFav }) => {
           </div>
         </div>
         <Header title={"Contenido favorito"} subtitle={""} />
-        <article className={styles.favItems}>
+        <section className={styles.favItems}>
           <ul className={stylesGrid.itemsGrid}>
             {itemsFav.map((item) => (
               <ItemCard key={item.id} item={item} />
             ))}
           </ul>
-        </article>
-      </div>
-      <div>
+        </section>
+      </section>
+      <section>
         <img src={profileBackground} alt="Fondo detalles de la cuenta" />
-      </div>
-    </section>
+      </section>
+    </article>
   );
 };
 
