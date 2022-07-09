@@ -1,5 +1,5 @@
 import style from "../styles/Navigation.module.css";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import iconWebPage from "../images/iconWebPage.png";
 
 import MenuIcon from '@mui/icons-material/Menu';
@@ -7,11 +7,15 @@ import CloseIcon from '@mui/icons-material/Close';
 
 import React, { useState, useEffect } from "react";
 import { IconButton } from "@mui/material";
+import { useRef } from "react";
 
 const Navigation = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
+  let location = useLocation();
+  let inmutableLocation = useRef(location)
+  
   const toggleNav = () => {
     setToggleMenu(!toggleMenu);
   };
@@ -21,14 +25,17 @@ const Navigation = () => {
       setScreenWidth(window.innerWidth);
     };
 
+    if (location !== inmutableLocation){
+      setToggleMenu(false);
+      inmutableLocation.current = location
+    }
+
     window.addEventListener("resize", changeWidth);
 
     return () => {
       window.removeEventListener("resize", changeWidth);
     };
-  }, []);
-
-  console.log((toggleMenu || screenWidth > 1024))
+  }, [location]);
 
   return (
     <div>
