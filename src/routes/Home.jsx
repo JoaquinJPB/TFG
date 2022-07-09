@@ -11,7 +11,7 @@ import imgHome from "../images/Welcome_Background.png";
 
 const Home = () => {
   return (
-    <main className={styles.mainHome}>
+    <article className={styles.articleHome}>
       <section>
         <Header
           title={"Bienvenido"}
@@ -48,7 +48,7 @@ const Home = () => {
       <section>
         <img src={imgHome} alt="Welcome" />
       </section>
-    </main>
+    </article>
   );
 };
 

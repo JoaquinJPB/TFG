@@ -31,7 +31,7 @@ const Navigation = () => {
   console.log((toggleMenu || screenWidth > 1024))
 
   return (
-    <main>
+    <div>
       <nav className={style.navigation}>
         <div>
           <img src={iconWebPage} alt="Icon Web Page" />
@@ -54,10 +54,10 @@ const Navigation = () => {
           </IconButton>
         </div>
       </nav>
-      <section className={style.content}>
+      <main className={style.content}>
         <Outlet />
-      </section>
-    </main>
+      </main>
+    </div>
   );
 };
 

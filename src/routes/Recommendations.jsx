@@ -10,7 +10,7 @@ import Header from "../components/Header";
 
 const Recomendations = () => {
   return (
-    <main className={styles.recommendationBody}>
+    <article className={styles.recommendationBody}>
       <section>
         <img src={recomentationBackground} alt="Recomendaciones" />
       </section>
@@ -37,7 +37,7 @@ const Recomendations = () => {
           />
         </div>
       </section>
-    </main>
+    </article>
   );
 };
 

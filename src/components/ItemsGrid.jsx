@@ -4,7 +4,7 @@ import ItemCard from "./ItemCard";
 
 const ItemsGrid = ({ title, subtitle, items, background }) => {
   return (
-    <main>
+    <article>
       <section className={styles.gridSection}>
         <div>
           <Header title={title} subtitle={subtitle} />
@@ -22,7 +22,7 @@ const ItemsGrid = ({ title, subtitle, items, background }) => {
           />
         </div>
       </section>
-    </main>
+    </article>
   );
 };
 
