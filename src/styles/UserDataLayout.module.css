@@ -1,9 +1,6 @@
-.articleProfile{
+.articleProfile {
   display: flex;
   flex-direction: row;
-}
-
-.articleProfile {
   margin: 0 2rem 0 2rem;
 }
 
@@ -12,89 +9,107 @@
   align-items: flex-start;
 }
 
-.userDataSection{
+.userDataSection {
   display: flex;
   flex-direction: row;
 }
 
-.articleProfile section:nth-child(1) h1{
+.articleProfile section:nth-child(1){
+  flex: 50%;
+}
+
+.articleProfile section:nth-child(2){
+  flex: 50%;
+}
+
+.articleProfile section:nth-child(1) h1 {
   margin-bottom: 1rem;
 }
 
-.userDataSection img{
+.userDataSection img {
   border: 4px solid var(--secondaryColor);
 }
 
-.userDataSection div{
+.userDataSection div {
   display: flex;
   flex-direction: column;
   margin: 1.5rem 0 0 1.5rem;
 }
 
-.userDataSection h2{
+.userDataSection h2 {
   font-size: 2.5rem;
   font-weight: bold;
 }
 
-.userDataSection span{
-  margin-top: .5rem;
+.userDataSection span {
+  margin-top: 0.5rem;
   font-size: 1.5rem;
   font-weight: lighter;
 }
 
-.favItems{
+.favItems {
   margin-top: 1rem !important;
 }
 
-.favItems ul{
+.favItems ul {
   padding: 0 !important;
 }
 
-.articleProfile > section:nth-child(2){
+.articleProfile > section:nth-child(2) {
   margin: 2rem 0 0 2rem;
 }
 
 @media (max-width: 578px) {
-
-  .userDataSection, 
+  .articleProfile,
+  .userDataSection,
   .articleProfile header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
 
-  .userDataSection div{
+  .userDataSection div {
     text-align: center;
   }
 
-  .userDataSection img{
+  .userDataSection img {
     width: 250px;
   }
 
-  .userDataSection div{
+  .userDataSection div {
     margin: 1rem 0 1rem 0;
   }
 
-  .articleProfile > section:nth-child(2){
+  .articleProfile > section:nth-child(2) {
     display: none;
   }
 
-  .favItems{
+  .favItems {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 0.5rem 0 2rem 0;
   }
-
 }
 
 @media (min-width: 579px) and (max-width: 1024px) {
+  .articleProfile,
+  .userDataSection,
+  .articleProfile header {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .articleProfile > section:nth-child(2) img {
+    width: 550px;
+  }
+
+  .favItems ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+
 
 }
-
-
-
-
-
-
