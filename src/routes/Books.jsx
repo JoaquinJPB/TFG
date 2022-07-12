@@ -6,7 +6,7 @@ const Books = () => {
   return (
     <ItemsGrid
       title={"Recomendaciones de libros"}
-      subtitle={"Prueba libros"}
+      subtitle={"Este tipo de lecturas, orientadas a mejorar nuestro conocimiento sobre determinados procesos y estados psicológicos, son siempre de gran ayuda. Amplían nuestras perspectivas, nos instruyen y además nos dotan de valiosas técnicas para mejorar nuestra forma de pensar."}
       items={books}
       background={BooksBackground}
     />
