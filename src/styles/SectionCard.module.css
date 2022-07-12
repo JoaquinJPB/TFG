@@ -23,3 +23,9 @@
 a {
   text-decoration: none;
 }
+
+@media screen and (max-width: 578px) {
+  .sectionsCardBody h3 {
+    font-size: 1.5rem;
+  }
+}

@@ -1,6 +1,18 @@
 .gridArticle {
   display: flex;
   flex-direction: row;
+  margin: 0 2rem 0 2rem;
+}
+
+.gridArticle section:nth-child(1) {
+  flex: 60%;
+}
+
+.gridArticle section:nth-child(2) {
+  display: flex;
+  flex: 40%;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 .itemsGrid{
@@ -12,12 +24,14 @@
 }
 
 .imgBackground {
-  margin-top: 12rem;
+  width: 800px;
+  margin-bottom: 2.5rem;
 }
 
 @media (max-width: 578px) {
   .gridArticle {
     flex-direction: column;
+    margin: 0 2rem 0 2rem;
   }
 
   .itemsGrid {
