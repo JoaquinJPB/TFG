@@ -14,7 +14,12 @@ export const apiSlice = createApi({
         url: "books"
       }),
     }),
+    getVideogames: builder.query({
+      query: () => ({
+        url: "videogames"
+      }),
+    }),
   }),
 })
 
-export const { useGetBooksQuery, useGetMoviesQuery } = apiSlice
+export const { useGetBooksQuery, useGetMoviesQuery, useGetVideogamesQuery } = apiSlice

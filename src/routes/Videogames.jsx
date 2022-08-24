@@ -1,16 +1,27 @@
-import videogames from "../videogames.json";
-import VideogamesBackground from "../images/Videogames_Background.png";
-import ItemsGrid from "../components/ItemsGrid";
+import VideogamesBackground from "../images/Videogames_Background.png"
+import ItemsGrid from "../components/ItemsGrid"
+import { CheckRequest } from "../components/CheckRequest"
+import { useGetVideogamesQuery } from "../libraries/api/apiSlice"
 
 const Videogames = () => {
+  const {
+    data: videogames,
+    isLoading,
+    isError,
+    refetch,
+  } = useGetVideogamesQuery()
   return (
-    <ItemsGrid
-      title={"Recomendaciones de videojuegos"}
-      subtitle={"Los estudios muestran que los videojuegos pueden ayudar a los jugadores a disminuir significativamente los efectos de este trastorno a través del entrenamiento de habilidades sociales. Estos son algunos de los videojuegos que se destacan en el tratamiento de la fobia social."}
-      items={videogames}
-      background={VideogamesBackground}
-    />
-  );
-};
+    <CheckRequest isLoading={isLoading} isError={isError} refetch={refetch}>
+      <ItemsGrid
+        title={"Recomendaciones de videojuegos"}
+        subtitle={
+          "Los estudios muestran que los videojuegos pueden ayudar a los jugadores a disminuir significativamente los efectos de este trastorno a través del entrenamiento de habilidades sociales. Estos son algunos de los videojuegos que se destacan en el tratamiento de la fobia social."
+        }
+        items={videogames}
+        background={VideogamesBackground}
+      />
+    </CheckRequest>
+  )
+}
 
-export default Videogames;
+export default Videogames
