@@ -9,7 +9,7 @@ const ItemsGrid = ({ title, subtitle, items, background }) => {
         <div>
           <Header title={title} subtitle={subtitle} />
           <ul className={styles.itemsGrid}>
-            {items.map((item) => (
+            {items.data.map((item) => (
               <ItemCard key={item.id} item={item} />
             ))}
           </ul>
