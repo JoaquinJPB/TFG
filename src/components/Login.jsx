@@ -1,20 +1,23 @@
-import * as React from "react";
+import * as React from "react"
 
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-import Paper from "@mui/material/Paper";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import PersonIcon from "@mui/icons-material/Person";
+import Button from "@mui/material/Button"
+import CssBaseline from "@mui/material/CssBaseline"
+import TextField from "@mui/material/TextField"
+import FormControlLabel from "@mui/material/FormControlLabel"
+import Checkbox from "@mui/material/Checkbox"
+import Link from "@mui/material/Link"
+import Paper from "@mui/material/Paper"
+import Box from "@mui/material/Box"
+import Grid from "@mui/material/Grid"
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined"
+import Typography from "@mui/material/Typography"
+import { createTheme, ThemeProvider } from "@mui/material/styles"
+import PersonIcon from "@mui/icons-material/Person"
 
-import background from "../images/Wallpaper_Website.png";
+import background from "../images/Wallpaper_Website.png"
+import { useState } from "react"
+import { useLoginMutation } from "../libraries/api/apiSlice"
+import { useDispatch } from "react-redux"
 
 function Copyright(props) {
   return (
@@ -31,20 +34,30 @@ function Copyright(props) {
       {new Date().getFullYear()}
       {"."}
     </Typography>
-  );
+  )
 }
 
-const theme = createTheme();
+const theme = createTheme()
 
 const Login = () => {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [login] = useLoginMutation()
+  const dispatch = useDispatch()
+
   const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    event.preventDefault()
     console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
+      email,
+      password,
+    })
+    login({ email, password })
+      .unwrap()
+      .then((res) => {
+        dispatch(res)
+      })
+      .catch((error) => console.log(error))
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -97,6 +110,8 @@ const Login = () => {
                 autoComplete="email"
                 autoFocus
                 variant="filled"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <TextField
                 margin="normal"
@@ -108,6 +123,8 @@ const Login = () => {
                 id="password"
                 autoComplete="current-password"
                 variant="filled"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
@@ -148,7 +165,7 @@ const Login = () => {
         </Grid>
       </Grid>
     </ThemeProvider>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

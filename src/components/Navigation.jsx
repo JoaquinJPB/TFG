@@ -52,6 +52,8 @@ const Navigation = () => {
               <Link to="/recommendations" className={style.items}>Recomendaciones</Link>
               <Link to="/advice" className={style.items}>Consejos</Link>
               <Link to="/user_id" className={style.items}>Mi Perfil</Link>
+              <Link to="/login" className={style.items}>Iniciar sesión</Link>
+              <Link to="/signup" className={style.items}>Registrarse</Link>
             </ul>
           </div>
         )}
