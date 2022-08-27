@@ -19,7 +19,7 @@ export const userSlice = createSlice({
         id: user.id,
         username: user.username,
         email: user.email,
-        roles: user.role
+        roles: user.roles
       }
     },
     clearStoreToken: (state) => {

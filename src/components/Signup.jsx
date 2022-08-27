@@ -14,19 +14,21 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import PersonIcon from "@mui/icons-material/Person";
 
 import background from "../images/Wallpaper_Website.png";
-
-import { useDispatch } from "react-redux"
-import { useSignUpMutation } from "../libraries/api/apiSlice";
+import { useRegister } from "../hooks/useRegister";
+import { useState } from "react";
 
 const theme = createTheme();
 
 const SignUp = () => {
-
-  const dispatch = useDispatch()
-  const [signUp] = useSignUpMutation()
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const { register } = useRegister()
+  const roles = ["user"]
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    register(username, email, password, roles )
   };
 
   return (
@@ -71,7 +73,7 @@ const SignUp = () => {
                 fontWeight: "bold",
               }}
             >
-              Sign up
+              Crear tu cuenta
             </Typography>
             <Box
               component="form"
@@ -86,14 +88,15 @@ const SignUp = () => {
                     name="Username"
                     required
                     fullWidth
-                    id="userName"
-                    label="User name"
+                    id="username"
+                    label="Nombre de usuario"
                     autoFocus
                     sx={{
                       backgroundColor: "white",
                       color: "black",
                     }}
                     variant="filled"
+                    onChange={(e) => setUsername(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -101,7 +104,7 @@ const SignUp = () => {
                     required
                     fullWidth
                     id="email"
-                    label="Email Address"
+                    label="Correo electrónico"
                     name="email"
                     autoComplete="email"
                     sx={{
@@ -109,14 +112,15 @@ const SignUp = () => {
                       color: "black",
                     }}
                     variant="filled"
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
                     required
                     fullWidth
-                    name="password"
-                    label="Password"
+                    name="Contraseña"
+                    label="Contraseña"
                     type="password"
                     id="password"
                     autoComplete="new-password"
@@ -125,6 +129,7 @@ const SignUp = () => {
                       color: "black",
                     }}
                     variant="filled"
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </Grid>
               </Grid>
@@ -143,7 +148,7 @@ const SignUp = () => {
                   },
                 }}
               >
-                Sign Up
+                Crear una cuenta
               </Button>
               <Grid container justifyContent="flex-end">
                 <Grid item>
@@ -155,7 +160,7 @@ const SignUp = () => {
                       textDecorationColor: "white",
                     }}
                   >
-                    Already have an account? Sign in
+                    ¿Ya tienes una cuenta?
                   </Link>
                 </Grid>
               </Grid>
