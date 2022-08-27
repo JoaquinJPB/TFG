@@ -18,24 +18,6 @@ import background from "../images/Wallpaper_Website.png"
 import { useState } from "react"
 import { useLogin } from "../hooks/useLogin"
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  )
-}
-
 const theme = createTheme()
 
 const Login = () => {
@@ -77,11 +59,11 @@ const Login = () => {
               alignItems: "center",
             }}
           >
-            <PersonIcon sx={{ m: 1 }} className="sign-icons">
+            <PersonIcon sx={{ m: 1, fontSize: "2.5rem", }} className="sign-icons">
               <LockOutlinedIcon />
             </PersonIcon>
             <Typography component="h1" variant="h5">
-              Sign in
+              ¡Hola de nuevo! 👋
             </Typography>
             <Box
               component="form"
@@ -94,7 +76,7 @@ const Login = () => {
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                label="Correo electrónico"
                 name="email"
                 autoComplete="email"
                 autoFocus
@@ -107,7 +89,7 @@ const Login = () => {
                 required
                 fullWidth
                 name="password"
-                label="Password"
+                label="Contraseña"
                 type="password"
                 id="password"
                 autoComplete="current-password"
@@ -117,7 +99,7 @@ const Login = () => {
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
+                label="Recuerdame"
               />
               <Button
                 type="submit"
@@ -134,21 +116,20 @@ const Login = () => {
                   },
                 }}
               >
-                Sign In
+                Iniciar sesión
               </Button>
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">
-                    Forgot password?
+                    ¿Olvidaste tu contraseña?
                   </Link>
                 </Grid>
                 <Grid item>
                   <Link href="/signup" variant="body2">
-                    {"Don't have an account? Sign Up"}
+                    {"¿No tienes una cuenta? Registrate"}
                   </Link>
                 </Grid>
               </Grid>
-              <Copyright sx={{ mt: 5 }} />
             </Box>
           </Box>
         </Grid>

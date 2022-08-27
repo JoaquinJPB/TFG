@@ -24,11 +24,10 @@ const SignUp = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const { register } = useRegister()
-  const roles = ["user"]
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    register(username, email, password, roles )
+    register(username, email, password)
   };
 
   return (

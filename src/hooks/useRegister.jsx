@@ -6,8 +6,8 @@ export const useRegister = () => {
   const [signUp] = useSignUpMutation()
   const navigate = useNavigate()
 
-  const register = (username, email, password, roles) => {
-    signUp({ username, email, password, roles }).unwrap().then(() => {
+  const register = (username, email, password) => {
+    signUp({ username, email, password}).unwrap().then(() => {
       console.log("Usuario registrado")
       navigate("/login")
     }).catch((error) => console.log(error))
