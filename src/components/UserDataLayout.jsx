@@ -18,7 +18,6 @@ const UserDataLayout = ({ userName, fullName, userEmail, itemsFav }) => {
           <img src={userImg} alt="Imagen de perfil" />
           <div>
             <h2>{userName}</h2>
-            <span>{fullName}</span>
             <span>{userEmail}</span>
             <Button
               variant="contained"

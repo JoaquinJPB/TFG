@@ -8,10 +8,13 @@ import CloseIcon from '@mui/icons-material/Close';
 import React, { useState, useEffect } from "react";
 import { IconButton } from "@mui/material";
 import { useRef } from "react";
+import { useSelector } from "react-redux";
+
 
 const Navigation = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const user = useSelector((state) => state.user)
 
   let location = useLocation();
   let inmutableLocation = useRef(location)
@@ -51,9 +54,12 @@ const Navigation = () => {
               <Link to="/meditation" className={style.items}>Meditación</Link>
               <Link to="/recommendations" className={style.items}>Recomendaciones</Link>
               <Link to="/advice" className={style.items}>Consejos</Link>
-              <Link to="/user_id" className={style.items}>Mi Perfil</Link>
+              {user.token !== undefined ? <Link to="/user_id" className={style.items}>Mi Perfil</Link> 
+              : <>
               <Link to="/login" className={style.items}>Iniciar sesión</Link>
               <Link to="/signup" className={style.items}>Registrarse</Link>
+              </>
+              }
             </ul>
           </div>
         )}
@@ -69,5 +75,9 @@ const Navigation = () => {
     </div>
   );
 };
+
+
+
+
 
 export default Navigation;

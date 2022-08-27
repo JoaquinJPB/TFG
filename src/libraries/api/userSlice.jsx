@@ -5,6 +5,7 @@ export const userSlice = createSlice({
   initialState: {
     token: undefined,
     user: {
+      id: undefined,
       username: undefined,
       email: undefined,
       roles: []
@@ -14,8 +15,8 @@ export const userSlice = createSlice({
     setToken: (state, action) => {
       state.token = action.payload
       const user = parseJWT(action.payload.jwt)
-      console.log(user)
       state.user = {
+        id: user.id,
         username: user.username,
         email: user.email,
         roles: user.role
