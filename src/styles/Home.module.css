@@ -1,80 +1,79 @@
 .articleHome {
   display: flex;
-  flex-direction: row;
-  margin: 0 2rem 0 2rem;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
 }
 
-.articleHome section {
+.headerHome {
+  text-align: center;
+  height: 30vh;
+  background-color: #8E6BBF;
+  width: 100%;
   display: flex;
   flex-direction: column;
-}
-
-.headerSection {
-  display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
-.headerSection h2 {
-  margin-top: 3rem;
-  font-size: 2rem;
-  border-bottom: 4px solid var(--secondaryColor);
+.headerHome h1 {
+  color: white;
+  font-size: 3rem;
+}
+
+.headerHome h3 {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.headerHome button {
+  margin-top: 1rem;
 }
 
 .homeCards {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 1rem;
+  padding: 5rem;
+  display: flex;
+  flex-direction: row;
+  gap: 10rem;
 }
 
-.homeCards a:nth-child(even) div {
+.homeCards div {
   background-color: var(--primaryColor);
 }
 
-.homeCards a:nth-child(odd) div {
-  background-color: var(--secondaryColor);
+
+/* From uiverse.io by @Voxybuns */
+button {
+  /* Variables */
+  --button_radius: 0.75em;
+  --button_color: #ffffff;
+  --button_outline_color: #000000;
+  font-size: 17px;
+  font-weight: bold;
+  border: none;
+  border-radius: var(--button_radius);
+  background: var(--button_outline_color);
 }
 
-.articleHome section:nth-child(2) img{
-  margin-top: 3rem;
+.button_top {
+  display: block;
+  box-sizing: border-box;
+  border: 2px solid var(--button_outline_color);
+  border-radius: var(--button_radius);
+  padding: 0.75em 1.5em;
+  background: var(--button_color);
+  color: var(--button_outline_color);
+  transform: translateY(-0.2em);
+  transition: transform 0.1s ease;
 }
 
-@media (max-width: 578px) {
-  .homeCards {
-    grid-template-columns: repeat(1, 1fr);
-    align-items: center;
-    justify-items: center;
-  }
-
-  .articleHome {
-    flex-direction: column;
-    margin: 0 1rem 2rem 1rem;
-  }
-
-  .articleHome section:nth-child(2) img {
-    display: none;
-  }
+button:hover .button_top {
+  /* Pull the button upwards when hovered */
+  transform: translateY(-0.33em);
+  cursor: pointer;
 }
 
-@media (min-width: 579px) and (max-width: 1024px){
-  
-  .articleHome {
-    flex-direction: column;
-  }
-
-  .homeCards {
-    grid-template-columns: repeat(2, 1fr);
-    align-items: center;
-    justify-items: center;
-  }
-
-  .articleHome section:nth-child(2){
-    justify-content: center;
-    align-items: center;
-  }
-
-  .articleHome section:nth-child(2) img{
-    width: 550px;
-  }
-
+button:active .button_top {
+  /* Push the button downwards when pressed */
+  transform: translateY(0);
 }
