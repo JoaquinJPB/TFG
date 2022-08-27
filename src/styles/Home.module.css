@@ -7,7 +7,7 @@
 
 .headerHome {
   text-align: center;
-  min-height: 30vh;
+  min-height: 40vh;
   padding: 2rem;
   background-color: #8E6BBF;
   width: 100%;
@@ -31,6 +31,6 @@
   margin-top: 1rem;
 }
 
-.homeCards div {
-  background-color: var(--primaryColor);
+.imgHome {
+  width: 100%;
 }
