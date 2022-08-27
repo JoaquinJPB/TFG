@@ -41,7 +41,7 @@ const Navigation = () => {
   }, [location])
 
   return (
-    <div>
+    <>
       <nav className={style.navigation}>
         <div>
           <img src={iconWebPage} alt="Icon Web Page" />
@@ -90,7 +90,7 @@ const Navigation = () => {
       <main className={style.content}>
         <Outlet />
       </main>
-    </div>
+    </>
   )
 }
 

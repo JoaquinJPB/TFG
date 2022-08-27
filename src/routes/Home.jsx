@@ -5,11 +5,9 @@ import imgBreathing from "../images/breathing_section.png"
 import imgMeditation from "../images/meditation_section.png"
 import imgRecommendations from "../images/recommendations_section.png"
 import imgAdvice from "../images/advice_section.png"
-import { MainLayout } from "../layouts/MainLayout"
 
 const Home = () => {
   return (
-    <MainLayout>
       <article className={styles.articleHome}>
         <section className={styles.headerHome}>
           <h1>Redux Toolkit</h1>
@@ -45,7 +43,6 @@ const Home = () => {
         </div>
         <section></section>
       </article>
-    </MainLayout>
   )
 }
 
