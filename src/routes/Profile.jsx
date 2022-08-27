@@ -6,7 +6,7 @@ const Profile = () => {
   const user = useSelector((state) => state.user)
   console.log(user.user)
   return (
-      <UserDataLayout userName={user.user.username} userEmail={user.user.email} itemsFav={favItems}/>
+      <UserDataLayout userName={user.data.username} userEmail={user.data.email} itemsFav={favItems}/>
   );
 };
 

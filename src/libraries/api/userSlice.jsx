@@ -4,7 +4,7 @@ export const userSlice = createSlice({
   name: "user",
   initialState: {
     token: undefined,
-    user: {
+    data: {
       id: undefined,
       username: undefined,
       email: undefined,
@@ -14,8 +14,8 @@ export const userSlice = createSlice({
   reducers: {
     setToken: (state, action) => {
       state.token = action.payload
-      const user = parseJWT(action.payload.jwt)
-      state.user = {
+      const user = parseJWT(action.payload)
+      state.data = {
         id: user.id,
         username: user.username,
         email: user.email,
