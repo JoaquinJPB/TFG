@@ -1,11 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit"
+import { setupListeners } from "@reduxjs/toolkit/dist/query"
+import { apiSlice } from "../api/apiSlice"
+import { userSlice } from "../api/userSlice"
 
-import user from "../api/userSlice"
-
-const store = configureStore({
+export const store = configureStore({
   reducer: {
-    user
+    [apiSlice.reducerPath]: apiSlice.reducer,
+    user: userSlice.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(apiSlice.middleware),
 })
 
-export default store
+setupListeners(store.dispatch)

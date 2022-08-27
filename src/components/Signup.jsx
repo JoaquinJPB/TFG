@@ -15,16 +15,18 @@ import PersonIcon from "@mui/icons-material/Person";
 
 import background from "../images/Wallpaper_Website.png";
 
+import { useDispatch } from "react-redux"
+import { useSignUpMutation } from "../libraries/api/apiSlice";
+
 const theme = createTheme();
 
 const SignUp = () => {
+
+  const dispatch = useDispatch()
+  const [signUp] = useSignUpMutation()
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
   };
 
   return (
@@ -78,30 +80,15 @@ const SignUp = () => {
               sx={{ mt: 3 }}
             >
               <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12}>
                   <TextField
                     autoComplete="given-name"
-                    name="firstName"
+                    name="Username"
                     required
                     fullWidth
-                    id="firstName"
-                    label="First Name"
+                    id="userName"
+                    label="User name"
                     autoFocus
-                    sx={{
-                      backgroundColor: "white",
-                      color: "black",
-                    }}
-                    variant="filled"
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    required
-                    fullWidth
-                    id="lastName"
-                    label="Last Name"
-                    name="lastName"
-                    autoComplete="family-name"
                     sx={{
                       backgroundColor: "white",
                       color: "black",

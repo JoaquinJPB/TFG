@@ -3,11 +3,23 @@ import { createSlice } from "@reduxjs/toolkit"
 export const userSlice = createSlice({
   name: "user",
   initialState: {
-    user: undefined,
+    token: undefined,
+    user: {
+      username: undefined,
+      email: undefined,
+      roles: []
+    }
   },
   reducers: {
-    token: (state, action) => {
-      state.user = action.payload
+    setToken: (state, action) => {
+      state.token = action.payload
+      const user = parseJWT(action.payload.jwt)
+      console.log(user)
+      state.user = {
+        username: user.username,
+        email: user.email,
+        roles: user.role
+      }
     },
     clearStoreToken: (state) => {
       state.user = undefined
@@ -15,8 +27,14 @@ export const userSlice = createSlice({
   },
 })
 
-export const { token, clearStoreToken } = userSlice.actions
-
-export const selectUser = (state) => state.user.user
-
+export const { setToken, clearStoreToken } = userSlice.actions
 export default userSlice.reducer
+
+const parseJWT = (token) => {
+  var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+    return JSON.parse(jsonPayload);
+}

@@ -16,8 +16,7 @@ import PersonIcon from "@mui/icons-material/Person"
 
 import background from "../images/Wallpaper_Website.png"
 import { useState } from "react"
-import { useLoginMutation } from "../libraries/api/apiSlice"
-import { useDispatch } from "react-redux"
+import { useLogin } from "../hooks/useLogin"
 
 function Copyright(props) {
   return (
@@ -42,21 +41,11 @@ const theme = createTheme()
 const Login = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [login] = useLoginMutation()
-  const dispatch = useDispatch()
+  const { login } = useLogin()
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log({
-      email,
-      password,
-    })
-    login({ email, password })
-      .unwrap()
-      .then((res) => {
-        dispatch(res)
-      })
-      .catch((error) => console.log(error))
+    login(email, password)
   }
 
   return (

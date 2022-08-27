@@ -19,19 +19,21 @@ export const apiSlice = createApi({
         url: "videogames"
       }),
     }),
-    login: builder.mutation({
+    signIn: builder.mutation({
       query: (payload) => ({
         url: "auth/signin",
         method: 'POST',
         body: payload,
       }),
     }),
-    signUp: builder.query({
-      query: () => ({
-        url: "auth/signup"
+    signUp: builder.mutation({
+      query: (payload) => ({
+        url: "auth/signup",
+        method: 'POST',
+        body: payload,
       }),
     }),
   }),
 })
 
-export const { useGetBooksQuery, useGetMoviesQuery, useGetVideogamesQuery, useLoginMutation, useSignUpQuery } = apiSlice
+export const { useGetBooksQuery, useGetMoviesQuery, useGetVideogamesQuery, useSignInMutation, useSignUpMutation } = apiSlice
