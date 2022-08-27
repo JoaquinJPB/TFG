@@ -17,9 +17,6 @@ const Recomendations = () => {
       <section className={styles.recommendationRightBody}>
         <Header
           title={"Recomendaciones"}
-          subtitle={
-            "En este apartado encontraras una gran cantidad de recomendaciones tanto de libros, películas, y videojuegos para comprender y sobrellevar la ansiedad social de la mejor forma posible."
-          }
         />
         <div className={styles.sectionCards}>
           <SectionCard 

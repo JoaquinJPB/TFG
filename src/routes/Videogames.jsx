@@ -14,9 +14,6 @@ const Videogames = () => {
     <CheckRequest isLoading={isLoading} isError={isError} refetch={refetch}>
       <ItemsGrid
         title={"Recomendaciones de videojuegos"}
-        subtitle={
-          "Los estudios muestran que los videojuegos pueden ayudar a los jugadores a disminuir significativamente los efectos de este trastorno a través del entrenamiento de habilidades sociales. Estos son algunos de los videojuegos que se destacan en el tratamiento de la fobia social."
-        }
         items={videogames}
         background={VideogamesBackground}
       />

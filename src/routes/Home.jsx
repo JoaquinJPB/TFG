@@ -15,9 +15,6 @@ const Home = () => {
       <section>
         <Header
           title={"Bienvenido"}
-          subtitle={
-            'En el trastorno de ansiedad social, el miedo y la ansiedad conducen a una abstención que puede alterar tu vida. El estrés grave puede afectar a tus relaciones, la rutina diaria, el trabajo, la escuela u otras actividades. Por eso hemos preparado esta plataforma donde podras encontrar una gran cantidad de recursos que te podran ayudar a sobrellevar este problema.'
-          }
         />
         <div className={styles.headerSection}>
           <h2>Secciones</h2>
