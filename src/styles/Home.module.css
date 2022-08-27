@@ -7,7 +7,8 @@
 
 .headerHome {
   text-align: center;
-  height: 30vh;
+  min-height: 30vh;
+  padding: 2rem;
   background-color: #8E6BBF;
   width: 100%;
   display: flex;
@@ -30,50 +31,6 @@
   margin-top: 1rem;
 }
 
-.homeCards {
-  padding: 5rem;
-  display: flex;
-  flex-direction: row;
-  gap: 10rem;
-}
-
 .homeCards div {
   background-color: var(--primaryColor);
-}
-
-
-/* From uiverse.io by @Voxybuns */
-button {
-  /* Variables */
-  --button_radius: 0.75em;
-  --button_color: #ffffff;
-  --button_outline_color: #000000;
-  font-size: 17px;
-  font-weight: bold;
-  border: none;
-  border-radius: var(--button_radius);
-  background: var(--button_outline_color);
-}
-
-.button_top {
-  display: block;
-  box-sizing: border-box;
-  border: 2px solid var(--button_outline_color);
-  border-radius: var(--button_radius);
-  padding: 0.75em 1.5em;
-  background: var(--button_color);
-  color: var(--button_outline_color);
-  transform: translateY(-0.2em);
-  transition: transform 0.1s ease;
-}
-
-button:hover .button_top {
-  /* Pull the button upwards when hovered */
-  transform: translateY(-0.33em);
-  cursor: pointer;
-}
-
-button:active .button_top {
-  /* Push the button downwards when pressed */
-  transform: translateY(0);
 }
