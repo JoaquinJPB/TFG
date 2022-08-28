@@ -1,5 +1,5 @@
 import ItemsGrid from "../components/ItemsGrid"
-import MoviesBackground from "../images/Movies_Background.png"
+import MoviesBackground from "../images/undraw_horror_movie_3988.svg"
 import { useGetMoviesQuery } from "../libraries/api/apiSlice"
 import { CheckRequest } from "../components/CheckRequest"
 

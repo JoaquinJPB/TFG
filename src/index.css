@@ -2,9 +2,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: SF Pro Display,SF Pro Icons,AOS Icons,Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 :root {
     --primaryColor: #8E6BBF;
+    --secondaryColor: #2c2c44;
+    --h1FontSizeDesktop: 3rem;
+    --h1FontSizeTablet: 2.5rem;
+    --h1FontSizeMobile: 2rem;
 }

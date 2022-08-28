@@ -1,6 +1,6 @@
 import SectionLayout from "../components/SectionLayout";
 
-import imgMeditationBackground from "../images/Meditation_Background.png";
+import imgMeditationBackground from "../images/undraw_mindfulness_re_mmj6.svg";
 import exercises from "../exercises.json";
 
 const Meditation = () => {

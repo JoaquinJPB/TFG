@@ -1,17 +1,15 @@
-import style from "../styles/ExerciseCard.module.css";
+import style from "../styles/ExerciseCard.module.css"
+import { Grid } from "@mui/material"
 
 const ExerciseCard = ({ exercise }) => {
   return (
-    <li className={style.exerciseBodyCard}>
-      <div>
+    <Grid item xs={12} sm={12} md={4} xl={3}>
+      <div className={style.exerciseBodyCard}>
         <img src={exercise.img} alt={exercise.title} />
+        <h3>{exercise.title}</h3>
       </div>
-      <div>
-        <h4>{exercise.title}</h4>
-        <p>{exercise.description}</p>
-      </div>
-    </li>
-  );
-};
+    </Grid>
+  )
+}
 
-export default ExerciseCard;
+export default ExerciseCard

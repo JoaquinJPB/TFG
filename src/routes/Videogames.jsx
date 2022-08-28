@@ -1,4 +1,4 @@
-import VideogamesBackground from "../images/Videogames_Background.png"
+import VideogamesBackground from "../images/undraw_video_game_night_8h8m.svg"
 import ItemsGrid from "../components/ItemsGrid"
 import { CheckRequest } from "../components/CheckRequest"
 import { useGetVideogamesQuery } from "../libraries/api/apiSlice"

@@ -4,32 +4,8 @@
   margin: 0 1rem;
 }
 
-.articleLayoutBody section{
-  flex: 50%;
-}
-
-.articleLayoutBody section div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.articleLayoutBody section div h3 {
-  margin: 1rem 0 2rem 0;
-  font-size: 2rem;
-  border-bottom: 4px solid var(--secondaryColor);
-  color: var(--primaryColor);
-}
-
-.articleLayoutBody section:nth-child(1){
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 .articleLayoutBody section:nth-child(1) img {
-  margin-top: 2rem;
+  width: 100%;
 }
 
 @media (max-width: 578px) {

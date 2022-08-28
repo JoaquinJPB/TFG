@@ -1,4 +1,4 @@
-import imgAdviceBackground from "../images/Advice_Background.png";
+import imgAdviceBackground from "../images/undraw_positive_attitude_re_wu7d.svg";
 import exercises from "../exercises.json";
 import SectionLayout from "../components/SectionLayout";
 

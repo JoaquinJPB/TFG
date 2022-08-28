@@ -6,6 +6,7 @@
   width: 100%;
   z-index: 10;
   background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 .navigation div{
@@ -33,12 +34,12 @@
 .navigation a {
   font-size: 1rem;
   font-weight: bold;
-  color: var(--primaryColor);
+  color: var(--secondaryColor);
   transition: border-bottom 0.1s;
 }
 
 .navigation a:hover {
-  border-bottom: 4px solid var(--secondaryColor);
+  border-bottom: 4px solid var(--primaryColor);
 }
 
 .list {
@@ -92,7 +93,7 @@
   }
 
   .navigation a:hover {
-    border-bottom: 4px solid var(--secondaryColor);
+    border-bottom: 4px solid var(--primaryColor);
   }
 
   .content section{

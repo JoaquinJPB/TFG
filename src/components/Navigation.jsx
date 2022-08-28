@@ -58,11 +58,11 @@ const Navigation = () => {
               <Link to="/meditation" className={style.items}>
                 Meditación
               </Link>
-              <Link to="/recommendations" className={style.items}>
-                Recomendaciones
-              </Link>
               <Link to="/advice" className={style.items}>
                 Consejos
+              </Link>
+              <Link to="/recommendations" className={style.items}>
+                Recomendaciones
               </Link>
               {user.token !== undefined ? (
                 <Link to="/user_id" className={style.items}>

@@ -5,7 +5,7 @@ import imgBreathing from "../images/breathing_section.png"
 import imgMeditation from "../images/meditation_section.png"
 import imgRecommendations from "../images/recommendations_section.png"
 import imgAdvice from "../images/advice_section.png"
-import imgHome from "../images/Welcome_Background.png"
+import imgHome from "../images/undraw_welcome_re_h3d9.svg"
 import { Grid } from "@mui/material"
 
 const Home = () => {
@@ -19,10 +19,34 @@ const Home = () => {
         </h3>
       </section>
       <Grid container spacing={2} px={5}>
-        <Grid item xs={12} md={5} display={"flex"} justifyContent={'center'} alignItems={'center'}>
+        <Grid
+          item
+          xs={12}
+          md={7}
+          display={"flex"}
+          justifyContent={"center"}
+          alignItems={"center"}
+        >
+          <figure>
+            <img src={imgHome} alt="Welcome" className={styles.imgHome} />
+          </figure>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          md={5}
+          display={"flex"}
+          justifyContent={"center"}
+          alignItems={"center"}
+        >
           <Grid container spacing={2}>
-            <Grid xs={12} display={"flex"} justifyContent={'center'} alignItems={'center'}>
-            <h1>Bloodborne PC Remastered</h1>
+            <Grid
+              xs={12}
+              display={"flex"}
+              justifyContent={"center"}
+              alignItems={"center"}
+            >
+              <h1>Bloodborne PC Remastered</h1>
             </Grid>
             <Grid
               item
@@ -77,11 +101,6 @@ const Home = () => {
               />
             </Grid>
           </Grid>
-        </Grid>
-        <Grid item xs={12} md={7} display={"flex"} justifyContent={'center'} alignItems={'center'}>
-        <figure>
-          <img src={imgHome} alt="Welcome" className={styles.imgHome} />
-        </figure>
         </Grid>
       </Grid>
     </article>

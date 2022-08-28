@@ -1,5 +1,5 @@
 import ItemsGrid from "../components/ItemsGrid"
-import BooksBackground from "../images/Books_Background.png"
+import BooksBackground from "../images/undraw_reading_time_re_phf7.svg"
 import { useGetBooksQuery } from "../libraries/api/apiSlice"
 import { CheckRequest } from "../components/CheckRequest"
 

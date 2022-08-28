@@ -1,6 +1,8 @@
 .sectionsCardBody {
   border: 4px solid var(--secondaryColor);
   border-radius: 2rem;
+  padding: 1rem;
+  width: 100%;
 }
 
 .sectionsCardBody:hover {
@@ -8,24 +10,17 @@
   opacity: 0.8;
 }
 
-.sectionsCardBody h3 {
+.sectionsCardBody h2 {
   color: var(--primaryColor);
   text-align: center;
-  font-size: 2rem;
   margin-top: 0.5rem;
 }
 
 .sectionsCardBody img {
-  width: 300px;
-  height: 220px;
+  max-width: 100%;
+  height: auto;
 }
 
 a {
   text-decoration: none;
-}
-
-@media screen and (max-width: 578px) {
-  .sectionsCardBody h3 {
-    font-size: 1.5rem;
-  }
 }

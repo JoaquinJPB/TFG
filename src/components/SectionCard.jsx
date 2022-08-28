@@ -1,15 +1,17 @@
-import { Link } from "react-router-dom";
-import styles from "../styles/SectionCard.module.css";
+import styles from "../styles/SectionCard.module.css"
+import { useNavigate } from "react-router-dom"
 
 const SectionCard = ({ title, img, route }) => {
+  const navigate = useNavigate()
   return (
-    <Link to={"/recommendations/" + route}>
-      <div className={styles.sectionsCardBody}>
-        <img src={img} alt={title} />
-        <h3>{title}</h3>
-      </div>
-    </Link>
-  );
-};
+    <div
+      className={styles.sectionsCardBody}
+      onClick={() => navigate("/recommendations/" + route)}
+    >
+      <img src={img} alt={title} />
+      <h2>{title}</h2>
+    </div>
+  )
+}
 
-export default SectionCard;
+export default SectionCard

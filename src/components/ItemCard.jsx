@@ -1,8 +1,9 @@
+import { Grid } from "@mui/material";
 import style from "../styles/ItemCard.module.css";
 
 const ItemCard = ({ item }) => {
   return (
-    <li className={style.itemCard}>
+    <Grid item xs={12} md={3} className={style.itemCard}>
       <div>
         <img src={item.img} alt={item.title} className={style.itemImage} />
       </div>
@@ -11,7 +12,7 @@ const ItemCard = ({ item }) => {
         <p className={style.textSubtitle}>{item.author || item.director || item.developer}</p>
         <button className={style.cardButton}>Read More</button>
       </div>
-    </li>
+    </Grid>
   );
 };
 
