@@ -8,7 +8,9 @@
 :root {
     --primaryColor: #8E6BBF;
     --secondaryColor: #2c2c44;
-    --h1FontSizeDesktop: 3rem;
-    --h1FontSizeTablet: 2.5rem;
-    --h1FontSizeMobile: 2rem;
+    --h1FontSize: 2.25rem;
+}
+
+h1{
+    font-size: var(--h1FontSize);
 }

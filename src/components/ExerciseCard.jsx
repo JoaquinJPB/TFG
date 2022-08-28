@@ -6,7 +6,7 @@ const ExerciseCard = ({ exercise }) => {
     <Grid item xs={12} sm={12} md={4} xl={3}>
       <div className={style.exerciseBodyCard}>
         <img src={exercise.img} alt={exercise.title} />
-        <h3>{exercise.title}</h3>
+        <h2>{exercise.title}</h2>
       </div>
     </Grid>
   )

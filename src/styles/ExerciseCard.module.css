@@ -12,7 +12,8 @@
   border: 2px solid var(--secondaryColor);
 }
 
-.exerciseBodyCard h3 {
+.exerciseBodyCard h2 {
   text-align: center;
   color: white;
+  padding: .5rem;
 }

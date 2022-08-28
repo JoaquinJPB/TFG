@@ -7,7 +7,7 @@
 
 .headerHome {
   text-align: center;
-  min-height: 40vh;
+  min-height: 25vh;
   padding: 2rem;
   background-color: #8E6BBF;
   width: 100%;
@@ -19,12 +19,16 @@
 
 .headerHome h1 {
   color: white;
-  font-size: 3rem;
 }
 
-.headerHome h3 {
+.headerHome:first-child h2{
+  font-weight: 400;
   color: white;
-  font-size: 1.5rem;
+}
+
+.titleBox{
+  display: flex;
+  align-items: center;
 }
 
 .headerHome button {
@@ -33,4 +37,16 @@
 
 .imgHome {
   width: 100%;
+}
+
+.sectionTitle{
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--secondaryColor);
+}
+
+@media screen and (max-width: 768px) {
+  .titleBox{
+    flex-direction: column;
+  }
 }

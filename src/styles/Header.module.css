@@ -5,24 +5,8 @@
 }
 
 .title {
-  margin-bottom: 2rem;
+  margin: 1rem 0;
   text-align: center;
-  font-size: var(--h1FontSizeDesktop);
   color: var(--primaryColor);
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
-  
-  .title {
-    font-size: var(--h1FontSizeTablet);
-  }
-  
-}
-
-@media (max-width: 767px) {
-    
-  .title {
-    font-size: var(--h1FontSizeMobile);
-  }
-
-}
