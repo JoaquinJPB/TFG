@@ -8,25 +8,10 @@
   width: 100%;
 }
 
-@media (max-width: 578px) {
-  .articleLayoutBody {
-    flex-direction: column;
-  }
-
-  .articleLayoutBody section:nth-child(1) img {
-    display: none;
-  }
-}
-
-@media (min-width: 579px) and (max-width: 1024px) {
+@media (max-width: 1024px) {
 
   .articleLayoutBody {
     flex-direction: column;
-  }
-
-  .articleLayoutBody section:nth-child(1) img {
-    display: flex;
-    width: 550px;
   }
 
 }
