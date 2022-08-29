@@ -16,7 +16,7 @@ const Home = () => {
 				<span className={styles.titleBox}>
 					<HealingIcon
 						sx={{
-							fontSize: "5rem",
+							fontSize: "4rem",
 							color: "white",
 						}}
 					/>

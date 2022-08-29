@@ -1,0 +1,10 @@
+.footerItemLink{
+  font-weight: 600;
+  text-decoration: none;
+  color: grey;
+  text-transform: uppercase;
+}
+
+.footerItemLink:hover{
+  opacity: .8;
+}
