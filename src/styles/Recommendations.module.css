@@ -4,6 +4,10 @@
   max-width: 100%;
 }
 
+.recommendationBody{
+  max-width: 100%;
+}
+
 @media (max-width: 578px) {
   .recommendationImgBackground {
     display: none;

@@ -16,6 +16,9 @@ export default function StickyFooter() {
         justifyContent: "center",
         textAlign: "center",
         backgroundColor: "var(--secondaryColor)",
+        position: 'relative',
+        bottom: '0',
+        marginTop: '3rem'
       }}
     >
       <CssBaseline />
@@ -36,6 +39,7 @@ export default function StickyFooter() {
             textAlign: "center",
             color: "white",
           }}
+          className={styles.footerBoxLink}
         >
           <Link to="/" className={styles.footerItemLink}>Inicio</Link>
           <Link to="/breathing" className={styles.footerItemLink}>Respiración</Link>
@@ -43,6 +47,12 @@ export default function StickyFooter() {
           <Link to="/advice" className={styles.footerItemLink}>Consejos</Link>
           <Link to="/recommendations" className={styles.footerItemLink}>Recomendaciones</Link>
         </Box>
+        <Container maxWidth="sm"  sx={{
+            marginTop: '1rem',
+            color: "#808080",
+          }}>
+					<Typography variant="body1">© Joaquin Pastore Barrios</Typography>
+				</Container>
       </Container>
     </Box>
   )

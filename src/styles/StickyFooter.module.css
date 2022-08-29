@@ -1,10 +1,20 @@
-.footerItemLink{
+.footerItemLink {
   font-weight: 600;
   text-decoration: none;
-  color: grey;
+  color: #808080;
   text-transform: uppercase;
 }
 
-.footerItemLink:hover{
-  opacity: .8;
+.footerItemLink:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 768px) {
+  .footerBoxLink {
+    flex-direction: column !important;
+  }
+  
+  .footerItemLink{
+    margin-top: .75rem;
+  }
 }
