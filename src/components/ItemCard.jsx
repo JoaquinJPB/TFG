@@ -1,16 +1,16 @@
 import { Grid } from "@mui/material";
-import style from "../styles/ItemCard.module.css";
+import styles from "../styles/ItemCard.module.css";
 
 const ItemCard = ({ item }) => {
   return (
-    <Grid item xs={12} md={3} className={style.itemCard}>
+    <Grid item xs={12} md={3} className={styles.itemCard}>
       <div>
-        <img src={item.img} alt={item.title} className={style.itemImage} />
+        <img src={item.img} alt={item.title} className={styles.itemImage} />
       </div>
-      <div className={style.itemCardInfo}>
-        <p className={style.textTitle}>{item.title}</p>
-        <p className={style.textSubtitle}>{item.author || item.director || item.developer}</p>
-        <button className={style.cardButton}>Read More</button>
+      <div className={styles.itemCardInfo}>
+        <p className={styles.textTitle}>{item.title}</p>
+        <p className={styles.textSubtitle}>{item.author || item.director || item.developer}</p>
+        <button className={styles.cardButton}>Read More</button>
       </div>
     </Grid>
   );

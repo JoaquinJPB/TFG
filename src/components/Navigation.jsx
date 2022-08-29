@@ -1,4 +1,4 @@
-import style from "../styles/Navigation.module.css"
+import styles from "../styles/Navigation.module.css"
 import { Link, Outlet, useLocation } from "react-router-dom"
 import iconWebPage from "../images/iconWebPage.png"
 
@@ -42,38 +42,38 @@ const Navigation = () => {
 
   return (
     <>
-      <nav className={style.navigation}>
+      <nav className={styles.navigation}>
         <div>
           <img src={iconWebPage} alt="Icon Web Page" />
         </div>
         {(toggleMenu || screenWidth > 1024) && (
-          <div className={style.navItems}>
-            <ul className={style.list}>
-              <Link to="/" className={style.items}>
+          <div className={styles.navItems}>
+            <ul className={styles.list}>
+              <Link to="/" className={styles.items}>
                 Inicio
               </Link>
-              <Link to="/breathing" className={style.items}>
+              <Link to="/breathing" className={styles.items}>
                 Respiración
               </Link>
-              <Link to="/meditation" className={style.items}>
+              <Link to="/meditation" className={styles.items}>
                 Meditación
               </Link>
-              <Link to="/advice" className={style.items}>
+              <Link to="/advice" className={styles.items}>
                 Consejos
               </Link>
-              <Link to="/recommendations" className={style.items}>
+              <Link to="/recommendations" className={styles.items}>
                 Recomendaciones
               </Link>
               {user.token !== undefined ? (
-                <Link to="/user_id" className={style.items}>
+                <Link to="/user_id" className={styles.items}>
                   Mi Perfil
                 </Link>
               ) : (
                 <>
-                  <Link to="/login" className={style.items}>
+                  <Link to="/login" className={styles.items}>
                     Iniciar sesión
                   </Link>
-                  <Link to="/signup" className={style.items}>
+                  <Link to="/signup" className={styles.items}>
                     Registrarse
                   </Link>
                 </>
@@ -81,13 +81,13 @@ const Navigation = () => {
             </ul>
           </div>
         )}
-        <div className={style.buttonContainer}>
-          <IconButton onClick={toggleNav} className={style.btn} size="large">
+        <div className={styles.buttonContainer}>
+          <IconButton onClick={toggleNav} className={styles.btn} size="large">
             {!toggleMenu ? <MenuIcon /> : <CloseIcon />}
           </IconButton>
         </div>
       </nav>
-      <main className={style.content}>
+      <main className={styles.content}>
         <Outlet />
       </main>
     </>
