@@ -1,9 +1,5 @@
 
 .recommendationImgBackground{
   margin-top: 1rem;
-  max-width: 100%;
-}
-
-.recommendationBody{
-  max-width: 100%;
+  width: 100%;
 }
