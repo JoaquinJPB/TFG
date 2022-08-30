@@ -39,7 +39,7 @@
   width: 100%;
 }
 
-.sectionTitle, .aboutTitle{
+.sectionTitle, .aboutTitle, .contactTitle{
   font-size: 2rem;
   font-weight: 600;
   color: var(--secondaryColor);
@@ -49,6 +49,10 @@
 .aboutDescription{
   margin-top: 1rem;
   font-size: 1.5rem;
+}
+
+button:hover{
+  background-color: black !important;
 }
 
 
