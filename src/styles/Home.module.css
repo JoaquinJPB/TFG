@@ -39,14 +39,25 @@
   width: 100%;
 }
 
-.sectionTitle{
+.sectionTitle, .aboutTitle{
   font-size: 2rem;
   font-weight: 600;
   color: var(--secondaryColor);
+  text-align: center;
 }
+
+.aboutDescription{
+  margin-top: 1rem;
+  font-size: 1.5rem;
+}
+
 
 @media screen and (max-width: 768px) {
   .titleBox{
     flex-direction: column;
+  }
+
+  .aboutDescription{
+    text-align: center;
   }
 }
