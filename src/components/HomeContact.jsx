@@ -28,11 +28,11 @@ const HomeContact = () => {
         xs={12}
         md={5}
         display={"flex"}
-				flexDirection={"column"}
+        flexDirection={"column"}
         justifyContent={"center"}
         alignItems={"center"}
       >
-				<h2 className={styles.contactTitle}>Contacto</h2>
+        <h2 className={styles.contactTitle}>Contacto</h2>
         <form>
           <Grid container spacing={2} mt={1}>
             <Grid item xs={12}>
@@ -47,7 +47,7 @@ const HomeContact = () => {
             <Grid item xs={12}>
               <TextField
                 label="Email"
-								type="email"
+                type="email"
                 placeholder="Introduce un email"
                 variant="outlined"
                 fullWidth
@@ -57,7 +57,7 @@ const HomeContact = () => {
             <Grid item xs={12}>
               <TextField
                 label="Teléfono"
-								type="number"
+                type="number"
                 placeholder="Introduce un teléfono"
                 variant="outlined"
                 fullWidth
@@ -67,7 +67,8 @@ const HomeContact = () => {
             <Grid item xs={12}>
               <TextField
                 label="Mensaje"
-								multiline rows={4}
+                multiline
+                rows={4}
                 placeholder="Introduce tu mensaje"
                 variant="outlined"
                 fullWidth
@@ -75,7 +76,7 @@ const HomeContact = () => {
               />
             </Grid>
             <Grid item xs={12}>
-              <Button type="submit" variant="contained" fullWidth sx={{backgroundColor: "var(--primaryColor)"}}>
+              <Button type="submit" variant="contained" fullWidth sx={{fontWeight: "bold"}}>
                 Enviar
               </Button>
             </Grid>
