@@ -41,6 +41,7 @@ const SignUp = () => {
           backgroundRepeat: "no-repeat",
           backgroundColor: "rgba(0,0,0,0.1)",
           backgroundSize: "cover",
+          marginBottom: "-3rem"
         }}
       >
         <Container component="section" maxWidth="xs" className="sign-in">

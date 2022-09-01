@@ -31,7 +31,7 @@ const Login = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: "100vh" }}>
+      <Grid container component="main" sx={{ height: "100vh", marginBottom: "-3rem" }}>
         <CssBaseline />
         <Grid
           item
