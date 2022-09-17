@@ -5,7 +5,6 @@ import { CheckRequest } from "../components/CheckRequest"
 
 const Advice = () => {
   const { data: advice, isLoading, isError, refetch } = useGetAdviceQuery()
-  console.log(advice)
   return (
     <CheckRequest isLoading={isLoading} isError={isError} refetch={refetch}>
       <SectionLayout

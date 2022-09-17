@@ -3,7 +3,7 @@ import { Grid } from "@mui/material"
 
 const ExerciseCard = ({ exercise }) => {
   return (
-    <Grid item xs={12} sm={6} md={4} xl={3}>
+    <Grid item xs={12} sm={6}>
       <div className={styles.exerciseBodyCard}>
         <img src={exercise.img} alt={exercise.title} />
         <h2>{exercise.title}</h2>
