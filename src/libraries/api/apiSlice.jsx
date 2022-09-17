@@ -29,6 +29,11 @@ export const apiSlice = createApi({
         url: "meditations",
       }),
     }),
+    getBreaths: builder.query({
+      query: () => ({
+        url: "breaths",
+      }),
+    }),
     signIn: builder.mutation({
       query: (payload) => ({
         url: "auth/signin",
@@ -52,6 +57,7 @@ export const {
   useGetVideogamesQuery,
   useGetAdviceQuery,
   useGetMeditationsQuery,
+  useGetBreathsQuery,
   useSignInMutation,
   useSignUpMutation,
 } = apiSlice
