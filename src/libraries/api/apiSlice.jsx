@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
 export const apiSlice = createApi({
   reducerPath: "api",
@@ -6,39 +6,52 @@ export const apiSlice = createApi({
   endpoints: (builder) => ({
     getMovies: builder.query({
       query: () => ({
-        url: "movies"
+        url: "movies",
       }),
     }),
     getBooks: builder.query({
       query: () => ({
-        url: "books"
+        url: "books",
       }),
     }),
     getVideogames: builder.query({
       query: () => ({
-        url: "videogames"
+        url: "videogames",
       }),
     }),
     getAdvice: builder.query({
       query: () => ({
-        url: "advice"
+        url: "advice",
+      }),
+    }),
+    getMeditations: builder.query({
+      query: () => ({
+        url: "meditations",
       }),
     }),
     signIn: builder.mutation({
       query: (payload) => ({
         url: "auth/signin",
-        method: 'POST',
+        method: "POST",
         body: payload,
       }),
     }),
     signUp: builder.mutation({
       query: (payload) => ({
         url: "auth/signup",
-        method: 'POST',
+        method: "POST",
         body: payload,
       }),
     }),
   }),
 })
 
-export const { useGetBooksQuery, useGetMoviesQuery, useGetVideogamesQuery, useGetAdviceQuery ,useSignInMutation, useSignUpMutation } = apiSlice
+export const {
+  useGetBooksQuery,
+  useGetMoviesQuery,
+  useGetVideogamesQuery,
+  useGetAdviceQuery,
+  useGetMeditationsQuery,
+  useSignInMutation,
+  useSignUpMutation,
+} = apiSlice
