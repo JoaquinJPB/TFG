@@ -29,7 +29,7 @@ const SectionLayout = ({ title, subtitle, img, exercises }) => {
             justifyContent={"center"}
             alignItems={"center"}
           >
-            <ExerciseGrid exercises={exercises} />
+            <ExerciseGrid exercises={exercises.data} />
           </Grid>
         </Grid>
       </Grid>
