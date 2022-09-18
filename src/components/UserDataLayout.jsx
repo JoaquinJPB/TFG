@@ -1,54 +1,54 @@
-import Button from "@mui/material/Button";
-import Header from "./Header";
-import ItemCard from "./ItemCard";
+import Button from "@mui/material/Button"
+import Header from "./Header"
+import ItemCard from "./ItemCard"
+import stylesGrid from "../styles/ItemsGrid.module.css"
 
-import userImg from "../images/Profile_Avatar.png";
-import profileBackground from "../images/Profile_Background.png";
+import userImg from "../images/Profile_Avatar.png"
+import profileBackground from "../images/undraw_profile_details_re_ch9r.svg"
 
-import styles from "../styles/UserDataLayout.module.css";
-import stylesGrid from "../styles/ItemsGrid.module.css";
+import styles from "../styles/UserDataLayout.module.css"
 
+import { Grid } from "@mui/material"
 
 const UserDataLayout = ({ userName, fullName, userEmail, itemsFav }) => {
-  return (
-    <article className={styles.articleProfile}>
-      <section>
-        <Header title={"Mi perfil"} subtitle={""} />
-        <div className={styles.userDataSection}>
-          <img src={userImg} alt="Imagen de perfil" />
-          <div>
-            <h2>{userName}</h2>
-            <span>{userEmail}</span>
-            <Button
-              variant="contained"
-              sx={{
-                mt: 2.5,
-                backgroundColor: "var(--secondaryColor)",
-                fontWeight: "bold",
-                fontSize: "1rem",
-                "&:hover": {
-                  backgroundColor: "var(--primaryColor)",
-                },
-              }}
-            >
-              Cambiar detalles de la cuenta
-            </Button>
-          </div>
-        </div>
-        <Header title={"Contenido favorito"} subtitle={""} />
-        <section className={styles.favItems}>
-          <ul className={stylesGrid.itemsGrid}>
-            {itemsFav.map((item) => (
-              <ItemCard key={item.id} item={item} />
-            ))}
-          </ul>
-        </section>
-      </section>
-      <section>
-        <img src={profileBackground} alt="Fondo detalles de la cuenta" />
-      </section>
-    </article>
-  );
-};
+	return (
+		<Grid container spacing={5} px={5} mt={1}>
+			<Grid
+				item
+				xs={12}
+				md={5}
+				display={"flex"}
+        flexDirection={"column"}
+			>
+				<Header title={"Mi perfil"} subtitle={""} />
+				<div className={styles.userDataSection}>
+					<img src={userImg} alt="Imagen de perfil" />
+					<div>
+						<h2>{userName}</h2>
+						<span>{userEmail}</span>
+						<Button
+							type="submit"
+							variant="contained"
+							fullWidth
+							sx={{ fontWeight: "bold", marginTop: "1rem" }}
+						>
+							Cambiar detalles de la cuenta
+						</Button>
+					</div>
+				</div>
+			</Grid>
+			<Grid
+				item
+				xs={12}
+				md={7}
+				display={"flex"}
+				justifyContent={"center"}
+				alignItems={"center"}
+			>
+				<img className={styles.profileBackground}src={profileBackground} alt="Fondo detalles de la cuenta" />
+			</Grid>
+		</Grid>
+	)
+}
 
-export default UserDataLayout;
+export default UserDataLayout

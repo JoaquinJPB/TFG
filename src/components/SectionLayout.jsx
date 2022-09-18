@@ -7,7 +7,7 @@ import { Grid } from "@mui/material"
 const SectionLayout = ({ title, subtitle, img, exercises }) => {
   return (
     <article className={styles.articleLayoutBody}>
-      <Grid container spacing={2} px={5}>
+      <Grid container spacing={2} px={5} mt={1}>
         <Grid item xs={12} md={6} display={"flex"} justifyContent={"center"}>
           <section>
             <Header title={title} subtitle={subtitle} />
