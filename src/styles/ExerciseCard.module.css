@@ -3,13 +3,43 @@
   height: 254px;
   background: var(--primaryColor);
   transition: all 300ms;
+  border-radius: .5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .card:hover {
   opacity: 0.8;
   transform: scale(1.1);
+  cursor: pointer;
 }
 
-.title{
+.title {
+  text-align: center;
+  padding: 2rem;
+}
+
+.boxModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50vh;
+  border: 2px solid var(--primaryColor) !important;
+  padding: 2rem;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+
+.imgModal {
+  max-width: 100%;
+}
+
+.description{
   text-align: center;
 }
