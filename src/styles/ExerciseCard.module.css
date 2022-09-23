@@ -26,9 +26,11 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 50vh;
+  width: 30%;
+  max-height: calc(100vh - 10px);
+  overflow-y: auto;
   border: 2px solid var(--primaryColor) !important;
-  padding: 2rem;
+  padding: 1.5rem;
   background-color: #fff;
   display: flex;
   flex-direction: column;
@@ -44,9 +46,13 @@
   text-align: center;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 768px) {
   
   .card{
     margin-top: 1.5rem;
+  }
+
+  .boxModal{
+    width: 75%;
   }
 }
