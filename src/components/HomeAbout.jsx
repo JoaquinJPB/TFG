@@ -15,17 +15,19 @@ const HomeAbout = () => {
         alignItems={"center"}
       >
         <section>
-          <h2 className={styles.aboutTitle}>About</h2>
+          <h2 className={styles.aboutTitle}>Conoce nuestra historia</h2>
           <p className={styles.aboutDescription}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-            fringilla vehicula tristique. Maecenas viverra congue lacus
-            ultricies feugiat. Sed quis enim et nisl volutpat lacinia sit amet
-            ut mi. Quisque eget arcu nunc. Curabitur magna sapien, consectetur
-            et iaculis a, maximus quis orci. Duis rhoncus iaculis suscipit. In
-            fermentum urna eget molestie convallis. Vestibulum sed elit sit amet
-            enim ultrices scelerisque vel vel sem. Nam consequat ex vel diam
-            posuere, eu rutrum quam tincidunt. Nulla quis dolor at leo ultricies
-            dignissim in vel
+            Somos una organización dedicada a estudiar herramientas y ayudas
+            para poder facilitar el entendimiento de la ansiedad social, así
+            como dar la posibilidad de experimentar nuevos campos que permitan
+            comprender todos los mecanismos que existen para afrontar este
+            transtorno.
+          </p>
+          <p className={styles.aboutDescription}>
+            Contamos con gente especializada que cada día estudia nuevas maneras
+            de confrontar dicha inquietud, con el fin de poder garantizar la
+            mayor calidad de nuestros recursos disponibles, dentro de nuestra
+            web.
           </p>
         </section>
       </Grid>

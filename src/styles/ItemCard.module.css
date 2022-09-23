@@ -106,3 +106,7 @@
   justify-items: center;
   align-items: center;
 }
+
+.title, .description{
+  text-align: center;
+}

@@ -8,7 +8,7 @@ const ExerciseCard = ({ exercise }) => {
   const handleClose = () => setOpen(false)
 
   return (
-    <Grid item xs={12} sm={3}>
+    <Grid item xs={12} md={6} lg={4} xl={3}>
       <div className={styles.card} onClick={handleOpen}>
         <h2 className={styles.title}>{exercise.title}</h2>
       </div>
