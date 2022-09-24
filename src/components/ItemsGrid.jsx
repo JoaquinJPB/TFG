@@ -5,12 +5,12 @@ import ItemCard from "./ItemCard"
 
 const ItemsGrid = ({ title, subtitle, items, background }) => {
   return (
-    <article className={styles.gridArticle}>
-      <Grid container px={5} spacing={4}>
+    <article >
+      <Grid container px={5} spacing={6}>
         <Grid item xs={12} md={6}>
-          <Grid container>
+          <Grid container className={styles.gridItemsSection}>
             <Header title={title} subtitle={subtitle}/>
-            <Grid container className={styles.itemsGrid} spacing={2}>
+            <Grid container spacing={4}>
               {items.data.map((item) => (
                 <ItemCard key={item.id} item={item} />
               ))}

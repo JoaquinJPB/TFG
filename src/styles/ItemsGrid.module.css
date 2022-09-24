@@ -1,4 +1,17 @@
+.gridItemsSection{
+  display: flex;
+  flex-direction: column;
+}
+
 .imgBackground {
   margin-top: 1rem;
   max-width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .gridItemsSection {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
