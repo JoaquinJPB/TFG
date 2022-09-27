@@ -12,7 +12,7 @@ const ItemsGrid = ({ title, subtitle, items, background }) => {
             <Header title={title} subtitle={subtitle}/>
             <Grid container spacing={4}>
               {items.data.map((item) => (
-                <ItemCard key={item.id} item={item} />
+                <ItemCard key={item._id} item={item} />
               ))}
             </Grid>
           </Grid>

@@ -4,7 +4,7 @@ const ExerciseGrid = ({ exercises }) => {
   return (
     <>
       {exercises.map((exercise) => (
-        <ExerciseCard key={exercise.id} exercise={exercise} />
+        <ExerciseCard key={exercise._id} exercise={exercise} />
       ))}
     </>
   )
