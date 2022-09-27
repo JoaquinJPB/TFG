@@ -6,13 +6,17 @@ import MenuIcon from "@mui/icons-material/Menu"
 import CloseIcon from "@mui/icons-material/Close"
 
 import React, { useState, useEffect } from "react"
-import { IconButton } from "@mui/material"
+import { Button, IconButton } from "@mui/material"
 import { useRef } from "react"
 import { useSelector } from "react-redux"
+import { useLogout } from "../hooks/useLogout"
 
 const Navigation = () => {
   const [toggleMenu, setToggleMenu] = useState(false)
   const [screenWidth, setScreenWidth] = useState(window.innerWidth)
+
+  const { logout } = useLogout()
+
   const user = useSelector((state) => state.user)
   console.log(user)
 
@@ -65,9 +69,12 @@ const Navigation = () => {
                 Recomendaciones
               </Link>
               {user.token !== undefined ? (
-                <Link to="/user_id" className={styles.items}>
-                  Mi Perfil
-                </Link>
+                <>
+                  <Link to="/user_id" className={styles.items}>
+                    Mi Perfil
+                  </Link>
+                  <Button onClick={logout} type="submit" variant="text" sx={{color: "red", fontWeight: "bold"}}>Cerrar sesión</Button>
+                </>
               ) : (
                 <>
                   <Link to="/login" className={styles.items}>

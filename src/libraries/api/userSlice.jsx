@@ -24,6 +24,8 @@ export const userSlice = createSlice({
     },
     clearStoreToken: (state) => {
       state.user = undefined
+      state.token = undefined
+      state.data = undefined
     },
   },
 })
