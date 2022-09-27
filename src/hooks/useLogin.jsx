@@ -15,7 +15,7 @@ export const useLogin = () => {
       .unwrap()
       .then((res) => {
         dispatch(setToken(res.jwt))
-        localStorage.setItem("token", res.jwt)
+        sessionStorage.setItem("token", res.jwt)
         navigate("/")
       })
       .catch((error) => console.log(error))
