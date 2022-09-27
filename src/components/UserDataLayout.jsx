@@ -8,7 +8,7 @@ import styles from "../styles/UserDataLayout.module.css"
 
 import { Grid } from "@mui/material"
 
-const UserDataLayout = ({ userName, fullName, userEmail, itemsFav }) => {
+const UserDataLayout = ({ userName, fullName, userEmail}) => {
   return (
     <Grid container spacing={20} px={5} mt={1}>
       <Grid
