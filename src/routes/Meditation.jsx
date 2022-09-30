@@ -9,7 +9,7 @@ const Meditation = () => {
     data: meditations,
     isLoading,
     isError,
-    refetch,
+    refetch
   } = useGetMeditationsQuery()
   return (
     <CheckRequest isLoading={isLoading} isError={isError} refetch={refetch}>

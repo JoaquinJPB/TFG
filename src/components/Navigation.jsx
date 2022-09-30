@@ -92,7 +92,7 @@ const Navigation = () => {
                   </Link>
                 </>
               )}
-              {user.data.roles[1]._id === '6303e85c80e2830dea3bc661' ? (
+              {user.token !== undefined ? (
                 <>
                   <Link to="/admindashboard" className={styles.items}>
                     Admin
