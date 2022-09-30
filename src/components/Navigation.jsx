@@ -73,7 +73,14 @@ const Navigation = () => {
                   <Link to="/user_id" className={styles.items}>
                     Mi Perfil
                   </Link>
-                  <Button onClick={logout} type="submit" variant="text" sx={{color: "red", fontWeight: "bold"}}>Cerrar sesión</Button>
+                  <Button
+                    onClick={logout}
+                    type="submit"
+                    variant="text"
+                    sx={{ color: "red", fontWeight: "bold" }}
+                  >
+                    Cerrar sesión
+                  </Button>
                 </>
               ) : (
                 <>
@@ -84,6 +91,15 @@ const Navigation = () => {
                     Registrarse
                   </Link>
                 </>
+              )}
+              {user.data.roles[1]._id === '6303e85c80e2830dea3bc661' ? (
+                <>
+                  <Link to="/admindashboard" className={styles.items}>
+                    Admin
+                  </Link>
+                </>
+              ) : (
+                <></>
               )}
             </ul>
           </div>
