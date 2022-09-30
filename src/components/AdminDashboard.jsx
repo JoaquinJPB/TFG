@@ -49,9 +49,10 @@ const AdminDashboard = () => {
     isErrorVideogames,
     refetchVideogames,
   } = useGetVideogamesQuery()
-
+  
   return (
     <Grid container>
+      <Grid item></Grid>
       <Grid item>
         <CheckRequest
           isLoading={isLoadingAdvice}
@@ -79,8 +80,6 @@ const AdminDashboard = () => {
           <TableDashboard data={meditations}></TableDashboard>
         </CheckRequest>
       </Grid>
-      <Grid item></Grid>
-      <Grid item></Grid>
       <Grid item>
         <CheckRequest
           isLoading={isLoadingBooks}
