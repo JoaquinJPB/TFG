@@ -18,7 +18,7 @@ export const useLogin = () => {
         sessionStorage.setItem("token", res.jwt)
         navigate("/")
       })
-      .catch((error) => console.log(error))
+      .catch((error) => error)
   }
 
   const getUserLogged = () => {
