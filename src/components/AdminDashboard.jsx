@@ -7,9 +7,9 @@ import {
   useGetMoviesQuery,
   useGetVideogamesQuery,
 } from "../libraries/api/apiSlice"
-import { CheckRequest } from "./CheckRequest"
+import { CheckRequest } from "../components/CheckRequest"
 
-import TableDashboard from "./TableDashboard"
+import TableDashboard from "../components/TableDashboard"
 
 const AdminDashboard = () => {
   const {
@@ -43,68 +43,83 @@ const AdminDashboard = () => {
     isErrorMovies,
     refetchMovies,
   } = useGetMoviesQuery()
+
   const {
     data: videogames,
     isLoadingVideogames,
     isErrorVideogames,
     refetchVideogames,
   } = useGetVideogamesQuery()
-  
+
   return (
-    <Grid container>
-      <Grid item></Grid>
-      <Grid item>
+    <Grid container spacing={5} px={5} 
+    display={"flex"}
+    justifyContent={"center"}
+    alignItems={"center"}
+    flexDirection={"column"}
+    >
+      <Grid item xs={12} sm={6}></Grid>
+      <Grid item xs={12} sm={6}>
         <CheckRequest
           isLoading={isLoadingAdvice}
           isError={isErrorAdvice}
           refetch={refetchAdvice}
         >
-          <TableDashboard data={advice}></TableDashboard>
+          <TableDashboard request={advice} title={"Consejos"}></TableDashboard>
         </CheckRequest>
       </Grid>
-      <Grid item>
+      <Grid item xs={12} sm={6}>
         <CheckRequest
           isLoading={isLoadingBreaths}
           isError={isErrorBreaths}
           refetch={refetchBreaths}
         >
-          <TableDashboard data={breaths}></TableDashboard>
+          <TableDashboard
+            request={breaths}
+            title={"Respiración"}
+          ></TableDashboard>
         </CheckRequest>
       </Grid>
-      <Grid item>
+      <Grid item xs={12} sm={6}>
         <CheckRequest
           isLoading={isLoadingMeditations}
           isError={isErrorMeditations}
           refetch={refetchMeditations}
         >
-          <TableDashboard data={meditations}></TableDashboard>
+          <TableDashboard
+            request={meditations}
+            title={"Meditación"}
+          ></TableDashboard>
         </CheckRequest>
       </Grid>
-      <Grid item>
+      <Grid item xs={12} sm={6}>
         <CheckRequest
           isLoading={isLoadingBooks}
           isError={isErrorBooks}
           refetch={refetchBooks}
         >
-          <TableDashboard data={books}></TableDashboard>
+          <TableDashboard request={books} title={"Libros"}></TableDashboard>
         </CheckRequest>
       </Grid>
-      <Grid item>
+      <Grid item xs={12} sm={6}>
         <CheckRequest
           isLoading={isLoadingMovies}
           isError={isErrorMovies}
           refetch={refetchMovies}
         >
-          <TableDashboard data={movies}></TableDashboard>
+          <TableDashboard request={movies} title={"Películas"}></TableDashboard>
         </CheckRequest>
       </Grid>
-      <Grid item>
+      <Grid item xs={12} sm={6}>
         <CheckRequest
           isLoading={isLoadingVideogames}
           isError={isErrorVideogames}
           refetch={refetchVideogames}
         >
-          <TableDashboard data={videogames}></TableDashboard>
+          <TableDashboard
+            request={videogames}
+            title={"Videojuegos"}
+          ></TableDashboard>
         </CheckRequest>
       </Grid>
     </Grid>
