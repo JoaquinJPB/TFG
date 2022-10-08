@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { setToken } from "../libraries/api/userSlice"
 import { useSelector } from "react-redux"
+import { toast } from "react-toastify"
 
 export const useLogin = () => {
   const [signIn] = useSignInMutation()
@@ -18,12 +19,30 @@ export const useLogin = () => {
         sessionStorage.setItem("token", res.jwt)
         navigate("/")
       })
-      .catch((error) => error)
+      .catch(() => {
+        toast.error(
+          "Email/contraseña no son correctos.",
+          {
+            position: "top-right",
+            autoClose: 4000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          }
+        )
+      })
   }
 
   const getUserLogged = () => {
     const getLocalStorage = localStorage.getItem("token")
-    if (userState.token !== undefined && getLocalStorage !== null && getLocalStorage !== undefined) {
+    if (
+      userState.token !== undefined &&
+      getLocalStorage !== null &&
+      getLocalStorage !== undefined
+    ) {
       dispatch(setToken(getLocalStorage))
     }
     return userState
