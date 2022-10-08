@@ -14,15 +14,20 @@ import PersonIcon from "@mui/icons-material/Person"
 import background from "../images/Wallpaper_Website.png"
 import { useState } from "react"
 import { useLogin } from "../hooks/useLogin"
-
+import { useForm } from "react-hook-form"
 
 const Login = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const { login } = useLogin()
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
+
+  const handleSubmitLogin = (data) => {
     login(email, password)
   }
 
@@ -66,11 +71,14 @@ const Login = () => {
           </Typography>
           <Box
             component="form"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 1 }}
+            onSubmit={handleSubmit(handleSubmitLogin)}
+            sx={{ mt: 1, width: "100%" }}
           >
             <TextField
+              {...register("email", {
+                required: true,
+                pattern: /^\S+@\S+$/i,
+              })}
               margin="normal"
               required
               fullWidth
@@ -83,7 +91,18 @@ const Login = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
+            {errors.email && (
+              <Typography
+                fullWidth
+                sx={{
+                  color: "red",
+                }}
+              >
+                Escriba un correo electrónico válido
+              </Typography>
+            )}
             <TextField
+              {...register("password", { required: true })}
               margin="normal"
               required
               fullWidth
