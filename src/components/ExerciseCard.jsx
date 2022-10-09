@@ -1,5 +1,5 @@
 import styles from "../styles/ExerciseCard.module.css"
-import { Box, Grid, Modal, Zoom } from "@mui/material"
+import { Box, Fade, Grid, Modal} from "@mui/material"
 import { useEffect, useState } from "react"
 
 const ExerciseCard = ({ exercise }) => {
@@ -14,7 +14,7 @@ const ExerciseCard = ({ exercise }) => {
   }, [checked])
 
   return (
-    <Zoom in={checked}>
+    <Fade in={checked}>
       <Grid item xs={12} md={6} lg={4} xl={3}>
         <div className={styles.card} onClick={handleOpen}>
           <h2 className={styles.title}>{exercise.title}</h2>
@@ -36,7 +36,7 @@ const ExerciseCard = ({ exercise }) => {
           </Box>
         </Modal>
       </Grid>
-    </Zoom>
+    </Fade>
   )
 }
 
