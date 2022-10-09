@@ -29,7 +29,7 @@ const SignUp = () => {
   } = useForm()
 
   const handleSubmitRegister = () => {
-    signUpUser(username, email, password)
+    signUpUser(username, email.toLowerCase(), password)
   }
 
   return (

@@ -28,7 +28,7 @@ const Login = () => {
   } = useForm()
 
   const handleSubmitLogin = () => {
-    login(email, password)
+    login(email.toLowerCase(), password)
   }
 
   return (
