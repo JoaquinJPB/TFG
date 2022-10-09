@@ -19,7 +19,6 @@ const App = () => {
     <>
       <ThemeProvider theme={theme}>
         <LandingPage />
-        <StickyFooter />
         <ToastContainer
           position="top-right"
           autoClose={5000}
@@ -31,6 +30,7 @@ const App = () => {
           draggable
           pauseOnHover
         />
+        <StickyFooter />
       </ThemeProvider>
     </>
   )
