@@ -27,7 +27,7 @@ const Login = () => {
     formState: { errors },
   } = useForm()
 
-  const handleSubmitLogin = (data) => {
+  const handleSubmitLogin = () => {
     login(email, password)
   }
 
