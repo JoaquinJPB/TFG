@@ -1,11 +1,14 @@
 import {
+  Box,
   Button,
   Container,
   FormControl,
   Grid,
   InputLabel,
   MenuItem,
+  Modal,
   Select,
+  TextField,
   Typography,
 } from "@mui/material"
 import {
@@ -24,7 +27,9 @@ import { CheckRequest } from "../components/CheckRequest"
 import TableDashboard from "./TableDashboard"
 import { toast } from "react-toastify"
 import { useState } from "react"
-import { Box } from "@mui/system"
+
+import styles from "../styles/AdminDashboard.module.css"
+
 
 const AdminDashboard = () => {
   const [addAdvice] = useAddAdviceMutation()
@@ -103,7 +108,7 @@ const AdminDashboard = () => {
     setOptions(event.target.value)
   }
 
-  function renderSwitchOption(options) {
+  const renderSwitchOption = (options) => {
     switch (options) {
       case "Usuarios":
         return <></>
@@ -194,6 +199,21 @@ const AdminDashboard = () => {
     }
   }
 
+  const buttonHandleSwitch = (options) => {
+    switch (options) {
+      case "Consejos":
+        console.log(options)
+        break
+
+      default:
+        ;<></>
+    }
+  }
+
+  const [open, setOpen] = useState(false)
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
+
   return (
     <Container>
       <Grid
@@ -239,9 +259,52 @@ const AdminDashboard = () => {
             variant="contained"
             fullWidth
             sx={{ fontWeight: "bold" }}
+            onClick={handleOpen}
           >
             Crear {options}
           </Button>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box className={styles.boxModal}>
+              <TextField
+                required
+                id="title"
+                label="Título"
+                variant="outlined"
+                fullWidth
+                sx={{marginBottom: "1.5rem"}}
+              ></TextField>
+              <TextField
+                required
+                id="description"
+                label="Descripción"
+                variant="outlined"
+                fullWidth
+                sx={{marginBottom: "1.5rem"}}
+              ></TextField>
+              <TextField
+                required
+                id="img"
+                label="URL Img"
+                variant="outlined"
+                fullWidth
+                sx={{marginBottom: "1.5rem"}}
+              ></TextField>
+              <Button
+                type="submit"
+                variant="contained"
+                fullWidth
+                sx={{ fontWeight: "bold" }}
+                onClick={buttonHandleSwitch}
+              >
+                Crear {options}
+              </Button>
+            </Box>
+          </Modal>
         </Grid>
       </Grid>
       <Grid
