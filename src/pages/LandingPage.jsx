@@ -21,7 +21,7 @@ import Profile from "../routes/Profile"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { setToken } from "../libraries/api/userSlice"
-import AdminDashboard from "../components/AdminDashboard"
+import AdminDashboard from "../admin/AdminDashboard"
 
 const LandingPage = () => {
   const userAuth = useSelector((state) => state.user)

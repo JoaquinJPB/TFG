@@ -3,12 +3,10 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from 
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const TableDashboard = ({ request, title }) => {
+const TableDashboard = ({ request, title}) => {
   return (
     <section>
       {request ? (
-        <div>
-          <h2>{title}</h2>
           <TableContainer>
           <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
             <TableHead>
@@ -20,7 +18,7 @@ const TableDashboard = ({ request, title }) => {
             </TableHead>
             <TableBody>
               {request.data.map((raw_data) => (
-                <TableRow>
+                <TableRow key={raw_data._id}>
                   <TableCell>{raw_data.title}</TableCell>
                   <TableCell>{raw_data.description}</TableCell>
                   <TableCell>
@@ -32,7 +30,6 @@ const TableDashboard = ({ request, title }) => {
             </TableBody>
             </Table>
           </TableContainer>
-        </div>
       ) : (
         <></>
       )}

@@ -19,11 +19,6 @@ export const apiSlice = createApi({
         url: "videogames",
       }),
     }),
-    getAdvice: builder.query({
-      query: () => ({
-        url: "advice",
-      }),
-    }),
     getMeditations: builder.query({
       query: () => ({
         url: "meditations",
@@ -48,6 +43,32 @@ export const apiSlice = createApi({
         body: payload,
       }),
     }),
+    getAdvice: builder.query({
+      query: () => ({
+        url: "advice",
+      }),
+    }),
+    addAdvice: builder.mutation({
+      query: (payload) => ({
+        url: "advice/add",
+        method: "POST",
+        body: payload,
+      }),
+    }),
+    deleteAdvice: builder.mutation({
+      query: (payload) => ({
+        url: "advice/add",
+        method: "DELETE",
+        body: payload,
+      }),
+    }),
+    updateAdvice: builder.mutation({
+      query: (payload) => ({
+        url: "advice/add",
+        method: "PATCH",
+        body: payload,
+      }),
+    })
   }),
 })
 
@@ -55,9 +76,12 @@ export const {
   useGetBooksQuery,
   useGetMoviesQuery,
   useGetVideogamesQuery,
-  useGetAdviceQuery,
   useGetMeditationsQuery,
   useGetBreathsQuery,
   useSignInMutation,
   useSignUpMutation,
+  useGetAdviceQuery,
+  useAddAdviceMutation,
+  useUpdateAdviceMutation,
+  useDeleteAdviceMutation,
 } = apiSlice
