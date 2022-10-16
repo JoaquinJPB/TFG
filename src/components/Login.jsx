@@ -117,7 +117,7 @@ const Login = () => {
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
-              label="Recuerdame"
+              label="Recuérdame"
             />
             <Button
               type="submit"
