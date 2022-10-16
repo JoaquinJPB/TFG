@@ -30,7 +30,6 @@ import { useState } from "react"
 
 import styles from "../styles/AdminDashboard.module.css"
 
-
 const AdminDashboard = () => {
   const [addAdvice] = useAddAdviceMutation()
 
@@ -108,95 +107,74 @@ const AdminDashboard = () => {
     setOptions(event.target.value)
   }
 
-  const renderSwitchOption = (options) => {
-    switch (options) {
-      case "Usuarios":
-        return <></>
-
-      case "Consejos":
-        return (
-          <CheckRequest
-            isLoading={isLoadingAdvice}
-            isError={isErrorAdvice}
-            refetch={refetchAdvice}
-          >
-            <TableDashboard
-              request={advice}
-              title={"Consejos"}
-            ></TableDashboard>
-          </CheckRequest>
-        )
-
-      case "Respiración":
-        return (
-          <CheckRequest
-            isLoading={isLoadingBreaths}
-            isError={isErrorBreaths}
-            refetch={refetchBreaths}
-          >
-            <TableDashboard
-              request={breaths}
-              title={"Respiración"}
-            ></TableDashboard>
-          </CheckRequest>
-        )
-
-      case "Meditación":
-        return (
-          <CheckRequest
-            isLoading={isLoadingMeditations}
-            isError={isErrorMeditations}
-            refetch={refetchMeditations}
-          >
-            <TableDashboard
-              request={meditations}
-              title={"Meditación"}
-            ></TableDashboard>
-          </CheckRequest>
-        )
-
-      case "Libros":
-        return (
-          <CheckRequest
-            isLoading={isLoadingBooks}
-            isError={isErrorBooks}
-            refetch={refetchBooks}
-          >
-            <TableDashboard request={books} title={"Libros"}></TableDashboard>
-          </CheckRequest>
-        )
-
-      case "Películas":
-        return (
-          <CheckRequest
-            isLoading={isLoadingMovies}
-            isError={isErrorMovies}
-            refetch={refetchMovies}
-          >
-            <TableDashboard
-              request={movies}
-              title={"Películas"}
-            ></TableDashboard>
-          </CheckRequest>
-        )
-
-      case "Videojuegos":
-        return (
-          <CheckRequest
-            isLoading={isLoadingVideogames}
-            isError={isErrorVideogames}
-            refetch={refetchVideogames}
-          >
-            <TableDashboard
-              request={videogames}
-              title={"Videojuegos"}
-            ></TableDashboard>
-          </CheckRequest>
-        )
-
-      default:
-        ;<></>
+  const getOptionData = (options) => {
+    const optionsData = {
+      Usuarios: <></>,
+      Consejos: (
+        <CheckRequest
+          isLoading={isLoadingAdvice}
+          isError={isErrorAdvice}
+          refetch={refetchAdvice}
+        >
+          <TableDashboard request={advice} title={"Consejos"}></TableDashboard>
+        </CheckRequest>
+      ),
+      Respiración: (
+        <CheckRequest
+          isLoading={isLoadingBreaths}
+          isError={isErrorBreaths}
+          refetch={refetchBreaths}
+        >
+          <TableDashboard
+            request={breaths}
+            title={"Respiración"}
+          ></TableDashboard>
+        </CheckRequest>
+      ),
+      Meditación: (
+        <CheckRequest
+          isLoading={isLoadingMeditations}
+          isError={isErrorMeditations}
+          refetch={refetchMeditations}
+        >
+          <TableDashboard
+            request={meditations}
+            title={"Meditación"}
+          ></TableDashboard>
+        </CheckRequest>
+      ),
+      Libros: (
+        <CheckRequest
+          isLoading={isLoadingBooks}
+          isError={isErrorBooks}
+          refetch={refetchBooks}
+        >
+          <TableDashboard request={books} title={"Libros"}></TableDashboard>
+        </CheckRequest>
+      ),
+      Películas: (
+        <CheckRequest
+          isLoading={isLoadingMovies}
+          isError={isErrorMovies}
+          refetch={refetchMovies}
+        >
+          <TableDashboard request={movies} title={"Películas"}></TableDashboard>
+        </CheckRequest>
+      ),
+      Videojuegos: (
+        <CheckRequest
+          isLoading={isLoadingVideogames}
+          isError={isErrorVideogames}
+          refetch={refetchVideogames}
+        >
+          <TableDashboard
+            request={videogames}
+            title={"Videojuegos"}
+          ></TableDashboard>
+        </CheckRequest>
+      ),
     }
+    return optionsData[options] ?? <></>
   }
 
   const buttonHandleSwitch = (options) => {
@@ -276,7 +254,7 @@ const AdminDashboard = () => {
                 label="Título"
                 variant="outlined"
                 fullWidth
-                sx={{marginBottom: "1.5rem"}}
+                sx={{ marginBottom: "1.5rem" }}
               ></TextField>
               <TextField
                 required
@@ -284,7 +262,7 @@ const AdminDashboard = () => {
                 label="Descripción"
                 variant="outlined"
                 fullWidth
-                sx={{marginBottom: "1.5rem"}}
+                sx={{ marginBottom: "1.5rem" }}
               ></TextField>
               <TextField
                 required
@@ -292,7 +270,7 @@ const AdminDashboard = () => {
                 label="URL Img"
                 variant="outlined"
                 fullWidth
-                sx={{marginBottom: "1.5rem"}}
+                sx={{ marginBottom: "1.5rem" }}
               ></TextField>
               <Button
                 type="submit"
@@ -315,7 +293,7 @@ const AdminDashboard = () => {
         flexDirection={"column"}
       >
         <Grid item xs={12} mt={3}>
-          {renderSwitchOption(options)}
+          {getOptionData(options)}
         </Grid>
       </Grid>
     </Container>
