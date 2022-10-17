@@ -24,6 +24,12 @@ import {
   useGetMeditationsQuery,
   useGetMoviesQuery,
   useGetVideogamesQuery,
+  useDeleteAdviceMutation,
+  useDeleteBreathMutation,
+  useDeleteMeditationMutation,
+  useDeleteMovieMutation,
+  useDeleteBookMutation,
+  useDeleteVideogameMutation,
 } from "../libraries/api/apiSlice"
 import { CheckRequest } from "../components/CheckRequest"
 
@@ -46,6 +52,13 @@ const AdminDashboard = () => {
   const [addMovie] = useAddMovieMutation()
   const [addBook] = useAddBookMutation()
   const [addVideogame] = useAddVideogameMutation()
+
+  const [deleteAdvice] = useDeleteAdviceMutation()
+  const [deleteBreath] = useDeleteBreathMutation()
+  const [deleteMeditation] = useDeleteMeditationMutation()
+  const [deleteMovie] = useDeleteMovieMutation()
+  const [deleteBook] = useDeleteBookMutation()
+  const [deleteVideogame] = useDeleteVideogameMutation()
 
   const [title, setTitle] = useState()
   const [description, setDescription] = useState()
@@ -268,6 +281,174 @@ const AdminDashboard = () => {
       )
   }
 
+  const handleDeleteAdvice = (payload) => {
+    deleteAdvice(payload)
+      .then(() =>
+        toast.success("Consejo eliminado con éxito", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
+      .catch(() =>
+        toast.error("Error al eliminar el consejo", {
+          position: "top-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
+  }
+
+  const handleDeleteBreath = (payload) => {
+    deleteBreath(payload)
+      .then(() =>
+        toast.success("Ejercicio de respiración eliminado con éxito", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
+      .catch(() =>
+        toast.error("Error al eliminar el ejercicio de respiración", {
+          position: "top-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
+  }
+
+  const handleDeleteMeditation = (payload) => {
+    deleteMeditation(payload)
+      .then(() =>
+        toast.success("Ejercicio de meditación eliminado con éxito", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
+      .catch(() =>
+        toast.error("Error al eliminar el ejercicio de meditación", {
+          position: "top-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
+  }
+
+  const handleDeleteMovie = (payload) => {
+    deleteMovie(payload)
+      .then(() =>
+        toast.success("Película eliminada con éxito", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
+      .catch(() =>
+        toast.error("Error al eliminar la película", {
+          position: "top-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
+  }
+
+  const handleDeleteBook = (payload) => {
+    deleteBook(payload)
+      .then(() =>
+        toast.success("Libro eliminado con éxito", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
+      .catch(() =>
+        toast.error("Error al eliminar el libro", {
+          position: "top-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
+  }
+
+  const handleDeleteVideogame = (payload) => {
+    deleteVideogame(payload)
+      .then(() =>
+        toast.success("Videojuego eliminado con éxito", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
+      .catch(() =>
+        toast.error("Error al eliminar el videojuego", {
+          position: "top-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
+  }
+
   const handleChangeOption = (event) => {
     setOptions(event.target.value)
   }
@@ -281,7 +462,10 @@ const AdminDashboard = () => {
           isError={isErrorAdvice}
           refetch={refetchAdvice}
         >
-          <TableDashboard request={advice} title={"Consejos"}></TableDashboard>
+          <TableDashboard
+            request={advice}
+            deleteItem={handleDeleteAdvice}
+          ></TableDashboard>
         </CheckRequest>
       ),
       Breath: (
@@ -292,7 +476,7 @@ const AdminDashboard = () => {
         >
           <TableDashboard
             request={breaths}
-            title={"Respiración"}
+            deleteItem={handleDeleteBreath}
           ></TableDashboard>
         </CheckRequest>
       ),
@@ -304,7 +488,7 @@ const AdminDashboard = () => {
         >
           <TableDashboard
             request={meditations}
-            title={"Meditación"}
+            deleteItem={handleDeleteMeditation}
           ></TableDashboard>
         </CheckRequest>
       ),
@@ -314,7 +498,10 @@ const AdminDashboard = () => {
           isError={isErrorBooks}
           refetch={refetchBooks}
         >
-          <TableDashboard request={books} title={"Libros"}></TableDashboard>
+          <TableDashboard
+            request={books}
+            deleteItem={handleDeleteBook}
+          ></TableDashboard>
         </CheckRequest>
       ),
       Movies: (
@@ -323,7 +510,10 @@ const AdminDashboard = () => {
           isError={isErrorMovies}
           refetch={refetchMovies}
         >
-          <TableDashboard request={movies} title={"Películas"}></TableDashboard>
+          <TableDashboard
+            request={movies}
+            deleteItem={handleDeleteMovie}
+          ></TableDashboard>
         </CheckRequest>
       ),
       Videogames: (
@@ -334,7 +524,7 @@ const AdminDashboard = () => {
         >
           <TableDashboard
             request={videogames}
-            title={"Videojuegos"}
+            deleteItem={handleDeleteVideogame}
           ></TableDashboard>
         </CheckRequest>
       ),

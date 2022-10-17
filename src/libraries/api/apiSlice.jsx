@@ -16,6 +16,13 @@ export const apiSlice = createApi({
         body: payload,
       }),
     }),
+    deleteMovie: builder.mutation({
+      query: (payload) => ({
+        url: `movies/${payload}`,
+        method: "DELETE",
+        body: payload,
+      }),
+    }),
     getBooks: builder.query({
       query: () => ({
         url: "books",
@@ -25,6 +32,13 @@ export const apiSlice = createApi({
       query: (payload) => ({
         url: "books/add",
         method: "POST",
+        body: payload,
+      }),
+    }),
+    deleteBook: builder.mutation({
+      query: (payload) => ({
+        url: `books/${payload}`,
+        method: "DELETE",
         body: payload,
       }),
     }),
@@ -40,6 +54,13 @@ export const apiSlice = createApi({
         body: payload,
       }),
     }),
+    deleteVideogame: builder.mutation({
+      query: (payload) => ({
+        url: `videogames/${payload}`,
+        method: "DELETE",
+        body: payload,
+      }),
+    }),
     getMeditations: builder.query({
       query: () => ({
         url: "meditations",
@@ -52,6 +73,13 @@ export const apiSlice = createApi({
         body: payload,
       }),
     }),
+    deleteMeditation: builder.mutation({
+      query: (payload) => ({
+        url: `meditations/${payload}`,
+        method: "DELETE",
+        body: payload,
+      }),
+    }),
     getBreaths: builder.query({
       query: () => ({
         url: "breaths",
@@ -61,6 +89,13 @@ export const apiSlice = createApi({
       query: (payload) => ({
         url: "breaths/add",
         method: "POST",
+        body: payload,
+      }),
+    }),
+    deleteBreath: builder.mutation({
+      query: (payload) => ({
+        url: `breaths/${payload}`,
+        method: "DELETE",
         body: payload,
       }),
     }),
@@ -92,7 +127,7 @@ export const apiSlice = createApi({
     }),
     deleteAdvice: builder.mutation({
       query: (payload) => ({
-        url: "advice/add",
+        url: `advice/${payload}`,
         method: "DELETE",
         body: payload,
       }),
@@ -124,4 +159,9 @@ export const {
   useAddMeditationMutation,
   useUpdateAdviceMutation,
   useDeleteAdviceMutation,
+  useDeleteBreathMutation,
+  useDeleteMeditationMutation,
+  useDeleteMovieMutation,
+  useDeleteBookMutation,
+  useDeleteVideogameMutation
 } = apiSlice
