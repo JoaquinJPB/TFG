@@ -14,8 +14,11 @@ import {
 import {
   useGetAdviceQuery,
   useAddAdviceMutation,
-  useUpdateAdviceMutation,
-  useDeleteAdviceMutation,
+  useAddBreathMutation,
+  useAddMeditationMutation,
+  useAddMovieMutation,
+  useAddBookMutation,
+  useAddVideogameMutation,
   useGetBreathsQuery,
   useGetBooksQuery,
   useGetMeditationsQuery,
@@ -27,11 +30,33 @@ import { CheckRequest } from "../components/CheckRequest"
 import TableDashboard from "./TableDashboard"
 import { toast } from "react-toastify"
 import { useState } from "react"
+import { useForm } from "react-hook-form"
 
 import styles from "../styles/AdminDashboard.module.css"
 
 const AdminDashboard = () => {
+  const [options, setOptions] = useState("")
+  const [open, setOpen] = useState(false)
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
+
   const [addAdvice] = useAddAdviceMutation()
+  const [addBreath] = useAddBreathMutation()
+  const [addMeditation] = useAddMeditationMutation()
+  const [addMovie] = useAddMovieMutation()
+  const [addBook] = useAddBookMutation()
+  const [addVideogame] = useAddVideogameMutation()
+
+  const [title, setTitle] = useState()
+  const [description, setDescription] = useState()
+  const [img, setImg] = useState()
+  const [founder, setFounder] = useState()
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
 
   const {
     data: advice,
@@ -46,6 +71,7 @@ const AdminDashboard = () => {
     isErrorBreaths,
     refetchBreaths,
   } = useGetBreathsQuery()
+
   const {
     data: meditations,
     isLoadingMeditations,
@@ -59,6 +85,7 @@ const AdminDashboard = () => {
     isErrorBooks,
     refetchBooks,
   } = useGetBooksQuery()
+
   const {
     data: movies,
     isLoadingMovies,
@@ -101,7 +128,145 @@ const AdminDashboard = () => {
       )
   }
 
-  const [options, setOptions] = useState("")
+  const handleAddBreath = (payload) => {
+    addBreath(payload)
+      .then(() =>
+        toast.success("Ejercicio de respiración creado", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
+      .catch(() =>
+        toast.error("Error al crear el ejercicio de respiración", {
+          position: "top-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
+  }
+
+  const handleAddMeditation = (payload) => {
+    addMeditation(payload)
+      .then(() =>
+        toast.success("Ejercicio de meditación creado", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
+      .catch(() =>
+        toast.error("Error al crear el ejercicio de meditación", {
+          position: "top-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
+  }
+
+  const handleAddMovie = (payload) => {
+    addMovie(payload)
+      .then(() =>
+        toast.success("Película creada", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
+      .catch(() =>
+        toast.error("Error al crear la película", {
+          position: "top-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
+  }
+
+  const handleAddBook = (payload) => {
+    addBook(payload)
+      .then(() =>
+        toast.success("Libro creado", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
+      .catch(() =>
+        toast.error("Error al crear el libro", {
+          position: "top-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
+  }
+
+  const handleAddVideogame = (payload) => {
+    addVideogame(payload)
+      .then(() =>
+        toast.success("Videojuego creado", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
+      .catch(() =>
+        toast.error("Error al crear el videojuego", {
+          position: "top-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
+  }
 
   const handleChangeOption = (event) => {
     setOptions(event.target.value)
@@ -109,8 +274,8 @@ const AdminDashboard = () => {
 
   const getOptionData = (options) => {
     const optionsData = {
-      Usuarios: <></>,
-      Consejos: (
+      Users: <></>,
+      Advice: (
         <CheckRequest
           isLoading={isLoadingAdvice}
           isError={isErrorAdvice}
@@ -119,7 +284,7 @@ const AdminDashboard = () => {
           <TableDashboard request={advice} title={"Consejos"}></TableDashboard>
         </CheckRequest>
       ),
-      Respiración: (
+      Breath: (
         <CheckRequest
           isLoading={isLoadingBreaths}
           isError={isErrorBreaths}
@@ -131,7 +296,7 @@ const AdminDashboard = () => {
           ></TableDashboard>
         </CheckRequest>
       ),
-      Meditación: (
+      Meditation: (
         <CheckRequest
           isLoading={isLoadingMeditations}
           isError={isErrorMeditations}
@@ -143,7 +308,7 @@ const AdminDashboard = () => {
           ></TableDashboard>
         </CheckRequest>
       ),
-      Libros: (
+      Books: (
         <CheckRequest
           isLoading={isLoadingBooks}
           isError={isErrorBooks}
@@ -152,7 +317,7 @@ const AdminDashboard = () => {
           <TableDashboard request={books} title={"Libros"}></TableDashboard>
         </CheckRequest>
       ),
-      Películas: (
+      Movies: (
         <CheckRequest
           isLoading={isLoadingMovies}
           isError={isErrorMovies}
@@ -161,7 +326,7 @@ const AdminDashboard = () => {
           <TableDashboard request={movies} title={"Películas"}></TableDashboard>
         </CheckRequest>
       ),
-      Videojuegos: (
+      Videogames: (
         <CheckRequest
           isLoading={isLoadingVideogames}
           isError={isErrorVideogames}
@@ -177,20 +342,38 @@ const AdminDashboard = () => {
     return optionsData[options] ?? <></>
   }
 
-  const buttonHandleSwitch = (options) => {
+  const buttonHandleAdd = (options) => {
     switch (options) {
-      case "Consejos":
-        console.log(options)
+      case "Advice":
+        handleAddAdvice({ title, description, img })
+        break
+
+      case "Breath":
+        handleAddBreath({ title, description, img })
+        break
+
+      case "Meditation":
+        handleAddMeditation({ title, description, img })
+        break
+
+      case "Books":
+        handleAddBook({ title, description, founder, img })
+        break
+
+      case "Movies":
+        handleAddMovie({ title, description, founder, img })
+        break
+
+      case "Videogames":
+        handleAddVideogame({ title, description, founder, img })
         break
 
       default:
-        ;<></>
+        break
     }
-  }
 
-  const [open, setOpen] = useState(false)
-  const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
+    handleClose(false)
+  }
 
   return (
     <Container>
@@ -211,13 +394,13 @@ const AdminDashboard = () => {
               label="Opciones"
               onChange={handleChangeOption}
             >
-              <MenuItem value={"Usuarios"}>Usuarios</MenuItem>
-              <MenuItem value={"Consejos"}>Consejos</MenuItem>
-              <MenuItem value={"Respiración"}>Respiración</MenuItem>
-              <MenuItem value={"Meditación"}>Meditación</MenuItem>
-              <MenuItem value={"Libros"}>Libros</MenuItem>
-              <MenuItem value={"Películas"}>Películas</MenuItem>
-              <MenuItem value={"Videojuegos"}>Videojuegos</MenuItem>
+              <MenuItem value={"Users"}>Usuarios</MenuItem>
+              <MenuItem value={"Advice"}>Consejos</MenuItem>
+              <MenuItem value={"Breath"}>Respiración</MenuItem>
+              <MenuItem value={"Meditation"}>Meditación</MenuItem>
+              <MenuItem value={"Books"}>Libros</MenuItem>
+              <MenuItem value={"Movies"}>Películas</MenuItem>
+              <MenuItem value={"Videogames"}>Videojuegos</MenuItem>
             </Select>
           </FormControl>
         </Grid>
@@ -247,39 +430,101 @@ const AdminDashboard = () => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-            <Box className={styles.boxModal}>
+            <Box
+              component="form"
+              className={styles.boxModal}
+              onSubmit={handleSubmit(() => buttonHandleAdd(options))}
+            >
               <TextField
+                {...register("title", {
+                  required: true,
+                })}
                 required
+                name="title"
                 id="title"
                 label="Título"
                 variant="outlined"
                 fullWidth
+                onChange={(e) => {
+                  setTitle(e.target.value)
+                }}
                 sx={{ marginBottom: "1.5rem" }}
-              ></TextField>
+              />
+              {errors.title && (
+                <Typography
+                  fullWidth
+                  sx={{
+                    color: "red",
+                  }}
+                >
+                  Escriba un título válido.
+                </Typography>
+              )}
               <TextField
+                {...register("description", {
+                  required: true,
+                })}
                 required
+                name="description"
                 id="description"
                 label="Descripción"
                 variant="outlined"
                 fullWidth
+                onChange={(e) => {
+                  setDescription(e.target.value)
+                }}
                 sx={{ marginBottom: "1.5rem" }}
-              ></TextField>
+              />
+              {errors.description && (
+                <Typography
+                  fullWidth
+                  sx={{
+                    color: "red",
+                  }}
+                >
+                  Escriba una descripción válida.
+                </Typography>
+              )}
+              {options === "Books" ||
+              options === "Movies" ||
+              options === "Videogames" ? (
+                <TextField
+                  {...register("founder", {
+                    required: true,
+                  })}
+                  required
+                  name="founder"
+                  id="founder"
+                  label="Autor/Director/Desarrolladora"
+                  variant="outlined"
+                  fullWidth
+                  onChange={(e) => {
+                    setFounder(e.target.value)
+                  }}
+                  sx={{ marginBottom: "1.5rem" }}
+                />
+              ) : (
+                <></>
+              )}
               <TextField
                 required
                 id="img"
+                name="img"
                 label="URL Img"
                 variant="outlined"
                 fullWidth
+                onChange={(e) => {
+                  setImg(e.target.value)
+                }}
                 sx={{ marginBottom: "1.5rem" }}
-              ></TextField>
+              />
               <Button
                 type="submit"
                 variant="contained"
                 fullWidth
                 sx={{ fontWeight: "bold" }}
-                onClick={buttonHandleSwitch}
               >
-                Crear {options}
+                Crear
               </Button>
             </Box>
           </Modal>
