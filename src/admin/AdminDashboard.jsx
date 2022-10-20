@@ -32,7 +32,6 @@ import {
   useDeleteMovieMutation,
   useDeleteBookMutation,
   useDeleteVideogameMutation,
-  useCreateUserMutation,
 } from "../libraries/api/apiSlice"
 import { CheckRequest } from "../components/CheckRequest"
 
@@ -49,7 +48,6 @@ const AdminDashboard = () => {
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
 
-  const [createUser] = useCreateUserMutation()
   const [createAdvice] = useCreateAdviceMutation()
   const [createBreath] = useCreateBreathMutation()
   const [createMeditation] = useCreateMeditationMutation()
@@ -70,13 +68,6 @@ const AdminDashboard = () => {
   const [description, setDescription] = useState()
   const [img, setImg] = useState()
   const [founder, setFounder] = useState()
-
-  // User
-  const [username, setUsername] = useState()
-  const [email, setEmail] = useState()
-  const [password, setPassword] = useState()
-
-  console.log(username, email, password)
 
   const {
     register,
@@ -132,34 +123,6 @@ const AdminDashboard = () => {
     isErrorVideogames,
     refetchVideogames,
   } = useGetVideogamesQuery()
-
-  const handleCreateUser = (payload) => {
-    createUser(payload)
-      .then(() =>
-        toast.success("Usuario creado", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-      )
-      .catch(() =>
-        toast.error("Error al crear el usuario", {
-          position: "top-right",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-      )
-  }
 
   const handleCreateAdvice = (payload) => {
     createAdvice(payload)
@@ -557,7 +520,7 @@ const AdminDashboard = () => {
           ></TableDashboard>
         </CheckRequest>
       ),
-      Breath: (
+      Breaths: (
         <CheckRequest
           isLoading={isLoadingBreaths}
           isError={isErrorBreaths}
@@ -570,7 +533,7 @@ const AdminDashboard = () => {
           ></TableDashboard>
         </CheckRequest>
       ),
-      Meditation: (
+      Meditations: (
         <CheckRequest
           isLoading={isLoadingMeditations}
           isError={isErrorMeditations}
