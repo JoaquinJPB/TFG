@@ -12,24 +12,27 @@ import {
   Typography,
 } from "@mui/material"
 import {
+  useGetUsersQuery,
   useGetAdviceQuery,
-  useAddAdviceMutation,
-  useAddBreathMutation,
-  useAddMeditationMutation,
-  useAddMovieMutation,
-  useAddBookMutation,
-  useAddVideogameMutation,
   useGetBreathsQuery,
   useGetBooksQuery,
   useGetMeditationsQuery,
   useGetMoviesQuery,
   useGetVideogamesQuery,
+  useCreateAdviceMutation,
+  useCreateBreathMutation,
+  useCreateMeditationMutation,
+  useCreateMovieMutation,
+  useCreateBookMutation,
+  useCreateVideogameMutation,
+  useDeleteUserMutation,
   useDeleteAdviceMutation,
   useDeleteBreathMutation,
   useDeleteMeditationMutation,
   useDeleteMovieMutation,
   useDeleteBookMutation,
   useDeleteVideogameMutation,
+  useCreateUserMutation,
 } from "../libraries/api/apiSlice"
 import { CheckRequest } from "../components/CheckRequest"
 
@@ -46,13 +49,15 @@ const AdminDashboard = () => {
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
 
-  const [addAdvice] = useAddAdviceMutation()
-  const [addBreath] = useAddBreathMutation()
-  const [addMeditation] = useAddMeditationMutation()
-  const [addMovie] = useAddMovieMutation()
-  const [addBook] = useAddBookMutation()
-  const [addVideogame] = useAddVideogameMutation()
+  const [createUser] = useCreateUserMutation()
+  const [createAdvice] = useCreateAdviceMutation()
+  const [createBreath] = useCreateBreathMutation()
+  const [createMeditation] = useCreateMeditationMutation()
+  const [createMovie] = useCreateMovieMutation()
+  const [createBook] = useCreateBookMutation()
+  const [createVideogame] = useCreateVideogameMutation()
 
+  const [deleteUser] = useDeleteUserMutation()
   const [deleteAdvice] = useDeleteAdviceMutation()
   const [deleteBreath] = useDeleteBreathMutation()
   const [deleteMeditation] = useDeleteMeditationMutation()
@@ -60,16 +65,31 @@ const AdminDashboard = () => {
   const [deleteBook] = useDeleteBookMutation()
   const [deleteVideogame] = useDeleteVideogameMutation()
 
+  // Advice, Breaths, Meditation, Books, Movies, Videogames
   const [title, setTitle] = useState()
   const [description, setDescription] = useState()
   const [img, setImg] = useState()
   const [founder, setFounder] = useState()
+
+  // User
+  const [username, setUsername] = useState()
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
+
+  console.log(username, email, password)
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm()
+
+  const {
+    data: users,
+    isLoadingUsers,
+    isErrorUsers,
+    refetchUsers,
+  } = useGetUsersQuery()
 
   const {
     data: advice,
@@ -113,8 +133,36 @@ const AdminDashboard = () => {
     refetchVideogames,
   } = useGetVideogamesQuery()
 
-  const handleAddAdvice = (payload) => {
-    addAdvice(payload)
+  const handleCreateUser = (payload) => {
+    createUser(payload)
+      .then(() =>
+        toast.success("Usuario creado", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
+      .catch(() =>
+        toast.error("Error al crear el usuario", {
+          position: "top-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
+  }
+
+  const handleCreateAdvice = (payload) => {
+    createAdvice(payload)
       .then(() =>
         toast.success("Consejo creado", {
           position: "top-right",
@@ -141,8 +189,8 @@ const AdminDashboard = () => {
       )
   }
 
-  const handleAddBreath = (payload) => {
-    addBreath(payload)
+  const handleCreateBreath = (payload) => {
+    createBreath(payload)
       .then(() =>
         toast.success("Ejercicio de respiración creado", {
           position: "top-right",
@@ -169,8 +217,8 @@ const AdminDashboard = () => {
       )
   }
 
-  const handleAddMeditation = (payload) => {
-    addMeditation(payload)
+  const handleCreateMeditation = (payload) => {
+    createMeditation(payload)
       .then(() =>
         toast.success("Ejercicio de meditación creado", {
           position: "top-right",
@@ -197,8 +245,8 @@ const AdminDashboard = () => {
       )
   }
 
-  const handleAddMovie = (payload) => {
-    addMovie(payload)
+  const handleCreateMovie = (payload) => {
+    createMovie(payload)
       .then(() =>
         toast.success("Película creada", {
           position: "top-right",
@@ -225,8 +273,8 @@ const AdminDashboard = () => {
       )
   }
 
-  const handleAddBook = (payload) => {
-    addBook(payload)
+  const handleCreateBook = (payload) => {
+    createBook(payload)
       .then(() =>
         toast.success("Libro creado", {
           position: "top-right",
@@ -253,8 +301,8 @@ const AdminDashboard = () => {
       )
   }
 
-  const handleAddVideogame = (payload) => {
-    addVideogame(payload)
+  const handleCreateVideogame = (payload) => {
+    createVideogame(payload)
       .then(() =>
         toast.success("Videojuego creado", {
           position: "top-right",
@@ -269,6 +317,34 @@ const AdminDashboard = () => {
       )
       .catch(() =>
         toast.error("Error al crear el videojuego", {
+          position: "top-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
+  }
+
+  const handleDeleteUser = (payload) => {
+    deleteUser(payload)
+      .then(() =>
+        toast.success("Usuario eliminado con éxito", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
+      .catch(() =>
+        toast.error("Error al eliminar el usuario", {
           position: "top-right",
           autoClose: 4000,
           hideProgressBar: false,
@@ -455,7 +531,19 @@ const AdminDashboard = () => {
 
   const getOptionData = (options) => {
     const optionsData = {
-      Users: <></>,
+      Users: (
+        <CheckRequest
+          isLoading={isLoadingUsers}
+          isError={isErrorUsers}
+          refetch={refetchUsers}
+        >
+          <TableDashboard
+            request={users}
+            deleteItem={handleDeleteUser}
+            options={options}
+          ></TableDashboard>
+        </CheckRequest>
+      ),
       Advice: (
         <CheckRequest
           isLoading={isLoadingAdvice}
@@ -465,6 +553,7 @@ const AdminDashboard = () => {
           <TableDashboard
             request={advice}
             deleteItem={handleDeleteAdvice}
+            options={options}
           ></TableDashboard>
         </CheckRequest>
       ),
@@ -477,6 +566,7 @@ const AdminDashboard = () => {
           <TableDashboard
             request={breaths}
             deleteItem={handleDeleteBreath}
+            options={options}
           ></TableDashboard>
         </CheckRequest>
       ),
@@ -489,6 +579,7 @@ const AdminDashboard = () => {
           <TableDashboard
             request={meditations}
             deleteItem={handleDeleteMeditation}
+            options={options}
           ></TableDashboard>
         </CheckRequest>
       ),
@@ -501,6 +592,7 @@ const AdminDashboard = () => {
           <TableDashboard
             request={books}
             deleteItem={handleDeleteBook}
+            options={options}
           ></TableDashboard>
         </CheckRequest>
       ),
@@ -513,6 +605,7 @@ const AdminDashboard = () => {
           <TableDashboard
             request={movies}
             deleteItem={handleDeleteMovie}
+            options={options}
           ></TableDashboard>
         </CheckRequest>
       ),
@@ -525,6 +618,7 @@ const AdminDashboard = () => {
           <TableDashboard
             request={videogames}
             deleteItem={handleDeleteVideogame}
+            options={options}
           ></TableDashboard>
         </CheckRequest>
       ),
@@ -532,30 +626,30 @@ const AdminDashboard = () => {
     return optionsData[options] ?? <></>
   }
 
-  const buttonHandleAdd = (options) => {
+  const buttonHandleCreate = (options) => {
     switch (options) {
       case "Advice":
-        handleAddAdvice({ title, description, img })
+        handleCreateAdvice({ title, description, img })
         break
 
-      case "Breath":
-        handleAddBreath({ title, description, img })
+      case "Breaths":
+        handleCreateBreath({ title, description, img })
         break
 
-      case "Meditation":
-        handleAddMeditation({ title, description, img })
+      case "Meditations":
+        handleCreateMeditation({ title, description, img })
         break
 
       case "Books":
-        handleAddBook({ title, description, founder, img })
+        handleCreateBook({ title, description, founder, img })
         break
 
       case "Movies":
-        handleAddMovie({ title, description, founder, img })
+        handleCreateMovie({ title, description, founder, img })
         break
 
       case "Videogames":
-        handleAddVideogame({ title, description, founder, img })
+        handleCreateVideogame({ title, description, founder, img })
         break
 
       default:
@@ -570,7 +664,7 @@ const AdminDashboard = () => {
       <Grid
         container
         sx={{
-          marginTop: { xs: "3rem", sm: "0" },
+          marginTop: "3rem",
           gap: { xs: "2rem", sm: "0" },
         }}
       >
@@ -586,8 +680,8 @@ const AdminDashboard = () => {
             >
               <MenuItem value={"Users"}>Usuarios</MenuItem>
               <MenuItem value={"Advice"}>Consejos</MenuItem>
-              <MenuItem value={"Breath"}>Respiración</MenuItem>
-              <MenuItem value={"Meditation"}>Meditación</MenuItem>
+              <MenuItem value={"Breaths"}>Respiración</MenuItem>
+              <MenuItem value={"Meditations"}>Meditación</MenuItem>
               <MenuItem value={"Books"}>Libros</MenuItem>
               <MenuItem value={"Movies"}>Películas</MenuItem>
               <MenuItem value={"Videogames"}>Videojuegos</MenuItem>
@@ -612,7 +706,7 @@ const AdminDashboard = () => {
             sx={{ fontWeight: "bold" }}
             onClick={handleOpen}
           >
-            Crear {options}
+            Crear
           </Button>
           <Modal
             open={open}
@@ -623,7 +717,7 @@ const AdminDashboard = () => {
             <Box
               component="form"
               className={styles.boxModal}
-              onSubmit={handleSubmit(() => buttonHandleAdd(options))}
+              onSubmit={handleSubmit(() => buttonHandleCreate(options))}
             >
               <TextField
                 {...register("title", {

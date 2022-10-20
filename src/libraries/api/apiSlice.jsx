@@ -2,16 +2,51 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
 export const apiSlice = createApi({
   reducerPath: "api",
-  baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_API_URL }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: process.env.REACT_APP_API_URL,
+    prepareHeaders: (headers) => {
+      const token = sessionStorage.getItem('token')
+      if (token) {
+        headers.set("authorization", `Bearer ${token}`)
+      }
+      return headers
+    },
+  }),
   endpoints: (builder) => ({
+    getUsers: builder.query({
+      query: () => ({
+        url: "admin/users",
+      }),
+    }),
+    createUser: builder.mutation({
+      query: (payload) => ({
+        url: "admin/users",
+        method: "POST",
+        body: payload,
+      }),
+    }),
+    deleteUser: builder.mutation({
+      query: (payload) => ({
+        url: `admin/users/${payload}`,
+        method: "DELETE",
+        body: payload,
+      }),
+    }),
+    updateUser: builder.mutation({
+      query: (payload) => ({
+        url: `admin/users/${payload}`,
+        method: "PATCH",
+        body: payload,
+      }),
+    }),
     getMovies: builder.query({
       query: () => ({
         url: "movies",
       }),
     }),
-    addMovie: builder.mutation({
+    createMovie: builder.mutation({
       query: (payload) => ({
-        url: "movies/add",
+        url: "movies",
         method: "POST",
         body: payload,
       }),
@@ -23,14 +58,21 @@ export const apiSlice = createApi({
         body: payload,
       }),
     }),
+    updateMovie: builder.mutation({
+      query: (payload) => ({
+        url: `movies/${payload}`,
+        method: "PATCH",
+        body: payload,
+      }),
+    }),
     getBooks: builder.query({
       query: () => ({
         url: "books",
       }),
     }),
-    addBook: builder.mutation({
+    createBook: builder.mutation({
       query: (payload) => ({
-        url: "books/add",
+        url: "books",
         method: "POST",
         body: payload,
       }),
@@ -42,14 +84,21 @@ export const apiSlice = createApi({
         body: payload,
       }),
     }),
+    updateBook: builder.mutation({
+      query: (payload) => ({
+        url: `books/${payload}`,
+        method: "PATCH",
+        body: payload,
+      }),
+    }),
     getVideogames: builder.query({
       query: () => ({
         url: "videogames",
       }),
     }),
-    addVideogame: builder.mutation({
+    createVideogame: builder.mutation({
       query: (payload) => ({
-        url: "videogames/add",
+        url: "videogames",
         method: "POST",
         body: payload,
       }),
@@ -61,14 +110,21 @@ export const apiSlice = createApi({
         body: payload,
       }),
     }),
+    updateVideogame: builder.mutation({
+      query: (payload) => ({
+        url: `videogames/${payload}`,
+        method: "PATCH",
+        body: payload,
+      }),
+    }),
     getMeditations: builder.query({
       query: () => ({
         url: "meditations",
       }),
     }),
-    addMeditation: builder.mutation({
+    createMeditation: builder.mutation({
       query: (payload) => ({
-        url: "meditations/add",
+        url: "meditations",
         method: "POST",
         body: payload,
       }),
@@ -80,14 +136,21 @@ export const apiSlice = createApi({
         body: payload,
       }),
     }),
+    updateMeditation: builder.mutation({
+      query: (payload) => ({
+        url: `meditations/${payload}`,
+        method: "PATCH",
+        body: payload,
+      }),
+    }),
     getBreaths: builder.query({
       query: () => ({
         url: "breaths",
       }),
     }),
-    addBreath: builder.mutation({
+    createBreath: builder.mutation({
       query: (payload) => ({
-        url: "breaths/add",
+        url: "breaths",
         method: "POST",
         body: payload,
       }),
@@ -96,6 +159,44 @@ export const apiSlice = createApi({
       query: (payload) => ({
         url: `breaths/${payload}`,
         method: "DELETE",
+        body: payload,
+      }),
+    }),
+    updateBreaths: builder.mutation({
+      query: (payload) => ({
+        url: `breaths/${payload}`,
+        method: "PATCH",
+        body: payload,
+      }),
+    }),
+    getAdvice: builder.query({
+      query: () => ({
+        url: "advice",
+      }),
+    }),
+    getAdviceById: builder.query({
+      query: (payload) => ({
+        url: `advice/${payload}`,
+      }),
+    }),
+    createAdvice: builder.mutation({
+      query: (payload) => ({
+        url: "advice",
+        method: "POST",
+        body: payload,
+      }),
+    }),
+    deleteAdvice: builder.mutation({
+      query: (payload) => ({
+        url: `advice/${payload}`,
+        method: "DELETE",
+        body: payload,
+      }),
+    }),
+    updateAdvice: builder.mutation({
+      query: (payload) => ({
+        url: `advice/${payload}`,
+        method: "PATCH",
         body: payload,
       }),
     }),
@@ -113,55 +214,39 @@ export const apiSlice = createApi({
         body: payload,
       }),
     }),
-    getAdvice: builder.query({
-      query: () => ({
-        url: "advice",
-      }),
-    }),
-    addAdvice: builder.mutation({
-      query: (payload) => ({
-        url: "advice/add",
-        method: "POST",
-        body: payload,
-      }),
-    }),
-    deleteAdvice: builder.mutation({
-      query: (payload) => ({
-        url: `advice/${payload}`,
-        method: "DELETE",
-        body: payload,
-      }),
-    }),
-    updateAdvice: builder.mutation({
-      query: (payload) => ({
-        url: "advice/add",
-        method: "PATCH",
-        body: payload,
-      }),
-    }),
   }),
 })
 
 export const {
+  useGetUsersQuery,
+  useCreateUserMutation,
+  useDeleteUserMutation,
+  useUpdateUserMutation,
   useGetBooksQuery,
   useGetMoviesQuery,
   useGetVideogamesQuery,
+  useGetAdviceQuery,
+  useGetAdviceByIdQuery,
   useGetMeditationsQuery,
   useGetBreathsQuery,
   useSignInMutation,
   useSignUpMutation,
-  useAddMovieMutation,
-  useAddBookMutation,
-  useAddVideogameMutation,
-  useGetAdviceQuery,
-  useAddAdviceMutation,
-  useAddBreathMutation,
-  useAddMeditationMutation,
+  useCreateMovieMutation,
+  useCreateBookMutation,
+  useCreateVideogameMutation,
+  useCreateAdviceMutation,
+  useCreateBreathMutation,
+  useCreateMeditationMutation,
   useUpdateAdviceMutation,
+  useUpdateBreathsMutation,
+  useUpdateMeditationMutation,
+  useUpdateMovieMutation,
+  useUpdateBookMutation,
+  useUpdateVideogameMutation,
   useDeleteAdviceMutation,
   useDeleteBreathMutation,
   useDeleteMeditationMutation,
   useDeleteMovieMutation,
   useDeleteBookMutation,
-  useDeleteVideogameMutation
+  useDeleteVideogameMutation,
 } = apiSlice
