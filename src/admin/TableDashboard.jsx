@@ -45,8 +45,21 @@ const TableDashboard = ({ request, deleteItem, updateItem, options }) => {
           <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
-                <TableCell sx={{ fontWeight: "bold" }}>Título</TableCell>
-                <TableCell sx={{ fontWeight: "bold" }}>Descripción</TableCell>
+                {options === "Users" ? (
+                  <>
+                    <TableCell sx={{ fontWeight: "bold" }}>Usuario</TableCell>
+                    <TableCell sx={{ fontWeight: "bold" }}>
+                      Correo electrónico
+                    </TableCell>
+                  </>
+                ) : (
+                  <>
+                    <TableCell sx={{ fontWeight: "bold" }}>Título</TableCell>
+                    <TableCell sx={{ fontWeight: "bold" }}>
+                      Descripción
+                    </TableCell>
+                  </>
+                )}
                 {options === "Books" ? (
                   <TableCell sx={{ fontWeight: "bold" }}>Autor</TableCell>
                 ) : (
