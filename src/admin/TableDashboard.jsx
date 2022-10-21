@@ -18,7 +18,6 @@ import { useState } from "react"
 
 import styles from "../styles/TableDashboard.module.css"
 import { useForm } from "react-hook-form"
-import { fontWeight } from "@mui/system"
 
 const TableDashboard = ({ request, deleteItem, updateItem, options }) => {
   const [open, setOpen] = useState(false)
