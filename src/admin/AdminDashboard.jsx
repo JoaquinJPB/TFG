@@ -35,6 +35,13 @@ import {
   useDeleteBookMutation,
   useDeleteVideogameMutation,
   useCreateUserMutation,
+  useUpdateUserMutation,
+  useUpdateAdviceMutation,
+  useUpdateMeditationMutation,
+  useUpdateBreathMutation,
+  useUpdateMovieMutation,
+  useUpdateBookMutation,
+  useUpdateVideogameMutation,
 } from "../libraries/api/apiSlice"
 import { CheckRequest } from "../components/CheckRequest"
 
@@ -43,11 +50,23 @@ import { toast } from "react-toastify"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 
-import styles from "../styles/AdminDashboard.module.css"
+import styles from "../styles/BoxModal.module.css"
 
 const AdminDashboard = () => {
-  
   const [options, setOptions] = useState("")
+
+  // Advice, Breaths, Meditation, \\ Books, Movies, Videogames
+  const [title, setTitle] = useState()
+  const [description, setDescription] = useState()
+  const [img, setImg] = useState()
+  const [founder, setFounder] = useState()
+
+  // User
+  const [username, setUsername] = useState()
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
+  const [roles, setRoles] = useState([])
+  const rolesName = ["user", "moderator", "admin"]
 
   // Modal
   const [open, setOpen] = useState(false)
@@ -63,6 +82,15 @@ const AdminDashboard = () => {
   const [createBook] = useCreateBookMutation()
   const [createVideogame] = useCreateVideogameMutation()
 
+  // Update Methods
+  const [updateUser] = useUpdateUserMutation()
+  const [updateAdvice] = useUpdateAdviceMutation()
+  const [updateBreath] = useUpdateBreathMutation()
+  const [updateMeditation] = useUpdateMeditationMutation()
+  const [updateMovie] = useUpdateMovieMutation()
+  const [updateBook] = useUpdateBookMutation()
+  const [updateVideogame] = useUpdateVideogameMutation()
+
   // Delete Methods
   const [deleteUser] = useDeleteUserMutation()
   const [deleteAdvice] = useDeleteAdviceMutation()
@@ -71,19 +99,6 @@ const AdminDashboard = () => {
   const [deleteMovie] = useDeleteMovieMutation()
   const [deleteBook] = useDeleteBookMutation()
   const [deleteVideogame] = useDeleteVideogameMutation()
-
-  // Advice, Breaths, Meditation, \\ Books, Movies, Videogames
-  const [title, setTitle] = useState()
-  const [description, setDescription] = useState()
-  const [img, setImg] = useState()
-  const [founder, setFounder] = useState()
-
-  // User
-  const [username, setUsername] = useState()
-  const [email, setEmail] = useState()
-  const [password, setPassword] = useState()
-  const [roles, setRoles] = useState([])
-  const rolesName = ["user", "moderator", "admin"]
 
   const handleChangeRole = (event) => {
     const {
@@ -103,57 +118,63 @@ const AdminDashboard = () => {
 
   const {
     data: users,
-    isLoadingUsers,
-    isErrorUsers,
-    refetchUsers,
+    isLoading: isLoadingUsers,
+    isError: isErrorUsers,
+    refetch: refetchUsers,
   } = useGetUsersQuery()
 
   const {
     data: advice,
-    isLoadingAdvice,
-    isErrorAdvice,
-    refetchAdvice,
+    isLoading: isLoadingAdvice,
+    isError: isErrorAdvice,
+    refetch: refetchAdvice,
   } = useGetAdviceQuery()
 
   const {
     data: breaths,
-    isLoadingBreaths,
-    isErrorBreaths,
-    refetchBreaths,
+    isLoading: isLoadingBreaths,
+    isError: isErrorBreaths,
+    refetch: refetchBreaths,
   } = useGetBreathsQuery()
 
   const {
     data: meditations,
-    isLoadingMeditations,
-    isErrorMeditations,
-    refetchMeditations,
+    isLoading: isLoadingMeditations,
+    isError: isErrorMeditations,
+    refetch: refetchMeditations,
   } = useGetMeditationsQuery()
 
   const {
     data: books,
-    isLoadingBooks,
-    isErrorBooks,
-    refetchBooks,
+    isLoading: isLoadingBooks,
+    isError: isErrorBooks,
+    refetch: refetchBooks,
   } = useGetBooksQuery()
 
   const {
     data: movies,
-    isLoadingMovies,
-    isErrorMovies,
-    refetchMovies,
+    isLoading: isLoadingMovies,
+    isError: isErrorMovies,
+    refetch: refetchMovies,
   } = useGetMoviesQuery()
 
   const {
     data: videogames,
-    isLoadingVideogames,
-    isErrorVideogames,
-    refetchVideogames,
+    isLoading: isLoadingVideogames,
+    isError: isErrorVideogames,
+    refetch: refetchVideogames,
   } = useGetVideogamesQuery()
 
-  const handleCreateUser = (payload) => {
-    createUser(payload)
-      .then(() =>
-        toast.success("Usuario creado", {
+  const getPromiseResource = (
+    promise,
+    payload,
+    success,
+    error,
+    callback = () => null
+  ) => {
+    promise(payload)
+      .then(() => {
+        toast.success(`${success}`, {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -163,9 +184,10 @@ const AdminDashboard = () => {
           progress: undefined,
           theme: "colored",
         })
-      )
+        callback()
+      })
       .catch(() =>
-        toast.error("Error al crear el usuario", {
+        toast.error(`${error} `, {
           position: "top-right",
           autoClose: 4000,
           hideProgressBar: false,
@@ -178,368 +200,189 @@ const AdminDashboard = () => {
       )
   }
 
-  const handleCreateAdvice = (payload) => {
-    createAdvice(payload)
-      .then(() =>
-        toast.success("Consejo creado", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-      )
-      .catch(() =>
-        toast.error("Error al crear el consejo", {
-          position: "top-right",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-      )
-  }
-
-  const handleCreateBreath = (payload) => {
-    createBreath(payload)
-      .then(() =>
-        toast.success("Ejercicio de respiración creado", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-      )
-      .catch(() =>
-        toast.error("Error al crear el ejercicio de respiración", {
-          position: "top-right",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-      )
-  }
-
-  const handleCreateMeditation = (payload) => {
-    createMeditation(payload)
-      .then(() =>
-        toast.success("Ejercicio de meditación creado", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-      )
-      .catch(() =>
-        toast.error("Error al crear el ejercicio de meditación", {
-          position: "top-right",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-      )
-  }
-
-  const handleCreateMovie = (payload) => {
-    createMovie(payload)
-      .then(() =>
-        toast.success("Película creada", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-      )
-      .catch(() =>
-        toast.error("Error al crear la película", {
-          position: "top-right",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-      )
-  }
-
-  const handleCreateBook = (payload) => {
-    createBook(payload)
-      .then(() =>
-        toast.success("Libro creado", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-      )
-      .catch(() =>
-        toast.error("Error al crear el libro", {
-          position: "top-right",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-      )
-  }
-
-  const handleCreateVideogame = (payload) => {
-    createVideogame(payload)
-      .then(() =>
-        toast.success("Videojuego creado", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-      )
-      .catch(() =>
-        toast.error("Error al crear el videojuego", {
-          position: "top-right",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-      )
-  }
-
-  const handleDeleteUser = (payload) => {
-    deleteUser(payload)
-      .then(() =>
-        toast.success("Usuario eliminado con éxito", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-      )
-      .catch(() =>
-        toast.error("Error al eliminar el usuario", {
-          position: "top-right",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-      )
-  }
-
-  const handleDeleteAdvice = (payload) => {
-    deleteAdvice(payload)
-      .then(() =>
-        toast.success("Consejo eliminado con éxito", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-      )
-      .catch(() =>
-        toast.error("Error al eliminar el consejo", {
-          position: "top-right",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-      )
-  }
-
-  const handleDeleteBreath = (payload) => {
-    deleteBreath(payload)
-      .then(() =>
-        toast.success("Ejercicio de respiración eliminado con éxito", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-      )
-      .catch(() =>
-        toast.error("Error al eliminar el ejercicio de respiración", {
-          position: "top-right",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-      )
-  }
-
-  const handleDeleteMeditation = (payload) => {
-    deleteMeditation(payload)
-      .then(() =>
-        toast.success("Ejercicio de meditación eliminado con éxito", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-      )
-      .catch(() =>
-        toast.error("Error al eliminar el ejercicio de meditación", {
-          position: "top-right",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-      )
-  }
-
-  const handleDeleteMovie = (payload) => {
-    deleteMovie(payload)
-      .then(() =>
-        toast.success("Película eliminada con éxito", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-      )
-      .catch(() =>
-        toast.error("Error al eliminar la película", {
-          position: "top-right",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-      )
-  }
-
-  const handleDeleteBook = (payload) => {
-    deleteBook(payload)
-      .then(() =>
-        toast.success("Libro eliminado con éxito", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-      )
-      .catch(() =>
-        toast.error("Error al eliminar el libro", {
-          position: "top-right",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-      )
-  }
-
-  const handleDeleteVideogame = (payload) => {
-    deleteVideogame(payload)
-      .then(() =>
-        toast.success("Videojuego eliminado con éxito", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-      )
-      .catch(() =>
-        toast.error("Error al eliminar el videojuego", {
-          position: "top-right",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-      )
+  const allRequests = {
+    Users: {
+      create: (payload) =>
+        getPromiseResource(
+          createUser,
+          payload,
+          "Usuario creado",
+          "Error al crear el usuario",
+          refetchUsers
+        ),
+      update: (payload) =>
+        getPromiseResource(
+          updateUser,
+          payload,
+          "Usuario actualizado",
+          "Error al actualizar el usuario",
+          refetchUsers
+        ),
+      delete: (payload) =>
+        getPromiseResource(
+          deleteUser,
+          payload,
+          "Usuario eliminado",
+          "Error al eliminar el usuario",
+          refetchUsers
+        ),
+    },
+    Advice: {
+      create: (payload) =>
+        getPromiseResource(
+          createAdvice,
+          payload,
+          "Consejo creado",
+          "Error al crear el consejo",
+          refetchAdvice
+        ),
+      update: (payload) =>
+        getPromiseResource(
+          updateAdvice,
+          payload,
+          "Consejo actualizado",
+          "Error al actualizar el consejo",
+          refetchAdvice
+        ),
+      delete: (payload) =>
+        getPromiseResource(
+          deleteAdvice,
+          payload,
+          "Consejo eliminado",
+          "Error al eliminar el consejo",
+          refetchAdvice
+        ),
+    },
+    Breaths: {
+      create: (payload) =>
+        getPromiseResource(
+          createBreath,
+          payload,
+          "Técnica de respiración creada",
+          "Error al crear la técnica de respiración",
+          refetchBreaths
+        ),
+      update: (payload) =>
+        getPromiseResource(
+          updateBreath,
+          payload,
+          "Técnica de respiración actualizada",
+          "Error al actualizar la técnica de respiración",
+          refetchBreaths
+        ),
+      delete: (payload) =>
+        getPromiseResource(
+          deleteBreath,
+          payload,
+          "Técnica de respiración eliminada",
+          "Error al eliminar la técnica de respiración",
+          refetchBreaths
+        ),
+    },
+    Meditations: {
+      create: (payload) =>
+        getPromiseResource(
+          createMeditation,
+          payload,
+          "Técnica de meditación creada",
+          "Error al crear la técnica de meditación",
+          refetchMeditations
+        ),
+      update: (payload) =>
+        getPromiseResource(
+          updateMeditation,
+          payload,
+          "Técnica de meditación actualizada",
+          "Error al actualizar la técnica de meditación",
+          refetchMeditations
+        ),
+      delete: (payload) =>
+        getPromiseResource(
+          deleteMeditation,
+          payload,
+          "Técnica de meditación eliminada",
+          "Error al eliminar la técnica de meditación",
+          refetchMeditations
+        ),
+    },
+    Movies: {
+      create: (payload) =>
+        getPromiseResource(
+          createMovie,
+          payload,
+          "Película creada",
+          "Error al crear la película",
+          refetchMovies
+        ),
+      update: (payload) =>
+        getPromiseResource(
+          updateMovie,
+          payload,
+          "Película actualizada",
+          "Error al actualizar la película",
+          refetchMovies
+        ),
+      delete: (payload) =>
+        getPromiseResource(
+          deleteMovie,
+          payload,
+          "Película eliminada",
+          "Error al eliminar la película",
+          refetchMovies
+        ),
+    },
+    Books: {
+      create: (payload) =>
+        getPromiseResource(
+          createBook,
+          payload,
+          "Libro creado",
+          "Error al crear el libro",
+          refetchBooks
+        ),
+      update: (payload) =>
+        getPromiseResource(
+          updateBook,
+          payload,
+          "Libro actualizado",
+          "Error al actualizar el libro",
+          refetchBooks
+        ),
+      delete: (payload) =>
+        getPromiseResource(
+          deleteBook,
+          payload,
+          "Libro eliminado",
+          "Error al eliminar el libro",
+          refetchBooks
+        ),
+    },
+    Videogames: {
+      create: (payload) =>
+        getPromiseResource(
+          createVideogame,
+          payload,
+          "Videojuego creada",
+          "Error al crear el videojuego",
+          refetchVideogames
+        ),
+      update: (payload) =>
+        getPromiseResource(
+          updateVideogame,
+          payload,
+          "Videojuego actualizada",
+          "Error al actualizar el videojuego",
+          refetchVideogames
+        ),
+      delete: (payload) =>
+        getPromiseResource(
+          deleteVideogame,
+          payload,
+          "Videojuego eliminada",
+          "Error al eliminar el videojuego",
+          refetchVideogames
+        ),
+    },
   }
 
   const handleChangeOption = (event) => {
@@ -556,7 +399,8 @@ const AdminDashboard = () => {
         >
           <TableDashboard
             request={users}
-            deleteItem={handleDeleteUser}
+            updateItem={allRequests.Users.update}
+            deleteItem={allRequests.Users.delete}
             options={options}
           ></TableDashboard>
         </CheckRequest>
@@ -569,7 +413,8 @@ const AdminDashboard = () => {
         >
           <TableDashboard
             request={advice}
-            deleteItem={handleDeleteAdvice}
+            updateItem={allRequests.Advice.update}
+            deleteItem={allRequests.Advice.delete}
             options={options}
           ></TableDashboard>
         </CheckRequest>
@@ -582,7 +427,8 @@ const AdminDashboard = () => {
         >
           <TableDashboard
             request={breaths}
-            deleteItem={handleDeleteBreath}
+            updateItem={allRequests.Breaths.update}
+            deleteItem={allRequests.Breaths.delete}
             options={options}
           ></TableDashboard>
         </CheckRequest>
@@ -595,20 +441,8 @@ const AdminDashboard = () => {
         >
           <TableDashboard
             request={meditations}
-            deleteItem={handleDeleteMeditation}
-            options={options}
-          ></TableDashboard>
-        </CheckRequest>
-      ),
-      Books: (
-        <CheckRequest
-          isLoading={isLoadingBooks}
-          isError={isErrorBooks}
-          refetch={refetchBooks}
-        >
-          <TableDashboard
-            request={books}
-            deleteItem={handleDeleteBook}
+            updateItem={allRequests.Meditations.update}
+            deleteItem={allRequests.Meditations.delete}
             options={options}
           ></TableDashboard>
         </CheckRequest>
@@ -621,7 +455,22 @@ const AdminDashboard = () => {
         >
           <TableDashboard
             request={movies}
-            deleteItem={handleDeleteMovie}
+            updateItem={allRequests.Movies.update}
+            deleteItem={allRequests.Movies.delete}
+            options={options}
+          ></TableDashboard>
+        </CheckRequest>
+      ),
+      Books: (
+        <CheckRequest
+          isLoading={isLoadingBooks}
+          isError={isErrorBooks}
+          refetch={refetchBooks}
+        >
+          <TableDashboard
+            request={books}
+            updateItem={allRequests.Books.update}
+            deleteItem={allRequests.Books.delete}
             options={options}
           ></TableDashboard>
         </CheckRequest>
@@ -634,7 +483,8 @@ const AdminDashboard = () => {
         >
           <TableDashboard
             request={videogames}
-            deleteItem={handleDeleteVideogame}
+            updateItem={allRequests.Videogames.update}
+            deleteItem={allRequests.Videogames.delete}
             options={options}
           ></TableDashboard>
         </CheckRequest>
@@ -646,31 +496,31 @@ const AdminDashboard = () => {
   const buttonHandleCreate = (options) => {
     switch (options) {
       case "Users":
-        handleCreateUser({ username, email, password, roles })
+        allRequests.Users.create({ username, email, password, roles })
         break
 
       case "Advice":
-        handleCreateAdvice({ title, description, img })
+        allRequests.Advice.create({ title, description, img })
         break
 
       case "Breaths":
-        handleCreateBreath({ title, description, img })
+        allRequests.Breaths.create({ title, description, img })
         break
 
       case "Meditations":
-        handleCreateMeditation({ title, description, img })
-        break
-
-      case "Books":
-        handleCreateBook({ title, description, founder, img })
+        allRequests.Meditations.create({ title, description, img })
         break
 
       case "Movies":
-        handleCreateMovie({ title, description, founder, img })
+        allRequests.Movies.create({ title, description, director: founder, img })
+        break
+
+      case "Books":
+        allRequests.Books.create({ title, description, author: founder, img })
         break
 
       case "Videogames":
-        handleCreateVideogame({ title, description, founder, img })
+        allRequests.Videogames.create({ title, description, developer: founder, img })
         break
 
       default:
@@ -703,8 +553,8 @@ const AdminDashboard = () => {
               <MenuItem value={"Advice"}>Consejos</MenuItem>
               <MenuItem value={"Breaths"}>Respiración</MenuItem>
               <MenuItem value={"Meditations"}>Meditación</MenuItem>
-              <MenuItem value={"Books"}>Libros</MenuItem>
               <MenuItem value={"Movies"}>Películas</MenuItem>
+              <MenuItem value={"Books"}>Libros</MenuItem>
               <MenuItem value={"Videogames"}>Videojuegos</MenuItem>
             </Select>
           </FormControl>
