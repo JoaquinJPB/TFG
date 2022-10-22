@@ -1,12 +1,14 @@
 import {
   Box,
   Button,
+  Chip,
   Container,
   FormControl,
   Grid,
   InputLabel,
   MenuItem,
   Modal,
+  OutlinedInput,
   Select,
   TextField,
   Typography,
@@ -32,6 +34,7 @@ import {
   useDeleteMovieMutation,
   useDeleteBookMutation,
   useDeleteVideogameMutation,
+  useCreateUserMutation,
 } from "../libraries/api/apiSlice"
 import { CheckRequest } from "../components/CheckRequest"
 
@@ -43,11 +46,16 @@ import { useForm } from "react-hook-form"
 import styles from "../styles/AdminDashboard.module.css"
 
 const AdminDashboard = () => {
+  
   const [options, setOptions] = useState("")
+
+  // Modal
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
 
+  // Create Methods
+  const [createUser] = useCreateUserMutation()
   const [createAdvice] = useCreateAdviceMutation()
   const [createBreath] = useCreateBreathMutation()
   const [createMeditation] = useCreateMeditationMutation()
@@ -55,6 +63,7 @@ const AdminDashboard = () => {
   const [createBook] = useCreateBookMutation()
   const [createVideogame] = useCreateVideogameMutation()
 
+  // Delete Methods
   const [deleteUser] = useDeleteUserMutation()
   const [deleteAdvice] = useDeleteAdviceMutation()
   const [deleteBreath] = useDeleteBreathMutation()
@@ -63,11 +72,28 @@ const AdminDashboard = () => {
   const [deleteBook] = useDeleteBookMutation()
   const [deleteVideogame] = useDeleteVideogameMutation()
 
-  // Advice, Breaths, Meditation, Books, Movies, Videogames
+  // Advice, Breaths, Meditation, \\ Books, Movies, Videogames
   const [title, setTitle] = useState()
   const [description, setDescription] = useState()
   const [img, setImg] = useState()
   const [founder, setFounder] = useState()
+
+  // User
+  const [username, setUsername] = useState()
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
+  const [roles, setRoles] = useState([])
+  const rolesName = ["user", "moderator", "admin"]
+
+  const handleChangeRole = (event) => {
+    const {
+      target: { value },
+    } = event
+    setRoles(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    )
+  }
 
   const {
     register,
@@ -123,6 +149,34 @@ const AdminDashboard = () => {
     isErrorVideogames,
     refetchVideogames,
   } = useGetVideogamesQuery()
+
+  const handleCreateUser = (payload) => {
+    createUser(payload)
+      .then(() =>
+        toast.success("Usuario creado", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
+      .catch(() =>
+        toast.error("Error al crear el usuario", {
+          position: "top-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
+  }
 
   const handleCreateAdvice = (payload) => {
     createAdvice(payload)
@@ -591,6 +645,10 @@ const AdminDashboard = () => {
 
   const buttonHandleCreate = (options) => {
     switch (options) {
+      case "Users":
+        handleCreateUser({ username, email, password, roles })
+        break
+
       case "Advice":
         handleCreateAdvice({ title, description, img })
         break
@@ -671,110 +729,188 @@ const AdminDashboard = () => {
           >
             Crear
           </Button>
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box
-              component="form"
-              className={styles.boxModal}
-              onSubmit={handleSubmit(() => buttonHandleCreate(options))}
+          {options === "Users" ? (
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modalUsers"
+              aria-describedby="modalUsersDescription"
             >
-              <TextField
-                {...register("title", {
-                  required: true,
-                })}
-                required
-                name="title"
-                id="title"
-                label="Título"
-                variant="outlined"
-                fullWidth
-                onChange={(e) => {
-                  setTitle(e.target.value)
-                }}
-                sx={{ marginBottom: "1.5rem" }}
-              />
-              {errors.title && (
-                <Typography
-                  fullWidth
-                  sx={{
-                    color: "red",
-                  }}
-                >
-                  Escriba un título válido.
-                </Typography>
-              )}
-              <TextField
-                {...register("description", {
-                  required: true,
-                })}
-                required
-                name="description"
-                id="description"
-                label="Descripción"
-                variant="outlined"
-                fullWidth
-                onChange={(e) => {
-                  setDescription(e.target.value)
-                }}
-                sx={{ marginBottom: "1.5rem" }}
-              />
-              {errors.description && (
-                <Typography
-                  fullWidth
-                  sx={{
-                    color: "red",
-                  }}
-                >
-                  Escriba una descripción válida.
-                </Typography>
-              )}
-              {options === "Books" ||
-              options === "Movies" ||
-              options === "Videogames" ? (
+              <Box
+                component="form"
+                className={styles.boxModal}
+                onSubmit={() => buttonHandleCreate("Users")}
+              >
                 <TextField
-                  {...register("founder", {
+                  {...register("username", {
                     required: true,
                   })}
                   required
-                  name="founder"
-                  id="founder"
-                  label="Autor/Director/Desarrolladora"
+                  name="username"
+                  id="username"
+                  label="Nombre de usuario"
                   variant="outlined"
                   fullWidth
                   onChange={(e) => {
-                    setFounder(e.target.value)
+                    setUsername(e.target.value)
                   }}
                   sx={{ marginBottom: "1.5rem" }}
                 />
-              ) : (
-                <></>
-              )}
-              <TextField
-                required
-                id="img"
-                name="img"
-                label="URL Img"
-                variant="outlined"
-                fullWidth
-                onChange={(e) => {
-                  setImg(e.target.value)
-                }}
-                sx={{ marginBottom: "1.5rem" }}
-              />
-              <Button
-                type="submit"
-                variant="contained"
-                fullWidth
-                sx={{ fontWeight: "bold" }}
+                <TextField
+                  {...register("email", {
+                    required: true,
+                  })}
+                  required
+                  name="email"
+                  id="email"
+                  label="Correo electrónico"
+                  type="email"
+                  variant="outlined"
+                  fullWidth
+                  onChange={(e) => {
+                    setEmail(e.target.value)
+                  }}
+                  sx={{ marginBottom: "1.5rem" }}
+                />
+                <TextField
+                  {...register("password", {
+                    required: true,
+                  })}
+                  required
+                  name="password"
+                  id="password"
+                  label="Contraseña"
+                  type="password"
+                  variant="outlined"
+                  fullWidth
+                  onChange={(e) => {
+                    setPassword(e.target.value)
+                  }}
+                  sx={{ marginBottom: "1.5rem" }}
+                />
+                <FormControl fullWidth>
+                  <InputLabel id="chip-label-role">Rol</InputLabel>
+                  <Select
+                    labelId="chip-label-role"
+                    id="multiple-chip-role"
+                    multiple
+                    value={roles}
+                    onChange={handleChangeRole}
+                    sx={{ marginBottom: "1.5rem" }}
+                    input={
+                      <OutlinedInput id="multiple-chip-role" label="Rol" />
+                    }
+                    renderValue={(selected) => (
+                      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                        {selected.map((value) => (
+                          <Chip key={value} label={value} />
+                        ))}
+                      </Box>
+                    )}
+                  >
+                    {rolesName.map((role) => (
+                      <MenuItem key={role} value={role}>
+                        {role}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  fullWidth
+                  sx={{ fontWeight: "bold" }}
+                >
+                  Crear
+                </Button>
+              </Box>
+            </Modal>
+          ) : (
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modalResources"
+              aria-describedby="modalResourcesDescription"
+            >
+              <Box
+                component="form"
+                className={styles.boxModal}
+                onSubmit={handleSubmit(() => buttonHandleCreate(options))}
               >
-                Crear
-              </Button>
-            </Box>
-          </Modal>
+                <TextField
+                  {...register("title", {
+                    required: true,
+                  })}
+                  required
+                  name="title"
+                  id="title"
+                  label="Título"
+                  variant="outlined"
+                  fullWidth
+                  onChange={(e) => {
+                    setTitle(e.target.value)
+                  }}
+                  sx={{ marginBottom: "1.5rem" }}
+                />
+                <TextField
+                  {...register("description", {
+                    required: true,
+                  })}
+                  required
+                  name="description"
+                  id="description"
+                  label="Descripción"
+                  variant="outlined"
+                  fullWidth
+                  onChange={(e) => {
+                    setDescription(e.target.value)
+                  }}
+                  sx={{ marginBottom: "1.5rem" }}
+                />
+                {options === "Books" ||
+                options === "Movies" ||
+                options === "Videogames" ? (
+                  <TextField
+                    {...register("founder", {
+                      required: true,
+                    })}
+                    required
+                    name="founder"
+                    id="founder"
+                    label="Autor/Director/Desarrolladora"
+                    variant="outlined"
+                    fullWidth
+                    onChange={(e) => {
+                      setFounder(e.target.value)
+                    }}
+                    sx={{ marginBottom: "1.5rem" }}
+                  />
+                ) : (
+                  <></>
+                )}
+                <TextField
+                  required
+                  id="img"
+                  name="img"
+                  label="URL Img"
+                  variant="outlined"
+                  fullWidth
+                  onChange={(e) => {
+                    setImg(e.target.value)
+                  }}
+                  sx={{ marginBottom: "1.5rem" }}
+                />
+                <Button
+                  type="submit"
+                  variant="contained"
+                  fullWidth
+                  sx={{ fontWeight: "bold" }}
+                >
+                  Crear
+                </Button>
+              </Box>
+            </Modal>
+          )}
         </Grid>
       </Grid>
       <Grid

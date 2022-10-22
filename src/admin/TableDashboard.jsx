@@ -41,7 +41,11 @@ const TableDashboard = ({ request, deleteItem, updateItem, options }) => {
     <section>
       {request ? (
         <TableContainer>
-          <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+          <Table
+            sx={{ minWidth: 1000 }}
+            size="medium"
+            aria-label="a dense table"
+          >
             <TableHead>
               <TableRow>
                 {options === "Users" ? (
@@ -76,7 +80,7 @@ const TableDashboard = ({ request, deleteItem, updateItem, options }) => {
                 ) : (
                   <></>
                 )}
-                <TableCell sx={{ fontWeight: "bold" }}>Acciones</TableCell>
+                <TableCell></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -98,12 +102,14 @@ const TableDashboard = ({ request, deleteItem, updateItem, options }) => {
                     <></>
                   )}
                   <TableCell>
-                    <Button>
-                      <EditIcon onClick={handleOpen} />
-                    </Button>
-                    <Button onClick={() => deleteItem(raw_data._id)}>
-                      <DeleteIcon />
-                    </Button>
+                    <Box display={"flex"}>
+                      <Button>
+                        <EditIcon onClick={handleOpen} />
+                      </Button>
+                      <Button onClick={() => deleteItem(raw_data._id)}>
+                        <DeleteIcon />
+                      </Button>
+                    </Box>
                   </TableCell>
                 </TableRow>
               ))}
