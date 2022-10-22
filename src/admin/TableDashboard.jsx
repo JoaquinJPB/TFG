@@ -16,26 +16,43 @@ import EditIcon from "@mui/icons-material/Edit"
 import DeleteIcon from "@mui/icons-material/Delete"
 import { useState } from "react"
 
-import styles from "../styles/TableDashboard.module.css"
+import styles from "../styles/BoxModal.module.css"
 import { useForm } from "react-hook-form"
 
-const TableDashboard = ({ request, deleteItem, updateItem, options }) => {
+const TableDashboard = ({ request, updateItem, deleteItem, options }) => {
   const [open, setOpen] = useState(false)
-  const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
-
+  const [_id, setId] = useState()
   const [title, setTitle] = useState()
   const [description, setDescription] = useState()
   const [img, setImg] = useState()
   const [founder, setFounder] = useState()
 
+  console.log("State initial =>", _id, title, description, img, founder)
+
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
+
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm()
 
-  const buttonHandleEdit = () => {}
+  const fillData = (
+    itemId,
+    itemTitle,
+    itemDescription,
+    itemImg,
+    itemFounder
+  ) => {
+    setId(itemId)
+    setValue("title", itemTitle)
+    setValue("description", itemDescription)
+    setValue("img", itemImg)
+    setValue("founder", itemFounder)
+    handleOpen()
+  }
 
   return (
     <section>
@@ -104,7 +121,19 @@ const TableDashboard = ({ request, deleteItem, updateItem, options }) => {
                   <TableCell>
                     <Box display={"flex"}>
                       <Button>
-                        <EditIcon onClick={handleOpen} />
+                        <EditIcon
+                          onClick={() =>
+                            fillData(
+                              raw_data._id,
+                              raw_data.title,
+                              raw_data.description,
+                              raw_data.img,
+                              raw_data.author ||
+                                raw_data.director ||
+                                raw_data.developer
+                            )
+                          }
+                        />
                       </Button>
                       <Button onClick={() => deleteItem(raw_data._id)}>
                         <DeleteIcon />
@@ -122,7 +151,9 @@ const TableDashboard = ({ request, deleteItem, updateItem, options }) => {
                 <Box
                   component="form"
                   className={styles.boxModal}
-                  onSubmit={handleSubmit(() => buttonHandleEdit())}
+                  onSubmit={handleSubmit(() =>
+                    updateItem({ _id, title, description, img })
+                  )}
                 >
                   <TextField
                     {...register("title", {
@@ -133,7 +164,6 @@ const TableDashboard = ({ request, deleteItem, updateItem, options }) => {
                     id="title"
                     label="Título"
                     variant="outlined"
-                    value={title}
                     fullWidth
                     onChange={(e) => {
                       setTitle(e.target.value)
@@ -159,7 +189,6 @@ const TableDashboard = ({ request, deleteItem, updateItem, options }) => {
                     id="description"
                     label="Descripción"
                     variant="outlined"
-                    value={description}
                     fullWidth
                     onChange={(e) => {
                       setDescription(e.target.value)
@@ -188,7 +217,6 @@ const TableDashboard = ({ request, deleteItem, updateItem, options }) => {
                       id="founder"
                       label="Autor/Director/Desarrolladora"
                       variant="outlined"
-                      value={founder}
                       fullWidth
                       onChange={(e) => {
                         setFounder(e.target.value)
@@ -199,12 +227,14 @@ const TableDashboard = ({ request, deleteItem, updateItem, options }) => {
                     <></>
                   )}
                   <TextField
+                    {...register("img", {
+                      required: true,
+                    })}
                     required
                     id="img"
                     name="img"
                     label="URL Img"
                     variant="outlined"
-                    value={img}
                     fullWidth
                     onChange={(e) => {
                       setImg(e.target.value)
