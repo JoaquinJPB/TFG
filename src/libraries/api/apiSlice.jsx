@@ -34,7 +34,7 @@ export const apiSlice = createApi({
     }),
     updateUser: builder.mutation({
       query: (payload) => ({
-        url: `admin/users/${payload}`,
+        url: `admin/users/${payload._id}`,
         method: "PATCH",
         body: payload,
       }),
@@ -60,7 +60,7 @@ export const apiSlice = createApi({
     }),
     updateMovie: builder.mutation({
       query: (payload) => ({
-        url: `movies/${payload}`,
+        url: `movies/${payload._id}`,
         method: "PATCH",
         body: payload,
       }),
@@ -86,7 +86,7 @@ export const apiSlice = createApi({
     }),
     updateBook: builder.mutation({
       query: (payload) => ({
-        url: `books/${payload}`,
+        url: `books/${payload._id}`,
         method: "PATCH",
         body: payload,
       }),
@@ -112,7 +112,7 @@ export const apiSlice = createApi({
     }),
     updateVideogame: builder.mutation({
       query: (payload) => ({
-        url: `videogames/${payload}`,
+        url: `videogames/${payload._id}`,
         method: "PATCH",
         body: payload,
       }),
@@ -138,7 +138,7 @@ export const apiSlice = createApi({
     }),
     updateMeditation: builder.mutation({
       query: (payload) => ({
-        url: `meditations/${payload}`,
+        url: `meditations/${payload._id}`,
         method: "PATCH",
         body: payload,
       }),
@@ -162,9 +162,9 @@ export const apiSlice = createApi({
         body: payload,
       }),
     }),
-    updateBreaths: builder.mutation({
+    updateBreath: builder.mutation({
       query: (payload) => ({
-        url: `breaths/${payload}`,
+        url: `breaths/${payload._id}`,
         method: "PATCH",
         body: payload,
       }),
@@ -195,7 +195,7 @@ export const apiSlice = createApi({
     }),
     updateAdvice: builder.mutation({
       query: (payload) => ({
-        url: `advice/${payload}`,
+        url: `advice/${payload._id}`,
         method: "PATCH",
         body: payload,
       }),
@@ -238,7 +238,7 @@ export const {
   useCreateBreathMutation,
   useCreateMeditationMutation,
   useUpdateAdviceMutation,
-  useUpdateBreathsMutation,
+  useUpdateBreathMutation,
   useUpdateMeditationMutation,
   useUpdateMovieMutation,
   useUpdateBookMutation,
