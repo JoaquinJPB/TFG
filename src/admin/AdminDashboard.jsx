@@ -117,6 +117,12 @@ const AdminDashboard = () => {
   } = useForm()
 
   const {
+    register: userRegister,
+    handleSubmit: handleUserSubmit,
+    formState: { errorsUser },
+  } = useForm()
+
+  const {
     data: users,
     isLoading: isLoadingUsers,
     isError: isErrorUsers,
@@ -589,10 +595,10 @@ const AdminDashboard = () => {
               <Box
                 component="form"
                 className={styles.boxModal}
-                onSubmit={() => buttonHandleCreate("Users")}
+                onSubmit={handleUserSubmit(() => buttonHandleCreate("Users"))}
               >
                 <TextField
-                  {...register("username", {
+                  {...userRegister("username", {
                     required: true,
                   })}
                   required
@@ -607,7 +613,7 @@ const AdminDashboard = () => {
                   sx={{ marginBottom: "1.5rem" }}
                 />
                 <TextField
-                  {...register("email", {
+                  {...userRegister("email", {
                     required: true,
                   })}
                   required
@@ -623,7 +629,7 @@ const AdminDashboard = () => {
                   sx={{ marginBottom: "1.5rem" }}
                 />
                 <TextField
-                  {...register("password", {
+                  {...userRegister("password", {
                     required: true,
                   })}
                   required
