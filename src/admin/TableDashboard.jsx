@@ -15,7 +15,6 @@ import {
   TableHead,
   TableRow,
   TextField,
-  Typography,
 } from "@mui/material"
 
 import EditIcon from "@mui/icons-material/Edit"
@@ -40,14 +39,17 @@ const TableDashboard = ({ request, updateItem, deleteItem, options }) => {
   const [img, setImg] = useState()
   const [founder, setFounder] = useState()
 
+  const [isFounder, setIsFounder] = useState(false)
+
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
 
+  const { register, handleSubmit, setValue } = useForm()
+
   const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
+    register: userRegister,
+    handleSubmit: userHandleSubmit,
+    setValue: userSetValue,
   } = useForm()
 
   const fillData = (
@@ -73,10 +75,10 @@ const TableDashboard = ({ request, updateItem, deleteItem, options }) => {
     itemRoles
   ) => {
     setId(itemId)
-    setValue("username", itemUsername)
-    setValue("email", itemEmail)
-    setValue("password", itemPassword)
-    setValue("multiple-chip-role", itemRoles)
+    userSetValue("username", itemUsername)
+    userSetValue("email", itemEmail)
+    userSetValue("password", itemPassword)
+    userSetValue("multiple-chip-role", itemRoles)
     handleOpen()
   }
 
@@ -90,9 +92,10 @@ const TableDashboard = ({ request, updateItem, deleteItem, options }) => {
     )
   }
 
-  const handleFounderEdit = (options) => {
+  const handleResourceEdit = (options) => {
     switch (options) {
       case "Movies":
+        setIsFounder(true)
         updateItem({
           _id,
           title,
@@ -103,6 +106,7 @@ const TableDashboard = ({ request, updateItem, deleteItem, options }) => {
         break
 
       case "Books":
+        setIsFounder(true)
         updateItem({
           _id,
           title,
@@ -113,6 +117,7 @@ const TableDashboard = ({ request, updateItem, deleteItem, options }) => {
         break
 
       case "Videogames":
+        setIsFounder(true)
         updateItem({
           _id,
           title,
@@ -121,7 +126,15 @@ const TableDashboard = ({ request, updateItem, deleteItem, options }) => {
           developer: founder,
         })
         break
+
       default:
+        setIsFounder(false)
+        updateItem({
+          _id,
+          title,
+          description,
+          img,
+        })
         break
     }
     handleClose()
@@ -233,12 +246,12 @@ const TableDashboard = ({ request, updateItem, deleteItem, options }) => {
                   <Box
                     component="form"
                     className={styles.boxModal}
-                    onSubmit={handleSubmit(() =>
+                    onSubmit={userHandleSubmit(() =>
                       updateItem({ _id, username, email, password })
                     )}
                   >
                     <TextField
-                      {...register("username", {
+                      {...userRegister("username", {
                         required: true,
                       })}
                       required
@@ -253,7 +266,7 @@ const TableDashboard = ({ request, updateItem, deleteItem, options }) => {
                       sx={{ marginBottom: "1.5rem" }}
                     />
                     <TextField
-                      {...register("email", {
+                      {...userRegister("email", {
                         required: true,
                       })}
                       required
@@ -269,7 +282,7 @@ const TableDashboard = ({ request, updateItem, deleteItem, options }) => {
                       sx={{ marginBottom: "1.5rem" }}
                     />
                     <TextField
-                      {...register("password", {
+                      {...userRegister("password", {
                         required: true,
                       })}
                       required
@@ -333,7 +346,7 @@ const TableDashboard = ({ request, updateItem, deleteItem, options }) => {
                   <Box
                     component="form"
                     className={styles.boxModal}
-                    onSubmit={handleSubmit(() => handleFounderEdit(options))}
+                    onSubmit={handleSubmit(() => handleResourceEdit(options))}
                   >
                     <TextField
                       {...register("title", {
@@ -350,16 +363,6 @@ const TableDashboard = ({ request, updateItem, deleteItem, options }) => {
                       }}
                       sx={{ marginBottom: "1.5rem" }}
                     />
-                    {errors.title && (
-                      <Typography
-                        fullWidth
-                        sx={{
-                          color: "red",
-                        }}
-                      >
-                        Escriba un título válido.
-                      </Typography>
-                    )}
                     <TextField
                       {...register("description", {
                         required: true,
@@ -375,22 +378,12 @@ const TableDashboard = ({ request, updateItem, deleteItem, options }) => {
                       }}
                       sx={{ marginBottom: "1.5rem" }}
                     />
-                    {errors.description && (
-                      <Typography
-                        fullWidth
-                        sx={{
-                          color: "red",
-                        }}
-                      >
-                        Escriba una descripción válida.
-                      </Typography>
-                    )}
                     {options === "Books" ||
                     options === "Movies" ||
                     options === "Videogames" ? (
                       <TextField
                         {...register("founder", {
-                          required: true,
+                          required: isFounder,
                         })}
                         required
                         name="founder"

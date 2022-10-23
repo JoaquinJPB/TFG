@@ -53,7 +53,7 @@ import { useForm } from "react-hook-form"
 import styles from "../styles/BoxModal.module.css"
 
 const AdminDashboard = () => {
-  const [options, setOptions] = useState("")
+  const [options, setOptions] = useState("Users")
 
   // Advice, Breaths, Meditation, \\ Books, Movies, Videogames
   const [title, setTitle] = useState()
@@ -110,17 +110,9 @@ const AdminDashboard = () => {
     )
   }
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm()
+  const { register, handleSubmit } = useForm()
 
-  const {
-    register: userRegister,
-    handleSubmit: handleUserSubmit,
-    formState: { errorsUser },
-  } = useForm()
+  const { register: userRegister, handleSubmit: handleUserSubmit } = useForm()
 
   const {
     data: users,
@@ -518,7 +510,12 @@ const AdminDashboard = () => {
         break
 
       case "Movies":
-        allRequests.Movies.create({ title, description, director: founder, img })
+        allRequests.Movies.create({
+          title,
+          description,
+          director: founder,
+          img,
+        })
         break
 
       case "Books":
@@ -526,7 +523,12 @@ const AdminDashboard = () => {
         break
 
       case "Videogames":
-        allRequests.Videogames.create({ title, description, developer: founder, img })
+        allRequests.Videogames.create({
+          title,
+          description,
+          developer: founder,
+          img,
+        })
         break
 
       default:
