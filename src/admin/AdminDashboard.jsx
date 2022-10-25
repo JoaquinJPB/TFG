@@ -110,9 +110,13 @@ const AdminDashboard = () => {
     )
   }
 
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit, setValue } = useForm()
 
-  const { register: userRegister, handleSubmit: handleUserSubmit } = useForm()
+  const {
+    register: userRegister,
+    handleSubmit: handleUserSubmit,
+    setValue: userSetValue,
+  } = useForm()
 
   const {
     data: users,
@@ -534,8 +538,19 @@ const AdminDashboard = () => {
       default:
         break
     }
-
     handleClose(false)
+    clearState()
+  }
+
+  const clearState = () => {
+    setValue("title", undefined)
+    setValue("description", undefined)
+    setValue("img", undefined)
+    setValue("founder", undefined)
+    userSetValue("username", undefined)
+    userSetValue("email", undefined)
+    userSetValue("password", undefined)
+    setRoles([])
   }
 
   return (
@@ -650,7 +665,8 @@ const AdminDashboard = () => {
                   <InputLabel id="chip-label-role">Rol</InputLabel>
                   <Select
                     labelId="chip-label-role"
-                    id="multiple-chip-role"
+                    id="roles"
+                    name="roles"
                     multiple
                     value={roles}
                     onChange={handleChangeRole}

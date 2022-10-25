@@ -157,6 +157,7 @@ const TableDashboard = ({ request, updateItem, deleteItem, options }) => {
                     <TableCell sx={{ fontWeight: "bold" }}>
                       Correo electrónico
                     </TableCell>
+                    <TableCell sx={{ fontWeight: "bold" }}>Roles</TableCell>
                   </>
                 ) : (
                   <>
@@ -192,6 +193,11 @@ const TableDashboard = ({ request, updateItem, deleteItem, options }) => {
                   <TableCell>{raw_data.title || raw_data.username}</TableCell>
                   <TableCell>
                     {raw_data.description || raw_data.email}
+                  </TableCell>
+                  <TableCell>
+                    {/* {options=== 'Users' && raw_data.roles.map((rol) => (
+                      <TableCell key={rol}>Rol</TableCell>
+                    ))} */}
                   </TableCell>
                   {options === "Books" ||
                   options === "Movies" ||
