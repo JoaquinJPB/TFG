@@ -175,6 +175,7 @@ const AdminDashboard = () => {
     callback = () => null
   ) => {
     promise(payload)
+      .unwrap()
       .then(() => {
         toast.success(`${success}`, {
           position: "top-right",
@@ -209,7 +210,7 @@ const AdminDashboard = () => {
           createUser,
           payload,
           "Usuario creado",
-          "Error al crear el usuario",
+          "Error al crear el usuario. Nombre de usuario/contraseña ya existente",
           refetchUsers
         ),
       update: (payload) =>
@@ -217,7 +218,7 @@ const AdminDashboard = () => {
           updateUser,
           payload,
           "Usuario actualizado",
-          "Error al actualizar el usuario",
+          "Error al actualizar el usuario. Nombre de usuario/contraseña ya existente",
           refetchUsers
         ),
       delete: (payload) =>
