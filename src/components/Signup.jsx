@@ -40,9 +40,9 @@ const SignUp = () => {
       sx={{
         height: "100vh",
         overflow: "disable",
-        // backgroundImage: `url(${background})`,
-        // backgroundRepeat: "no-repeat",
-        // backgroundColor: "rgba(0,0,0,0.5)",
+        backgroundImage: `url(${background})`,
+        backgroundRepeat: "no-repeat",
+        backgroundColor: "rgba(0,0,0,0.5)",
         backgroundSize: "cover",
         marginBottom: "-3rem",
       }}
@@ -94,6 +94,10 @@ const SignUp = () => {
                   autoFocus
                   variant="filled"
                   value={username}
+                  sx={{
+                    backgroundColor: "white",
+                    color: "black",
+                  }}
                   onChange={(e) => setUsername(e.target.value)}
                 />
               {errors.username && (
@@ -150,6 +154,10 @@ const SignUp = () => {
                   autoComplete="new-password"
                   variant="filled"
                   value={password}
+                  sx={{
+                    backgroundColor: "white",
+                    color: "black",
+                  }}
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 {errors.password && (
