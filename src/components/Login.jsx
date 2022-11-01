@@ -9,7 +9,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined"
 import Typography from "@mui/material/Typography"
 import PersonIcon from "@mui/icons-material/Person"
 
-import background from "../images/Wallpaper_Website.png"
+import background from "../images/undraw_login_re_4vu2.svg"
 import { useState } from "react"
 import { useLogin } from "../hooks/useLogin"
 import { useForm } from "react-hook-form"
@@ -33,25 +33,22 @@ const Login = () => {
     <Grid
       container
       component="main"
-      sx={{ height: "100vh", marginBottom: "-3rem" }}
+      sx={{ height: "100vh", marginBottom: "-3rem"}}
     >
       <CssBaseline />
       <Grid
         item
         xs={false}
-        sm={4}
+        sm={false}
         md={7}
         sx={{
           backgroundImage: `url(${background})`,
           backgroundRepeat: "no-repeat",
-          backgroundColor: (t) =>
-            t.palette.mode === "light"
-              ? t.palette.grey[50]
-              : t.palette.grey[900],
-          backgroundSize: "cover",
+          backgroundSize: "100%",
+          marginTop: "4rem"
         }}
       />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+      <Grid item xs={12} md={5} component={Paper} elevation={6} square>
         <Box
           sx={{
             my: 8,

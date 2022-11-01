@@ -10,7 +10,7 @@ import Container from "@mui/material/Container"
 
 import PersonIcon from "@mui/icons-material/Person"
 
-import background from "../images/Wallpaper_Website.png"
+import background from "../images/undraw_authentication_re_svpt.svg"
 import { useRegister } from "../hooks/useRegister"
 import { useState } from "react"
 
@@ -40,15 +40,11 @@ const SignUp = () => {
       sx={{
         height: "100vh",
         overflow: "disable",
-        backgroundImage: `url(${background})`,
-        backgroundRepeat: "no-repeat",
-        backgroundColor: "rgba(0,0,0,0.5)",
-        backgroundSize: "cover",
         marginBottom: "-3rem",
       }}
     >
       <Container component="section" maxWidth="xs" className="sign-in">
-        <CssBaseline />
+        
         <Box
           sx={{
             paddingTop: 8,
@@ -60,7 +56,6 @@ const SignUp = () => {
           <PersonIcon
             sx={{
               fontSize: "2.5rem",
-              color: "white",
             }}
             className="sign-icons"
           >
@@ -70,11 +65,10 @@ const SignUp = () => {
             component="h1"
             variant="h5"
             sx={{
-              color: "white",
               fontWeight: "bold",
             }}
           >
-            Crear tu cuenta
+            Crea tu cuenta
           </Typography>
           <Box
             component="form"
@@ -95,7 +89,6 @@ const SignUp = () => {
                   variant="filled"
                   value={username}
                   sx={{
-                    backgroundColor: "white",
                     color: "black",
                   }}
                   onChange={(e) => setUsername(e.target.value)}
@@ -125,7 +118,6 @@ const SignUp = () => {
                   label="Correo electrónico"
                   value={email}
                   sx={{
-                    backgroundColor: "white",
                     color: "black",
                   }}
                   variant="filled"
@@ -155,7 +147,6 @@ const SignUp = () => {
                   variant="filled"
                   value={password}
                   sx={{
-                    backgroundColor: "white",
                     color: "black",
                   }}
                   onChange={(e) => setPassword(e.target.value)}
@@ -192,10 +183,6 @@ const SignUp = () => {
                 <Link
                   href="/login"
                   variant="body2"
-                  sx={{
-                    color: "white",
-                    textDecorationColor: "white",
-                  }}
                 >
                   ¿Ya tienes una cuenta?
                 </Link>
