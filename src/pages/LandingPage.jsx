@@ -16,12 +16,12 @@ import Videogames from "../routes/Videogames"
 import Movies from "../routes/Movies"
 import Books from "../routes/Books"
 import Login from "../components/Login"
-import SignUp from "../components/SignUp"
 import Profile from "../routes/Profile"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { setToken } from "../libraries/api/userSlice"
 import AdminDashboard from "../admin/AdminDashboard"
+import Signup from "../components/Signup"
 
 const LandingPage = () => {
   const userAuth = useSelector((state) => state.user)
@@ -37,7 +37,7 @@ const LandingPage = () => {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<SignUp />} />
+      <Route path="/signup" element={<Signup />} />
       <Route path="/" element={<Navigation />}>
         <Route index element={<Home />} />
         <Route path="advice" element={<Advice />} />

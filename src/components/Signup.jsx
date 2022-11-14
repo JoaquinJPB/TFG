@@ -16,11 +16,11 @@ import { useState } from "react"
 
 import { useForm } from "react-hook-form"
 
-const SignUp = () => {
+const Signup = () => {
   const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const { signUpUser } = useRegister()
+  const { signupUser } = useRegister()
 
   const {
     register,
@@ -29,7 +29,7 @@ const SignUp = () => {
   } = useForm()
 
   const handleSubmitRegister = () => {
-    signUpUser(username, email.toLowerCase(), password)
+    signupUser(username, email.toLowerCase(), password)
   }
 
   return (
@@ -195,4 +195,4 @@ const SignUp = () => {
   )
 }
 
-export default SignUp
+export default Signup
