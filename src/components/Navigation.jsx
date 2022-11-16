@@ -94,8 +94,17 @@ const Navigation = () => {
               )}
               {user.token !== undefined && user.data.roles.find(element => element.name === "admin") ? (
                 <>
-                  <Link to="/admindashboard" className={styles.items}>
+                  <Link to="/admin" className={styles.items}>
                     Admin
+                  </Link>
+                </>
+              ) : (
+                <></>
+              )}
+              {user.token !== undefined && user.data.roles.find(element => element.name === "moderator") ? (
+                <>
+                  <Link to="/moderator" className={styles.items}>
+                    Moderator
                   </Link>
                 </>
               ) : (

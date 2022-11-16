@@ -21,6 +21,7 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { setToken } from "../libraries/api/userSlice"
 import AdminDashboard from "../admin/AdminDashboard"
+import ModeratorDashboard from "../admin/ModeratorDashboard"
 import Signup from "../components/Signup"
 
 const LandingPage = () => {
@@ -48,7 +49,8 @@ const LandingPage = () => {
         <Route path="recommendations/books" element={<Books />} />
         <Route path="recommendations/videogames" element={<Videogames />} />
         <Route path="user_id" element={<Profile />} />
-        <Route path="admindashboard" element={<AdminDashboard />} />
+        <Route path="admin" element={<AdminDashboard />} />
+        <Route path="moderator" element={<ModeratorDashboard />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Route>
     </Routes>
