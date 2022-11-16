@@ -104,7 +104,7 @@ const Navigation = () => {
               {user.token !== undefined && user.data.roles.find(element => element.name === "moderator") ? (
                 <>
                   <Link to="/moderator" className={styles.items}>
-                    Moderator
+                    Moderador
                   </Link>
                 </>
               ) : (

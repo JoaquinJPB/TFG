@@ -7,22 +7,22 @@ import {
 
 import Navigation from "../components/Navigation"
 
-import Home from "../routes/Home"
-import Advice from "../routes/Advice"
-import Breathing from "../routes/Breathing"
-import Meditation from "../routes/Meditation"
-import Recommendations from "../routes/Recommendations"
-import Videogames from "../routes/Videogames"
-import Movies from "../routes/Movies"
-import Books from "../routes/Books"
-import Login from "../components/Login"
-import Profile from "../routes/Profile"
+import Home from "./Home"
+import Advice from "./Advice"
+import Breathing from "./Breathing"
+import Meditation from "./Meditation"
+import Recommendations from "./Recommendations"
+import Videogames from "./Videogames"
+import Movies from "./Movies"
+import Books from "./Books"
+import Login from "./Login"
+import Profile from "./Profile"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { setToken } from "../libraries/api/userSlice"
 import AdminDashboard from "../admin/AdminDashboard"
 import ModeratorDashboard from "../admin/ModeratorDashboard"
-import Signup from "../components/Signup"
+import Signup from "./Signup"
 
 const LandingPage = () => {
   const userAuth = useSelector((state) => state.user)
