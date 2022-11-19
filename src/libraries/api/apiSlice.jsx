@@ -214,6 +214,27 @@ export const apiSlice = createApi({
         body: payload,
       }),
     }),
+    resetPassword: builder.mutation({
+      query: (payload) => ({
+        url: "reset_password",
+        method: "POST",
+        body: payload,
+      }),
+    }),
+    validPasswordToken: builder.mutation({
+      query: (payload) => ({
+        url: "valid_password_token",
+        method: "POST",
+        body: payload,
+      }),
+    }),
+    newPassword: builder.mutation({
+      query: (payload) => ({
+        url: "new_password",
+        method: "POST",
+        body: payload,
+      }),
+    }),
   }),
 })
 
@@ -231,6 +252,9 @@ export const {
   useGetBreathsQuery,
   useSignInMutation,
   useSignUpMutation,
+  useResetPasswordMutation,
+  useValidPasswordTokenMutation,
+  useNewPasswordMutation,
   useCreateMovieMutation,
   useCreateBookMutation,
   useCreateVideogameMutation,

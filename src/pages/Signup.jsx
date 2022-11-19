@@ -44,7 +44,6 @@ const Signup = () => {
       }}
     >
       <Container component="section" maxWidth="xs" className="sign-in">
-        
         <Box
           sx={{
             paddingTop: 8,
@@ -78,7 +77,11 @@ const Signup = () => {
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
-                  {...register("username", { required: true, pattern: /^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$/ })}
+                  {...register("username", {
+                    required: true,
+                    pattern:
+                      /^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$/,
+                  })}
                   autoComplete="given-name"
                   required
                   fullWidth
@@ -93,7 +96,7 @@ const Signup = () => {
                   }}
                   onChange={(e) => setUsername(e.target.value)}
                 />
-              {errors.username && (
+                {errors.username && (
                   <Typography
                     fullWidth
                     sx={{
@@ -136,7 +139,11 @@ const Signup = () => {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  {...register("password", { required: true, pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,64}$/ })}
+                  {...register("password", {
+                    required: true,
+                    pattern:
+                      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,64}$/,
+                  })}
                   required
                   fullWidth
                   type="password"
@@ -159,7 +166,8 @@ const Signup = () => {
                     }}
                   >
                     Escriba una contraseña válida, Mínimo 1 mayúscula, 1
-                    minúscula, 1 número, 1 caracter especial y minimo 8 caracteres
+                    minúscula, 1 número, 1 caracter especial y minimo 8
+                    caracteres
                   </Typography>
                 )}
               </Grid>
@@ -180,10 +188,7 @@ const Signup = () => {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link
-                  href="/login"
-                  variant="body2"
-                >
+                <Link href="/login" variant="body2">
                   ¿Ya tienes una cuenta?
                 </Link>
               </Grid>

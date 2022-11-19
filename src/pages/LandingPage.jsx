@@ -23,6 +23,8 @@ import { setToken } from "../libraries/api/userSlice"
 import AdminDashboard from "../admin/AdminDashboard"
 import ModeratorDashboard from "../admin/ModeratorDashboard"
 import Signup from "./Signup"
+import ResetPassword from "./ResetPassword"
+import NewPassword from "./NewPassword"
 
 const LandingPage = () => {
   const userAuth = useSelector((state) => state.user)
@@ -39,6 +41,8 @@ const LandingPage = () => {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/password_reset" element={<ResetPassword />} />
+      <Route path="/new_password/:token" element={<NewPassword />} />
       <Route path="/" element={<Navigation />}>
         <Route index element={<Home />} />
         <Route path="advice" element={<Advice />} />
