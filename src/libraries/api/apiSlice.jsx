@@ -235,6 +235,13 @@ export const apiSlice = createApi({
         body: payload,
       }),
     }),
+    sendEmail: builder.mutation({
+      query: (payload) => ({
+        url: "contact",
+        method: "POST",
+        body: payload,
+      }),
+    }),
   }),
 })
 
@@ -255,6 +262,7 @@ export const {
   useResetPasswordMutation,
   useValidPasswordTokenMutation,
   useNewPasswordMutation,
+  useSendEmailMutation,
   useCreateMovieMutation,
   useCreateBookMutation,
   useCreateVideogameMutation,

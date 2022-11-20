@@ -1,9 +1,18 @@
-import { Button, Grid, TextField } from "@mui/material"
+import { Box, Button, Grid, TextField } from "@mui/material"
 import styles from "../styles/Home.module.css"
 
 import imgHomeContact from "../images/undraw_contact_us_re_4qqt.svg"
+import { useEmail } from "../hooks/useEmail"
+import { useState } from "react"
 
 const HomeContact = () => {
+  const { sendEmail } = useEmail()
+
+  const [name, setName] = useState()
+  const [phoneNumber, setPhoneNumber] = useState()
+  const [email, setEmail] = useState()
+  const [message, setMessage] = useState()
+
   return (
     <Grid container spacing={5} px={5} mt={5}>
       <Grid
@@ -33,7 +42,11 @@ const HomeContact = () => {
         alignItems={"center"}
       >
         <h2 className={styles.contactTitle}>Contacto</h2>
-        <form>
+        <Box
+          component="form"
+          sx={{ mt: 1, width: "100%" }}
+          onSubmit={() => sendEmail(name, phoneNumber, email, message)}
+        >
           <Grid container spacing={2} mt={1}>
             <Grid item xs={12}>
               <TextField
@@ -42,6 +55,8 @@ const HomeContact = () => {
                 variant="outlined"
                 fullWidth
                 required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -52,6 +67,8 @@ const HomeContact = () => {
                 variant="outlined"
                 fullWidth
                 required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -62,6 +79,8 @@ const HomeContact = () => {
                 variant="outlined"
                 fullWidth
                 required
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -73,15 +92,22 @@ const HomeContact = () => {
                 variant="outlined"
                 fullWidth
                 required
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
-              <Button type="submit" variant="contained" fullWidth sx={{fontWeight: "bold"}}>
+              <Button
+                type="submit"
+                variant="contained"
+                fullWidth
+                sx={{ fontWeight: "bold" }}
+              >
                 Enviar
               </Button>
             </Grid>
           </Grid>
-        </form>
+        </Box>
       </Grid>
     </Grid>
   )
