@@ -374,6 +374,8 @@ const TableDashboard = ({ request, updateItem, deleteItem, options }) => {
                         required: true,
                       })}
                       required
+                      multiline
+                      rows={4}
                       name="description"
                       id="description"
                       label="Descripción"
