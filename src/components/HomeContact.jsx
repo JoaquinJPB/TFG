@@ -1,5 +1,4 @@
 import { Box, Button, Grid, TextField, Typography } from "@mui/material"
-import styles from "../styles/Home.module.css"
 
 import imgHomeContact from "../images/undraw_contact_us_re_4qqt.svg"
 import { useEmail } from "../hooks/useEmail"
@@ -28,7 +27,6 @@ const HomeContact = () => {
           component="img"
           src={imgHomeContact}
           alt="Contact us"
-          className={styles.imgHome}
           width="100%"
         />
       </Grid>

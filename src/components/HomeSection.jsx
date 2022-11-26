@@ -5,8 +5,8 @@ import imgMeditation from "../images/meditation_section.png"
 import imgRecommendations from "../images/recommendations_section.png"
 import imgAdvice from "../images/advice_section.png"
 import imgHome from "../images/undraw_welcome_re_h3d9.svg"
-import { Grid } from "@mui/material"
-import styles from "../styles/Home.module.css"
+import { Grid, Typography } from "@mui/material"
+import { Box } from "@mui/system"
 
 function HomeSection() {
   return (
@@ -20,9 +20,7 @@ function HomeSection() {
         alignItems={"center"}
         mt={5}
       >
-        <figure>
-          <img src={imgHome} alt="Welcome" className={styles.imgHome} />
-        </figure>
+        <Box component="img" src={imgHome} alt="Bienvenido" width="100%" />
       </Grid>
       <Grid
         item
@@ -40,7 +38,18 @@ function HomeSection() {
             justifyContent={"center"}
             alignItems={"center"}
           >
-            <h2 className={styles.sectionTitle}>Secciones</h2>
+            <Typography
+              component="h2"
+              variant="h4"
+              fontSize="2rem"
+              fontWeight="600"
+              textAlign="center"
+              sx={{
+                color: "var(--secondaryColor)",
+              }}
+            >
+              Secciones
+            </Typography>
           </Grid>
           <Grid
             item
