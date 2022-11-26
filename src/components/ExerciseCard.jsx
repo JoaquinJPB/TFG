@@ -1,5 +1,5 @@
-import styles from "../styles/ExerciseCard.module.css"
-import { Box, Fade, Grid, Modal} from "@mui/material"
+import styles from "../styles/Card.module.css"
+import { Box, Fade, Grid, Modal, Typography } from "@mui/material"
 import { useEffect, useState } from "react"
 
 const ExerciseCard = ({ exercise }) => {
@@ -16,9 +16,11 @@ const ExerciseCard = ({ exercise }) => {
   return (
     <Fade in={checked}>
       <Grid item xs={12} md={6} lg={4} xl={3}>
-        <div className={styles.card} onClick={handleOpen}>
-          <h2 className={styles.title}>{exercise.title}</h2>
-        </div>
+        <Box className={styles.card} onClick={handleOpen}>
+          <Typography variant="h5" component="h2" className={styles.title}>
+            {exercise.title}
+          </Typography>
+        </Box>
         <Modal
           open={open}
           onClose={handleClose}
@@ -26,13 +28,22 @@ const ExerciseCard = ({ exercise }) => {
           aria-describedby="modal-modal-description"
         >
           <Box className={styles.boxModal}>
-            <img
+            <Box
+              component="img"
               src={exercise.img}
               alt={exercise.title}
               className={styles.imgModal}
             />
-            <h2 className={styles.title}>{exercise.title}</h2>
-            <p className={styles.description}>{exercise.description}</p>
+            <Typography variant="h5" component="h2" className={styles.title}>
+              {exercise.title}
+            </Typography>
+            <Typography
+              variant="p"
+              component="p"
+              className={styles.description}
+            >
+              {exercise.description}
+            </Typography>
           </Box>
         </Modal>
       </Grid>
