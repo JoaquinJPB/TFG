@@ -6,6 +6,7 @@ import { useSelector } from "react-redux"
 import { Button, Container, Grid, Typography } from "@mui/material"
 import { Box } from "@mui/system"
 import { useNavigate } from "react-router-dom"
+import JournalCard from "../components/JournalCard"
 
 const Journal = () => {
   const navigate = useNavigate()
@@ -14,9 +15,14 @@ const Journal = () => {
   const user = useSelector((state) => state.user)
 
   return (
-    <Container>
+    <Container spacing={2} px={5} mt={1}>
       {user.token === undefined ? (
-        <Box display="flex" flexDirection="column" justifyContent="center" alignContent="center" mt={2}>
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignContent="center"
+        >
           <Header title={"Bienvenido a tu diario personal"} />
           <Typography variant="h5" component="h2" textAlign={"center"}>
             Aquí podrás crear un registro personal de todo lo que te sucede cada
@@ -38,17 +44,37 @@ const Journal = () => {
               fontWeight: "bold",
               fontSize: "1.25rem",
             }}
-            onClick={()=> navigate("/login")}
+            onClick={() => navigate("/login")}
           >
             Iniciar sesión
           </Button>
         </Box>
       ) : (
         <Box>
-          <Grid container>
-            <Grid item></Grid>
-            <Grid item>
-              <img src={journalBackground} alt="Fondo diario personal" />
+          <Grid container display="flex" justifyContent="space-around">
+            <Grid
+              item
+              xs={12}
+              md={6}
+              display={"flex"}
+              flexDirection={"column"}
+              justifyContent={"center"}
+            >
+              <Header title={"Lista de diarios"} />
+              <>
+                {journals.map((journal) => (
+                  <JournalCard key={journal._id} exercise={journal} />
+                ))}
+              </>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              md={6}
+              display={"flex"}
+              justifyContent={"center"}
+            >
+              <Box component="img" src={journalBackground} alt="Fondo diario personal" width="100%" />
             </Grid>
           </Grid>
         </Box>
