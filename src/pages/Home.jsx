@@ -1,12 +1,11 @@
-import styles from "../styles/Home.module.css"
+import { Box, Fade, Typography } from "@mui/material"
+import { useState } from "react"
+import { useEffect } from "react"
 
 import HealingIcon from "@mui/icons-material/Healing"
 import HomeSection from "../components/HomeSection"
 import HomeAbout from "../components/HomeAbout"
 import HomeContact from "../components/HomeContact"
-import { Fade } from "@mui/material"
-import { useState } from "react"
-import { useEffect } from "react"
 
 const Home = () => {
   const [checked, setChecked] = useState(false)
@@ -17,26 +16,65 @@ const Home = () => {
 
   return (
     <Fade in={checked}>
-      <article className={styles.articleHome}>
-        <section className={styles.headerHome}>
-          <span className={styles.titleBox}>
+      <Box
+        component="article"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyItems="items"
+      >
+        <Box
+          component="section"
+          textAlign="center"
+          padding="2rem"
+          width="100%"
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          color="#fff"
+          sx={{
+            minHeight: "25vh",
+            backgroundColor: "#8E6BBF",
+          }}
+        >
+          <Box
+            component="span"
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+          >
             <HealingIcon
               sx={{
                 fontSize: "4rem",
                 color: "white",
               }}
             />
-            <h1>CSA: Care Social Anxiety</h1>
-          </span>
-          <h2>
+            <Typography
+              component="h1"
+              variant="h1"
+              fontSize="2.25rem"
+              fontWeight="bold"
+            >
+              CSA: Care Social Anxiety
+            </Typography>
+          </Box>
+          <Typography
+            component="h2"
+            variant="h2"
+            fontSize="2rem"
+            fontWeight="400"
+            textAlign="center"
+            mt={2}
+          >
             Dedicada a proporcionar ayuda a las personas con trastorno de
             ansiedad social
-          </h2>
-        </section>
+          </Typography>
+        </Box>
         <HomeSection />
         <HomeAbout />
         <HomeContact />
-      </article>
+      </Box>
     </Fade>
   )
 }
