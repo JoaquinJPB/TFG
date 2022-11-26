@@ -40,7 +40,7 @@ function HomeSection() {
           >
             <Typography
               component="h2"
-              variant="h4"
+              variant="h2"
               fontSize="2rem"
               fontWeight="600"
               textAlign="center"

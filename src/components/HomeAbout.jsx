@@ -1,5 +1,4 @@
-import { Grid } from "@mui/material"
-import styles from "../styles/Home.module.css"
+import { Box, Grid, Typography } from "@mui/material"
 import imgHomeAbout from "../images/undraw_engineering_team_a7n2.svg"
 
 const HomeAbout = () => {
@@ -14,22 +13,45 @@ const HomeAbout = () => {
         justifyContent={"center"}
         alignItems={"center"}
       >
-        <section>
-          <h2 className={styles.aboutTitle}>Conoce nuestra historia</h2>
-          <p className={styles.aboutDescription}>
+        <Box component="section">
+          <Typography
+            component="h2"
+            variant="h2"
+            fontSize="2rem"
+            fontWeight="600"
+            textAlign="center"
+            sx={{
+              color: "var(--secondaryColor)",
+            }}
+          >
+            Conoce nuestra historia
+          </Typography>
+          <Typography
+            component="p"
+            variant="p"
+            mt={2}
+            fontSize="1.5rem"
+            textAlign="center"
+          >
             Somos una organización dedicada a estudiar herramientas y ayudas
             para poder facilitar el entendimiento de la ansiedad social, así
             como dar la posibilidad de experimentar nuevos campos que permitan
             comprender todos los mecanismos que existen para afrontar este
             transtorno.
-          </p>
-          <p className={styles.aboutDescription}>
+          </Typography>
+          <Typography
+            component="p"
+            variant="p"
+            mt={2}
+            fontSize="1.5rem"
+            textAlign="center"
+          >
             Contamos con gente especializada que cada día estudia nuevas maneras
             de confrontar dicha inquietud, con el fin de poder garantizar la
             mayor calidad de nuestros recursos disponibles, dentro de nuestra
             web.
-          </p>
-        </section>
+          </Typography>
+        </Box>
       </Grid>
       <Grid
         item
@@ -39,9 +61,12 @@ const HomeAbout = () => {
         justifyContent={"center"}
         alignItems={"center"}
       >
-        <figure>
-          <img src={imgHomeAbout} alt="About us" className={styles.imgHome} />
-        </figure>
+        <Box
+          component="img"
+          src={imgHomeAbout}
+          alt="Acerca de nosotros"
+          width="100%"
+        />
       </Grid>
     </Grid>
   )
