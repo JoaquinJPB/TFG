@@ -24,14 +24,13 @@ const HomeContact = () => {
         alignItems={"center"}
         mt={5}
       >
-
-          <Box component="img"
-            src={imgHomeContact}
-            alt="Contact us"
-            className={styles.imgHome}
-            width="100%"
-          />
-
+        <Box
+          component="img"
+          src={imgHomeContact}
+          alt="Contact us"
+          className={styles.imgHome}
+          width="100%"
+        />
       </Grid>
       <Grid
         item
