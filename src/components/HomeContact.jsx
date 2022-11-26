@@ -1,4 +1,4 @@
-import { Box, Button, Grid, TextField } from "@mui/material"
+import { Box, Button, Grid, TextField, Typography } from "@mui/material"
 import styles from "../styles/Home.module.css"
 
 import imgHomeContact from "../images/undraw_contact_us_re_4qqt.svg"
@@ -24,13 +24,14 @@ const HomeContact = () => {
         alignItems={"center"}
         mt={5}
       >
-        <figure>
-          <img
+
+          <Box component="img"
             src={imgHomeContact}
             alt="Contact us"
             className={styles.imgHome}
+            width="100%"
           />
-        </figure>
+
       </Grid>
       <Grid
         item
@@ -41,7 +42,18 @@ const HomeContact = () => {
         justifyContent={"center"}
         alignItems={"center"}
       >
-        <h2 className={styles.contactTitle}>Contacto</h2>
+        <Typography
+          component="h2"
+          variant="h4"
+          fontSize="2rem"
+          fontWeight="600"
+          textAlign="center"
+          sx={{
+            color: "var(--secondaryColor)",
+          }}
+        >
+          Contacto
+        </Typography>
         <Box
           component="form"
           sx={{ mt: 1, width: "100%" }}

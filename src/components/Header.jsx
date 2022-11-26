@@ -3,10 +3,15 @@ import { Box, Typography } from "@mui/material"
 const Header = ({ title }) => {
   return (
     <Box component="header">
-      <Box display="flex" flex-direction="column" align-items="center" justifyContent="center">
+      <Box
+        display="flex"
+        flex-direction="column"
+        align-items="center"
+        justifyContent="center"
+      >
         <Typography
-          variant="h1"
           component="h1"
+          variant="h1"
           sx={{
             margin: "1rem 0",
             textAlign: "center",
