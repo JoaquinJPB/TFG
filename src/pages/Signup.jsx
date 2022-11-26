@@ -20,7 +20,7 @@ const Signup = () => {
   const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const { signupUser } = useRegister()
+  const { signUpUser } = useRegister()
 
   const {
     register,
@@ -29,7 +29,7 @@ const Signup = () => {
   } = useForm()
 
   const handleSubmitRegister = () => {
-    signupUser(username, email.toLowerCase(), password)
+    signUpUser(username, email.toLowerCase(), password)
   }
 
   return (

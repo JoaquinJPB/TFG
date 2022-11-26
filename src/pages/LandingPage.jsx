@@ -25,6 +25,7 @@ import ModeratorDashboard from "../admin/ModeratorDashboard"
 import Signup from "./Signup"
 import ResetPassword from "./ResetPassword"
 import NewPassword from "./NewPassword"
+import Journal from "./Journal"
 
 const LandingPage = () => {
   const userAuth = useSelector((state) => state.user)
@@ -45,6 +46,7 @@ const LandingPage = () => {
       <Route path="/new_password/:token" element={<NewPassword />} />
       <Route path="/" element={<Navigation />}>
         <Route index element={<Home />} />
+        <Route path="journal" element={<Journal />} />
         <Route path="advice" element={<Advice />} />
         <Route path="breathing" element={<Breathing />} />
         <Route path="meditation" element={<Meditation />} />

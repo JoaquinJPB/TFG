@@ -42,9 +42,9 @@ export default function StickyFooter() {
           className={styles.footerBoxLink}
         >
           <Link to="/" className={styles.footerItemLink}>Inicio</Link>
+          <Link to="/advice" className={styles.footerItemLink}>Consejos</Link>
           <Link to="/breathing" className={styles.footerItemLink}>Respiración</Link>
           <Link to="/meditation" className={styles.footerItemLink}>Meditación</Link>
-          <Link to="/advice" className={styles.footerItemLink}>Consejos</Link>
           <Link to="/recommendations" className={styles.footerItemLink}>Recomendaciones</Link>
         </Box>
         <Container maxWidth="sm"  sx={{

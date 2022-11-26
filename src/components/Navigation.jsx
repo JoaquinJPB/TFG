@@ -56,14 +56,17 @@ const Navigation = () => {
               <Link to="/" className={styles.items}>
                 Inicio
               </Link>
+              <Link to="/journal" className={styles.items}>
+                Diario personal
+              </Link>
+              <Link to="/advice" className={styles.items}>
+                Consejos
+              </Link>
               <Link to="/breathing" className={styles.items}>
                 Respiración
               </Link>
               <Link to="/meditation" className={styles.items}>
                 Meditación
-              </Link>
-              <Link to="/advice" className={styles.items}>
-                Consejos
               </Link>
               <Link to="/recommendations" className={styles.items}>
                 Recomendaciones
