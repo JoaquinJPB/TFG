@@ -17,7 +17,12 @@ const ExerciseCard = ({ exercise }) => {
     <Fade in={checked}>
       <Grid item xs={12} md={6} lg={4} xl={3}>
         <Box className={styles.card} onClick={handleOpen}>
-          <Typography variant="h5" component="h2" className={styles.title}>
+          <Typography
+            variant="h5"
+            component="h2"
+            fontWeight="bold"
+            className={styles.title}
+          >
             {exercise.title}
           </Typography>
         </Box>
