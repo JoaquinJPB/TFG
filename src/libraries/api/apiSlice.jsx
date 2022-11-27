@@ -273,6 +273,42 @@ export const apiSlice = createApi({
         body: payload,
       }),
     }),
+    getNotes: builder.query({
+      query: () => ({
+        url: "notes",
+      }),
+    }),
+    getNotesByUserId: builder.query({
+      query: (payload) => ({
+        url: `notes/${payload}`,
+      }),
+    }),
+    getNotesByJournalId: builder.query({
+      query: (payload) => ({
+        url: `notes/journal/${payload}`,
+      }),
+    }),
+    createNote: builder.mutation({
+      query: (payload) => ({
+        url: "notes",
+        method: "POST",
+        body: payload,
+      }),
+    }),
+    deleteNote: builder.mutation({
+      query: (payload) => ({
+        url: `notes/${payload}`,
+        method: "DELETE",
+        body: payload,
+      }),
+    }),
+    updateNote: builder.mutation({
+      query: (payload) => ({
+        url: `notes/${payload._id}`,
+        method: "PATCH",
+        body: payload,
+      }),
+    }),
   }),
 })
 
@@ -317,4 +353,10 @@ export const {
   useCreateJournalMutation,
   useDeleteJournalMutation,
   useUpdateJournalMutation,
+  useGetNotesQuery,
+  useGetNotesByUserIdQuery,
+  useGetNotesByJournalIdQuery,
+  useCreateNoteMutation,
+  useDeleteNoteMutation,
+  useUpdateNoteMutation
 } = apiSlice

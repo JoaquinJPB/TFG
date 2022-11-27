@@ -83,7 +83,7 @@ const Journal = () => {
               >
                 {journals !== undefined ? (
                   journals.data.map((journal) => (
-                    <JournalCard key={journal._id} exercise={journal} />
+                    <JournalCard key={journal._id} journal={journal} />
                   ))
                 ) : (
                   <></>

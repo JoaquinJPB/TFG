@@ -26,6 +26,7 @@ import Signup from "./Signup"
 import ResetPassword from "./ResetPassword"
 import NewPassword from "./NewPassword"
 import Journal from "./Journal"
+import JournalDetails from "./JournalDetails"
 
 const LandingPage = () => {
   const userAuth = useSelector((state) => state.user)
@@ -47,6 +48,7 @@ const LandingPage = () => {
       <Route path="/" element={<Navigation />}>
         <Route index element={<Home />} />
         <Route path="journal" element={<Journal />} />
+        <Route path="journal/:journalId" element={<JournalDetails />} />
         <Route path="advice" element={<Advice />} />
         <Route path="breathing" element={<Breathing />} />
         <Route path="meditation" element={<Meditation />} />
