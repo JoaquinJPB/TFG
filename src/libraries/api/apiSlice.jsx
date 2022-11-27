@@ -5,7 +5,7 @@ export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.REACT_APP_API_URL,
     prepareHeaders: (headers) => {
-      const token = sessionStorage.getItem('token')
+      const token = sessionStorage.getItem("token")
       if (token) {
         headers.set("authorization", `Bearer ${token}`)
       }
@@ -242,6 +242,37 @@ export const apiSlice = createApi({
         body: payload,
       }),
     }),
+    getJournals: builder.query({
+      query: () => ({
+        url: "journals",
+      }),
+    }),
+    getJournalsByUserId: builder.query({
+      query: (payload) => ({
+        url: `journals/${payload}`,
+      }),
+    }),
+    createJournal: builder.mutation({
+      query: (payload) => ({
+        url: "journals",
+        method: "POST",
+        body: payload,
+      }),
+    }),
+    deleteJournal: builder.mutation({
+      query: (payload) => ({
+        url: `journals/${payload}`,
+        method: "DELETE",
+        body: payload,
+      }),
+    }),
+    updateJournal: builder.mutation({
+      query: (payload) => ({
+        url: `journals/${payload._id}`,
+        method: "PATCH",
+        body: payload,
+      }),
+    }),
   }),
 })
 
@@ -281,4 +312,9 @@ export const {
   useDeleteMovieMutation,
   useDeleteBookMutation,
   useDeleteVideogameMutation,
+  useGetJournalsQuery,
+  useGetJournalsByUserIdQuery,
+  useCreateJournalMutation,
+  useDeleteJournalMutation,
+  useUpdateJournalMutation,
 } = apiSlice

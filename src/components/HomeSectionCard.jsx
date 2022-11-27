@@ -28,7 +28,7 @@ const HomeSectionCard = ({ title, img, route }) => {
       onClick={() => navigate(route)}
     >
       <Box component="img" src={img} alt={title} />
-      <Typography Typography variant="h5" component="h3" color="#fff">
+      <Typography variant="h5" component="h3" color="#fff">
         {title}
       </Typography>
     </Box>

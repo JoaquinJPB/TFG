@@ -1,21 +1,33 @@
-import exampleJournals from "./exampleJournals.json"
-
 import journalBackground from "../images/undraw_diary_re_4jpc.svg"
 import Header from "../components/Header"
 import { useSelector } from "react-redux"
-import { Button, Container, Grid, Typography } from "@mui/material"
+import { Button, Grid, Typography } from "@mui/material"
 import { Box } from "@mui/system"
 import { useNavigate } from "react-router-dom"
 import JournalCard from "../components/JournalCard"
+import { useGetJournalsByUserIdQuery } from "../libraries/api/apiSlice"
+import { CheckRequest } from "../components/CheckRequest"
 
 const Journal = () => {
   const navigate = useNavigate()
-  const journals = exampleJournals
-
   const user = useSelector((state) => state.user)
 
+  const {
+    data: journals,
+    isLoading,
+    isError,
+    refetch,
+  } = useGetJournalsByUserIdQuery(user.data.id)
+
   return (
-    <Container spacing={2} px={5} mt={1}>
+    <Box
+      component="article"
+      display="flex"
+      flexDirection="row"
+      justifyContent="space-around"
+      alignContent="center"
+      sx={{ margin: "0 1rem" }}
+    >
       {user.token === undefined ? (
         <Box
           display="flex"
@@ -24,13 +36,13 @@ const Journal = () => {
           alignContent="center"
         >
           <Header title={"Bienvenido a tu diario personal"} />
-          <Typography variant="h5" component="h2" textAlign={"center"}>
+          <Typography variant="h5" component="h2" textAlign="center">
             Aquí podrás crear un registro personal de todo lo que te sucede cada
             día. ¡Anótalo todo! Las cosas buenas, las cosas malas, lo que te
             hace feliz o lo que te enoja. ¡Hazlo tu hábito diario y mira cómo
             cambia tu perspectiva!
           </Typography>
-          <Typography variant="h5" component="h2" textAlign={"center"} mt={2}>
+          <Typography variant="h5" component="h2" textAlign="center" mt={2}>
             Inicia sesión para acceder a este contenido
           </Typography>
           <Button
@@ -50,22 +62,46 @@ const Journal = () => {
           </Button>
         </Box>
       ) : (
-        <Box>
-          <Grid container display="flex" justifyContent="space-around">
+        <CheckRequest isLoading={isLoading} isError={isError} refetch={refetch}>
+          <Grid container mt={2}>
             <Grid
               item
               xs={12}
               md={6}
-              display={"flex"}
-              flexDirection={"column"}
-              justifyContent={"center"}
+              display="flex"
+              flexDirection="column"
+              justifyContent="space-around"
+              alignItems="center"
             >
               <Header title={"Lista de diarios"} />
-              <>
-                {journals.map((journal) => (
-                  <JournalCard key={journal._id} exercise={journal} />
-                ))}
-              </>
+              <Grid
+                container
+                display="flex"
+                justifyContent={"center"}
+                gap={4}
+                marginTop={2}
+              >
+                {journals !== undefined ? (
+                  journals.data.map((journal) => (
+                    <JournalCard key={journal._id} exercise={journal} />
+                  ))
+                ) : (
+                  <></>
+                )}
+              </Grid>
+              <Button
+                type="submit"
+                color="primary"
+                variant="contained"
+                sx={{
+                  mt: 5,
+                  mb: 2,
+                  fontWeight: "bold",
+                  fontSize: "1.25rem",
+                }}
+              >
+                Crear nuevo diario
+              </Button>
             </Grid>
             <Grid
               item
@@ -73,13 +109,21 @@ const Journal = () => {
               md={6}
               display={"flex"}
               justifyContent={"center"}
+              alignItems="center"
             >
-              <Box component="img" src={journalBackground} alt="Fondo diario personal" width="100%" />
+              <Box >
+                <Box
+                  component="img"
+                  src={journalBackground}
+                  alt="Fondo diario personal"
+                  width="100%"
+                />
+              </Box>
             </Grid>
           </Grid>
-        </Box>
+        </CheckRequest>
       )}
-    </Container>
+    </Box>
   )
 }
 

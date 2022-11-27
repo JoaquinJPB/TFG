@@ -11,7 +11,7 @@ const JournalCard = ({ exercise }) => {
 
   return (
     <Fade in={checked}>
-      <Grid item xs={12} md={6} lg={4} xl={3}>
+      <Grid item xs={12} sm={3} md={4}>
         <Box className={styles.card}>
           <Typography
             variant="h5"
