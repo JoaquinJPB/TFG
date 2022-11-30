@@ -3,7 +3,7 @@ import { Box } from "@mui/system"
 
 const MyNote = ({ note }) => {
 
-  const dateFormat = note.date.substring(0, 10)
+  const dateFormat = new Date(Date.parse(note.date)).toLocaleDateString('es-ES')
 
   return (
     <Box component="div" mb={1} display="flex" justifyContent="center" alignItems="center">

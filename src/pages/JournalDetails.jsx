@@ -10,8 +10,6 @@ import {
 } from "@mui/material"
 
 import { useParams } from "react-router-dom"
-import { Pagination } from "swiper"
-import { Swiper, SwiperSlide } from "swiper/react"
 
 import {
   useCreateNoteMutation,
@@ -21,14 +19,12 @@ import {
 import MyNote from "../components/MyNote"
 import { CheckRequest } from "../components/CheckRequest"
 
-import "swiper/css"
-import "swiper/css/pagination"
-import "swiper/css/effect-fade"
 import MyCalendar from "../components/MyCalendar"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { toast } from "react-toastify"
 import { useSelector } from "react-redux"
 import { useForm } from "react-hook-form"
+import { useCallback } from "react"
 
 const JournalDetails = () => {
   const { journalId } = useParams()
@@ -38,7 +34,8 @@ const JournalDetails = () => {
   const [title, setTitle] = useState()
   const [description, setDescription] = useState()
   const [mood, setMood] = useState("")
-  const [date, setDate] = useState(new Date())
+  const [date, setDate] = useState(new Date(Date.now()))
+  const [currentNotes, setCurrenNotes] = useState([])
 
   const {
     data: notes,
@@ -81,6 +78,22 @@ const JournalDetails = () => {
   }
 
   const { register, handleSubmit } = useForm()
+
+  const checkCurrentDate = useCallback(() => {
+    if (notes !== undefined) {
+      setCurrenNotes(
+        notes.data.filter(
+          (note) =>
+            new Date(Date.parse(note.date)).toLocaleDateString("es-ES") ===
+            date.toLocaleDateString("es-ES")
+        )
+      )
+    }
+  }, [date, notes])
+
+  useEffect(() => {
+    checkCurrentDate()
+  }, [checkCurrentDate])
 
   return (
     <CheckRequest isLoading={isLoading} isError={isError} refetch={refetch}>
@@ -184,32 +197,18 @@ const JournalDetails = () => {
             </Box>
           </Grid>
           <Grid item xs={12} md={4}>
-            <Swiper
-              // install Swiper modules
-              slidesPerView={"auto"}
-              modules={[Pagination]}
-              spaceBetween={30}
-              centeredSlides={true}
-              pagination={{
-                clickable: true,
-              }}
-              className="mySwiper"
-            >
-              {notes !== undefined ? (
-                notes.data.map((note) => (
-                  <SwiperSlide key={note._id}>
-                    <MyNote note={note} />
-                  </SwiperSlide>
-                ))
-              ) : (
-                <></>
-              )}
-            </Swiper>
+            {currentNotes.length !== 0 ? (
+              currentNotes.map((note) => <MyNote key={note._id} note={note} />)
+            ) : (
+              <></>
+            )}
           </Grid>
         </Grid>
       </Box>
     </CheckRequest>
   )
 }
+
+// <MyNote key={note._id} note={note} />
 
 export default JournalDetails
