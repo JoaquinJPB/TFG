@@ -28,6 +28,7 @@ import MyCalendar from "../components/MyCalendar"
 import { useState } from "react"
 import { toast } from "react-toastify"
 import { useSelector } from "react-redux"
+import { useForm } from "react-hook-form"
 
 const JournalDetails = () => {
   const { journalId } = useParams()
@@ -48,11 +49,10 @@ const JournalDetails = () => {
 
   const [createNote] = useCreateNoteMutation()
 
-  const handleCreateNote = (payload) => {
-    console.log(payload)
+  const handleCreateNote = (payload, callback = () => null) => {
     createNote(payload)
       .unwrap()
-      .then(() =>
+      .then(() => {
         toast.success("Nota creada", {
           position: "top-right",
           autoClose: 5000,
@@ -63,7 +63,8 @@ const JournalDetails = () => {
           progress: undefined,
           theme: "colored",
         })
-      )
+        callback()
+      })
       .catch(() =>
         toast.error("Error al crear la nota", {
           position: "top-right",
@@ -78,6 +79,8 @@ const JournalDetails = () => {
       )
     refetch()
   }
+
+  const { register, handleSubmit } = useForm()
 
   return (
     <CheckRequest isLoading={isLoading} isError={isError} refetch={refetch}>
@@ -100,19 +103,25 @@ const JournalDetails = () => {
               display="flex"
               flexDirection="column"
               gap={3}
-              onSubmit={() =>
-                handleCreateNote({
-                  owner: userId,
-                  journal: journalId,
-                  title,
-                  description,
-                  mood,
-                  date,
-                })
-              }
+              onSubmit={handleSubmit(() =>
+                handleCreateNote(
+                  {
+                    owner: userId,
+                    journal: journalId,
+                    title,
+                    description,
+                    mood,
+                    date,
+                  },
+                  refetch
+                )
+              )}
             >
               <TextField
-                autoComplete="given-name"
+                {...register("title", {
+                  required: true,
+                })}
+                autoComplete="title"
                 required
                 fullWidth
                 name="title"
@@ -123,11 +132,16 @@ const JournalDetails = () => {
                 onChange={(e) => setTitle(e.target.value)}
               />
               <TextField
+                {...register("description", {
+                  required: true,
+                })}
                 label="Descripción"
                 multiline
                 rows={4}
                 placeholder="Introduce tu mensaje"
                 variant="outlined"
+                name="description"
+                id="description"
                 fullWidth
                 required
                 onChange={(e) => setDescription(e.target.value)}
@@ -135,8 +149,11 @@ const JournalDetails = () => {
               <FormControl>
                 <InputLabel id="demo-select-small">Mood</InputLabel>
                 <Select
+                  {...register("mood", {
+                    required: true,
+                  })}
                   labelId="demo-select-small"
-                  id="demo-select-small"
+                  id="mood"
                   value={mood}
                   label="Mood"
                   onChange={(e) => setMood(e.target.value)}
