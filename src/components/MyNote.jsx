@@ -9,12 +9,13 @@ const MyNote = ({ note }) => {
     <Box component="div" mb={1} display="flex" justifyContent="center" alignItems="center">
       <Paper
         sx={{
-          backgroundColor: "#f9dc5c",
+          backgroundColor: "var(--primaryColor)",
           width: "300px",
           height: "225px",
           padding: "1rem",
           boxShadow:
             "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px",
+          color: "#fff"
         }}
       >
         <Typography

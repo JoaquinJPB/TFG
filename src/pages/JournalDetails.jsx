@@ -10,6 +10,8 @@ import {
 } from "@mui/material"
 
 import { useParams } from "react-router-dom"
+import ModeEditIcon from "@mui/icons-material/ModeEdit"
+import DeleteSharpIcon from "@mui/icons-material/DeleteSharp"
 
 import {
   useCreateNoteMutation,
@@ -202,6 +204,21 @@ const JournalDetails = () => {
             ) : (
               <></>
             )}
+            <Box
+              component="div"
+              display="flex"
+              flexDirection="row"
+              justifyContent="center"
+              alignItems="center"
+              mt={3}
+            >
+              <Button variant="text">
+                <ModeEditIcon sx={{fontSize: "2rem", color: "var(--secondaryColor)" }}></ModeEditIcon>
+              </Button>
+              <Button variant="text">
+                <DeleteSharpIcon sx={{fontSize: "2rem", color: "var(--secondaryColor)" }}></DeleteSharpIcon>
+              </Button>
+            </Box>
           </Grid>
         </Grid>
       </Box>
