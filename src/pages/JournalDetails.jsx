@@ -32,6 +32,8 @@ import { useForm } from "react-hook-form"
 import { useCallback } from "react"
 
 import styleBoxModal from "../styles/BoxModal.module.css"
+import BarChart from "../components/BartChart"
+import DonutChart from "../components/DonutChart"
 
 const JournalDetails = () => {
   const [createNote] = useCreateNoteMutation()
@@ -176,6 +178,22 @@ const JournalDetails = () => {
     }
   }, [date, notes])
 
+  const moodOptions = notes && notes.data.map((note) => note.mood)
+  const stats =
+    moodOptions &&
+    moodOptions.reduce((contador, palabra) => {
+      contador[palabra] = (contador[palabra] || 0) + 1
+      return contador
+    }, {})
+
+  const keys = stats ? Object.keys(stats) : []
+  const values = stats ? Object.values(stats) : []
+  const days = values ? values.reduce((a, b) => a + b, 0): []
+  const percentages = values ? values.map(x => (x / days) * 100) : []
+
+  console.log("Key: ", keys)
+  console.log("Value: ", values)
+
   useEffect(() => {
     checkCurrentDate()
   }, [checkCurrentDate])
@@ -195,6 +213,7 @@ const JournalDetails = () => {
           gap={{ xs: 5, md: 0 }}
           display="flex"
           justifyContent={{ xs: "center", md: "space-around" }}
+          mt={4}
         >
           <Grid
             item
@@ -213,9 +232,7 @@ const JournalDetails = () => {
               display="flex"
               flexDirection="column"
               gap={4}
-              onSubmit={handleSubmit(() =>
-                handleNote("create")
-              )}
+              onSubmit={handleSubmit(() => handleNote("create"))}
             >
               <TextField
                 {...register("title", {
@@ -409,6 +426,18 @@ const JournalDetails = () => {
             )}
           </Grid>
         </Grid>
+        {notes !== undefined ? (
+          <Grid container display="flex" justifyContent="space-evenly" mt={4} gap={5}>
+            <Grid item xs={12} md={7} display="flex" justifyContent="center">
+              <BarChart scores={values} labels={keys}></BarChart>
+            </Grid>
+            <Grid item xs={12} md={3} display="flex" justifyContent="center">
+              <DonutChart scores={percentages} labels={keys}></DonutChart>
+            </Grid>
+          </Grid>
+        ) : (
+          <></>
+        )}
       </Box>
     </CheckRequest>
   )
