@@ -14,6 +14,8 @@ import { toast } from "react-toastify"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 
+import styleBoxModal from "../styles/BoxModal.module.css"
+
 const Journal = () => {
   const navigate = useNavigate()
   const user = useSelector((state) => state.user)
@@ -67,18 +69,6 @@ const Journal = () => {
   }
 
   const { register, handleSubmit } = useForm()
-
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "white",
-    border: "2px solid #000",
-    boxShadow: 24,
-    p: 4,
-  }
 
   return (
     <Box
@@ -172,7 +162,7 @@ const Journal = () => {
                 aria-describedby="modal-modal-description"
               >
                 <Box
-                  sx={style}
+                  className={styleBoxModal.boxModal}
                   component="form"
                   onClick={handleSubmit(() =>
                     handleCreateJournal({ owner: userId, title })

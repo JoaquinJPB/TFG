@@ -35,6 +35,14 @@ const MyNote = ({ note }) => {
           {dateFormat}
         </Typography>
         <Typography
+          component="h5"
+          variant="h5"
+          fontWeight="200"
+          fontSize="1.15rem"
+        >
+          {note.mood}
+        </Typography>
+        <Typography
           component="p"
           variant="p"
           fontWeight="400"

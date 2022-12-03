@@ -5,6 +5,7 @@ import {
   Grid,
   InputLabel,
   MenuItem,
+  Modal,
   Select,
   TextField,
 } from "@mui/material"
@@ -30,6 +31,8 @@ import { useSelector } from "react-redux"
 import { useForm } from "react-hook-form"
 import { useCallback } from "react"
 
+import styleBoxModal from "../styles/BoxModal.module.css"
+
 const JournalDetails = () => {
   const [createNote] = useCreateNoteMutation()
   const [deleteNote] = useDeleteNoteMutation()
@@ -44,6 +47,11 @@ const JournalDetails = () => {
   const [mood, setMood] = useState("")
   const [date, setDate] = useState(new Date(Date.now()))
   const [currentNotes, setCurrenNotes] = useState([])
+
+  // Modal
+  const [open, setOpen] = useState(false)
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
 
   const {
     data: notes,
@@ -129,7 +137,14 @@ const JournalDetails = () => {
         break
 
       case "update":
-        requestNotes.update({})
+        requestNotes.update({
+          _id: currentNotes[0]._id,
+          owner: userId,
+          journal: journalId,
+          title,
+          description,
+          mood,
+        })
         break
 
       case "delete":
@@ -142,6 +157,11 @@ const JournalDetails = () => {
   }
 
   const { register, handleSubmit } = useForm()
+  const {
+    register: registerEdit,
+    handleSubmit: HandleSubmitEdit,
+    setValue,
+  } = useForm()
 
   const checkCurrentDate = useCallback(() => {
     if (notes !== undefined) {
@@ -158,6 +178,13 @@ const JournalDetails = () => {
   useEffect(() => {
     checkCurrentDate()
   }, [checkCurrentDate])
+
+  const fillDataNote = (noteTitle, noteDescription, noteMood) => {
+    setValue("titleEdit", noteTitle)
+    setValue("descriptionEdit", noteDescription)
+    setValue("moodEdit", noteMood)
+    handleOpen()
+  }
 
   return (
     <CheckRequest isLoading={isLoading} isError={isError} refetch={refetch}>
@@ -275,11 +302,99 @@ const JournalDetails = () => {
                 alignItems="center"
                 mt={3}
               >
-                <Button variant="text">
+                <Button
+                  variant="text"
+                  onClick={() =>
+                    fillDataNote(
+                      currentNotes[0].title,
+                      currentNotes[0].description,
+                      currentNotes[0].mood
+                    )
+                  }
+                >
                   <ModeEditIcon
                     sx={{ fontSize: "2rem", color: "#5c80c7" }}
                   ></ModeEditIcon>
                 </Button>
+                <Modal
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                >
+                  <Box
+                    className={styleBoxModal.boxModal}
+                    component="form"
+                    onSubmit={HandleSubmitEdit(() => handleNote("update"))}
+                    display="flex"
+                    gap={2}
+                  >
+                    <TextField
+                      {...registerEdit("titleEdit", {
+                        required: true,
+                      })}
+                      autoComplete="title"
+                      required
+                      fullWidth
+                      name="titleEdit"
+                      id="titleEdit"
+                      label="Titulo"
+                      variant="outlined"
+                      onChange={(e) => setTitle(e.target.value)}
+                    />
+                    <TextField
+                      {...registerEdit("descriptionEdit", {
+                        required: true,
+                      })}
+                      label="Descripción"
+                      multiline
+                      rows={4}
+                      placeholder="Introduce tu mensaje"
+                      variant="outlined"
+                      name="descriptionEdit"
+                      id="descriptionEdit"
+                      fullWidth
+                      required
+                      onChange={(e) => setDescription(e.target.value)}
+                    />
+                    <FormControl fullWidth>
+                      <InputLabel id="demo-select-small-edit">Mood</InputLabel>
+                      <Select
+                        {...register("moodEdit", {
+                          required: true,
+                        })}
+                        labelId="demo-select-small-edit"
+                        id="moodEdit"
+                        name="moodEdit"
+                        label="moodEdit"
+                        fullWidth
+                        onChange={(e) => setMood(e.target.value)}
+                      >
+                        <MenuItem value={"Calmado"}>Calmado</MenuItem>
+                        <MenuItem value={"Feliz"}>Feliz</MenuItem>
+                        <MenuItem value={"Enérgico"}>Enérgico</MenuItem>
+                        <MenuItem value={"Normal"}>Normal</MenuItem>
+                        <MenuItem value={"Ansioso"}>Ansioso</MenuItem>
+                        <MenuItem value={"Inquieto"}>Inquieto</MenuItem>
+                        <MenuItem value={"Irritado"}>Irritado</MenuItem>
+                        <MenuItem value={"Deprimido"}>Deprimido</MenuItem>
+                        <MenuItem value={"Triste"}>Triste</MenuItem>
+                      </Select>
+                    </FormControl>
+                    <Button
+                      type="submit"
+                      color="primary"
+                      variant="contained"
+                      fullWidth
+                      sx={{
+                        fontWeight: "bold",
+                        fontSize: "1rem",
+                      }}
+                    >
+                      Actualizar nota
+                    </Button>
+                  </Box>
+                </Modal>
                 <Button variant="text" onClick={() => handleNote("delete")}>
                   <DeleteSharpIcon
                     sx={{ fontSize: "2rem", color: "#f94144" }}
