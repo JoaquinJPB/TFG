@@ -10,8 +10,8 @@ const MyNote = ({ note }) => {
       <Paper
         sx={{
           backgroundColor: "var(--primaryColor)",
-          width: "300px",
-          height: "225px",
+          width: "100%",
+          height: "325px",
           padding: "1rem",
           boxShadow:
             "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px",

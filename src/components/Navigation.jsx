@@ -80,7 +80,7 @@ const Navigation = () => {
                     onClick={logout}
                     type="submit"
                     variant="text"
-                    sx={{ color: "red", fontWeight: "bold" }}
+                    sx={{ color: "#f94144", fontWeight: "bold" }}
                   >
                     Cerrar sesión
                   </Button>

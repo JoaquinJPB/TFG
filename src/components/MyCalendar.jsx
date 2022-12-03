@@ -15,7 +15,6 @@ export default MyCalendar
 
 const CalendarContainer = styled.div`
   .react-calendar {
-    width: 400px;
     max-width: 100%;
     background-color: #fff;
     color: #222;
@@ -29,6 +28,7 @@ const CalendarContainer = styled.div`
     background: none;
     font-size: 16px;
     margin-top: 8px;
+    font-weight: bold;
   }
   .react-calendar__navigation button:enabled:hover,
   .react-calendar__navigation button:enabled:focus {

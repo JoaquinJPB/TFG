@@ -8,7 +8,7 @@ const Advice = () => {
   return (
     <CheckRequest isLoading={isLoading} isError={isError} refetch={refetch}>
       <SectionLayout
-        title={"Consejos sobre la ansiedad social"}
+        title={"Consejos"}
         img={imgAdviceBackground}
         exercises={advice}
       />

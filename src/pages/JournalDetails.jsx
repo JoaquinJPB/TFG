@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Container,
   FormControl,
   Grid,
   InputLabel,
@@ -101,23 +102,26 @@ const JournalDetails = () => {
     <CheckRequest isLoading={isLoading} isError={isError} refetch={refetch}>
       <Box
         component="article"
-        display="flex"
-        flexDirection="row"
-        justifyContent="space-around"
-        alignContent="center"
-        sx={{ margin: "0 1rem" }}
+        sx={{margin: "0 1rem"}}
       >
-        <Grid container>
-          <Grid item xs={12} md={4}>
+        <Grid container gap={{ xs: 5, md: 0 }} display="flex" justifyContent={{xs: "center", md:"space-around"}}>
+          <Grid
+            item
+            xs={12}
+            md={4}
+            display="flex"
+            justifyContent="center"
+            mt={{ xs: 5, md: 1 }}
+          >
             <MyCalendar date={date} onChange={setDate}></MyCalendar>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={3}>
             <Box
               component="form"
               mt={1}
               display="flex"
               flexDirection="column"
-              gap={3}
+              gap={4}
               onSubmit={handleSubmit(() =>
                 handleCreateNote(
                   {
@@ -198,34 +202,47 @@ const JournalDetails = () => {
               </Button>
             </Box>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid
+            item
+            xs={12}
+            md={4}
+            display="flex"
+            justifyContent="center"
+            flexDirection="column"
+          >
             {currentNotes.length !== 0 ? (
               currentNotes.map((note) => <MyNote key={note._id} note={note} />)
             ) : (
               <></>
             )}
-            <Box
-              component="div"
-              display="flex"
-              flexDirection="row"
-              justifyContent="center"
-              alignItems="center"
-              mt={3}
-            >
-              <Button variant="text">
-                <ModeEditIcon sx={{fontSize: "2rem", color: "var(--secondaryColor)" }}></ModeEditIcon>
-              </Button>
-              <Button variant="text">
-                <DeleteSharpIcon sx={{fontSize: "2rem", color: "var(--secondaryColor)" }}></DeleteSharpIcon>
-              </Button>
-            </Box>
+            {currentNotes.length !== 0 ? (
+              <Box
+                component="div"
+                display="flex"
+                flexDirection="row"
+                justifyContent="center"
+                alignItems="center"
+                mt={3}
+              >
+                <Button variant="text">
+                  <ModeEditIcon
+                    sx={{ fontSize: "2rem", color: "#5c80c7" }}
+                  ></ModeEditIcon>
+                </Button>
+                <Button variant="text">
+                  <DeleteSharpIcon
+                    sx={{ fontSize: "2rem", color: "#f94144" }}
+                  ></DeleteSharpIcon>
+                </Button>
+              </Box>
+            ) : (
+              <></>
+            )}
           </Grid>
         </Grid>
       </Box>
     </CheckRequest>
   )
 }
-
-// <MyNote key={note._id} note={note} />
 
 export default JournalDetails
