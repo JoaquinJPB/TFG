@@ -157,9 +157,10 @@ const JournalDetails = () => {
   }
 
   const { register, handleSubmit } = useForm()
+
   const {
     register: registerEdit,
-    handleSubmit: HandleSubmitEdit,
+    handleSubmit: handleSubmitEdit,
     setValue,
   } = useForm()
 
@@ -212,7 +213,9 @@ const JournalDetails = () => {
               display="flex"
               flexDirection="column"
               gap={4}
-              onSubmit={handleSubmit(() => handleNote("create"))}
+              onSubmit={handleSubmit(() =>
+                handleNote("create")
+              )}
             >
               <TextField
                 {...register("title", {
@@ -325,7 +328,7 @@ const JournalDetails = () => {
                   <Box
                     className={styleBoxModal.boxModal}
                     component="form"
-                    onSubmit={HandleSubmitEdit(() => handleNote("update"))}
+                    onSubmit={handleSubmitEdit(() => handleNote("update"))}
                     display="flex"
                     gap={2}
                   >
@@ -360,7 +363,7 @@ const JournalDetails = () => {
                     <FormControl fullWidth>
                       <InputLabel id="demo-select-small-edit">Mood</InputLabel>
                       <Select
-                        {...register("moodEdit", {
+                        {...registerEdit("moodEdit", {
                           required: true,
                         })}
                         labelId="demo-select-small-edit"
