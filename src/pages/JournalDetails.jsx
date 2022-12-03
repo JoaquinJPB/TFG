@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  Container,
   FormControl,
   Grid,
   InputLabel,
@@ -16,7 +15,9 @@ import DeleteSharpIcon from "@mui/icons-material/DeleteSharp"
 
 import {
   useCreateNoteMutation,
+  useDeleteNoteMutation,
   useGetNotesByJournalIdQuery,
+  useUpdateNoteMutation,
 } from "../libraries/api/apiSlice"
 
 import MyNote from "../components/MyNote"
@@ -30,6 +31,10 @@ import { useForm } from "react-hook-form"
 import { useCallback } from "react"
 
 const JournalDetails = () => {
+  const [createNote] = useCreateNoteMutation()
+  const [deleteNote] = useDeleteNoteMutation()
+  const [updateNote] = useUpdateNoteMutation()
+
   const { journalId } = useParams()
   const user = useSelector((state) => state.user)
   const userId = user.data.id
@@ -47,13 +52,17 @@ const JournalDetails = () => {
     refetch,
   } = useGetNotesByJournalIdQuery(journalId)
 
-  const [createNote] = useCreateNoteMutation()
-
-  const handleCreateNote = (payload, callback = () => null) => {
-    createNote(payload)
+  const getPromiseResource = (
+    promise,
+    payload,
+    success,
+    error,
+    callback = () => null
+  ) => {
+    promise(payload)
       .unwrap()
       .then(() => {
-        toast.success("Nota creada", {
+        toast.success(`${success}`, {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -66,7 +75,7 @@ const JournalDetails = () => {
         callback()
       })
       .catch(() =>
-        toast.error("Error al crear la nota", {
+        toast.error(`${error} `, {
           position: "top-right",
           autoClose: 4000,
           hideProgressBar: false,
@@ -77,7 +86,59 @@ const JournalDetails = () => {
           theme: "colored",
         })
       )
-    refetch()
+  }
+
+  const requestNotes = {
+    create: (payload) =>
+      getPromiseResource(
+        createNote,
+        payload,
+        "Nota creada",
+        "Error al crear la nota.",
+        refetch
+      ),
+    update: (payload) =>
+      getPromiseResource(
+        updateNote,
+        payload,
+        "Nota actualizada",
+        "Error al actualizar la nota",
+        refetch
+      ),
+    delete: (payload) =>
+      getPromiseResource(
+        deleteNote,
+        payload,
+        "Nota eliminada",
+        "Error al eliminar la nota",
+        refetch
+      ),
+  }
+
+  const handleNote = (options) => {
+    switch (options) {
+      case "create":
+        requestNotes.create({
+          owner: userId,
+          journal: journalId,
+          title,
+          description,
+          mood,
+          date,
+        })
+        break
+
+      case "update":
+        requestNotes.update({})
+        break
+
+      case "delete":
+        requestNotes.delete(currentNotes[0]._id)
+        break
+
+      default:
+        break
+    }
   }
 
   const { register, handleSubmit } = useForm()
@@ -100,11 +161,13 @@ const JournalDetails = () => {
 
   return (
     <CheckRequest isLoading={isLoading} isError={isError} refetch={refetch}>
-      <Box
-        component="article"
-        sx={{margin: "0 1rem"}}
-      >
-        <Grid container gap={{ xs: 5, md: 0 }} display="flex" justifyContent={{xs: "center", md:"space-around"}}>
+      <Box component="article" sx={{ margin: "0 1rem" }}>
+        <Grid
+          container
+          gap={{ xs: 5, md: 0 }}
+          display="flex"
+          justifyContent={{ xs: "center", md: "space-around" }}
+        >
           <Grid
             item
             xs={12}
@@ -122,19 +185,7 @@ const JournalDetails = () => {
               display="flex"
               flexDirection="column"
               gap={4}
-              onSubmit={handleSubmit(() =>
-                handleCreateNote(
-                  {
-                    owner: userId,
-                    journal: journalId,
-                    title,
-                    description,
-                    mood,
-                    date,
-                  },
-                  refetch
-                )
-              )}
+              onSubmit={handleSubmit(() => handleNote("create"))}
             >
               <TextField
                 {...register("title", {
@@ -229,7 +280,7 @@ const JournalDetails = () => {
                     sx={{ fontSize: "2rem", color: "#5c80c7" }}
                   ></ModeEditIcon>
                 </Button>
-                <Button variant="text">
+                <Button variant="text" onClick={() => handleNote("delete")}>
                   <DeleteSharpIcon
                     sx={{ fontSize: "2rem", color: "#f94144" }}
                   ></DeleteSharpIcon>
