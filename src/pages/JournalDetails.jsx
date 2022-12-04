@@ -28,7 +28,7 @@ import MyCalendar from "../components/MyCalendar"
 import { useEffect, useState } from "react"
 import { toast } from "react-toastify"
 import { useSelector } from "react-redux"
-import { set, useForm } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import { useCallback } from "react"
 
 import styleBoxModal from "../styles/BoxModal.module.css"
