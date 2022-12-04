@@ -112,13 +112,16 @@ const JournalDetails = () => {
         "Error al crear la nota",
         refetch
       ),
-    update: (payload) =>
+    update: (payload, callback = () => null) =>
       getPromiseResource(
         updateNote,
         payload,
         "Nota actualizada",
         "Error al actualizar la nota",
-        refetch
+        () => {
+          refetch()
+          callback()
+        }
       ),
     delete: (payload) =>
       getPromiseResource(
@@ -144,14 +147,17 @@ const JournalDetails = () => {
         break
 
       case "update":
-        requestNotes.update({
-          _id: currentNotes[0]._id,
-          owner: userId,
-          journal: journalId,
-          title,
-          description,
-          mood,
-        })
+        requestNotes.update(
+          {
+            _id: currentNotes[0]._id,
+            owner: userId,
+            journal: journalId,
+            title,
+            description,
+            mood,
+          },
+          handleClose
+        )
         break
 
       case "delete":
