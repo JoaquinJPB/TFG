@@ -33,21 +33,12 @@ const options = {
   responsive: true,
   plugins: {
     legend: {
-      display: true,
+      display: false,
     },
   },
   tooltips: {
     enabled: true,
   },
-  scales: {
-    yAxes: [
-      {
-        ticks: {
-          beginAtZero: true
-        }
-      }
-    ]
-  }
 }
 
 export default function BarChart({ scores, labels }) {
