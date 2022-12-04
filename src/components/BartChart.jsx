@@ -25,6 +25,8 @@ ChartJS.register(
   Filler
 )
 
+const colors = ["#47B560","#F1C418", "#E37730", "#AA99C3","#C73660" , "#C736AE", "#473ADF", "#EE375C", "#478FDF", "#1B1284"]
+
 const options = {
   fill: true,
   animations: false,
@@ -55,7 +57,7 @@ export default function BarChart({ scores, labels }) {
         {
           label: "Días",
           data: scores,
-          backgroundColor: "#8e6bbf"
+          backgroundColor: colors
         },
       ],
       labels,

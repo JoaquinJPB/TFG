@@ -29,6 +29,8 @@ ChartJS.register(
   Colors
 )
 
+const colors = ["#47B560","#F1C418", "#E37730", "#AA99C3","#C73660" , "#C736AE", "#473ADF", "#EE375C", "#478FDF", "#1B1284"]
+
 const options = {
   fill: true,
   responsive: true,
@@ -51,6 +53,7 @@ const DonutChart = ({ scores, labels }) => {
           label: "%",
           data: scores,
           hoverOffset: 4,
+          backgroundColor: colors
         },
       ],
     }

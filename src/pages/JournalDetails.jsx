@@ -281,6 +281,7 @@ const JournalDetails = () => {
                   <MenuItem value={"Feliz"}>Feliz</MenuItem>
                   <MenuItem value={"Enérgico"}>Enérgico</MenuItem>
                   <MenuItem value={"Normal"}>Normal</MenuItem>
+                  <MenuItem value={"Enfadado"}>Enfadado</MenuItem>
                   <MenuItem value={"Ansioso"}>Ansioso</MenuItem>
                   <MenuItem value={"Inquieto"}>Inquieto</MenuItem>
                   <MenuItem value={"Irritado"}>Irritado</MenuItem>
