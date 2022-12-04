@@ -13,7 +13,7 @@ const JournalCard = ({ journal }) => {
 
   return (
     <Fade in={checked}>
-      <Grid item xs={12} sm={3} md={4}>
+      <Grid item xs={12} sm={8} md={6} xl={4} >
         <Box className={styles.card} onClick={() => navigate(journal._id)}>
           <Typography
             variant="h5"

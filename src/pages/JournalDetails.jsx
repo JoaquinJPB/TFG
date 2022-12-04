@@ -28,7 +28,7 @@ import MyCalendar from "../components/MyCalendar"
 import { useEffect, useState } from "react"
 import { toast } from "react-toastify"
 import { useSelector } from "react-redux"
-import { useForm } from "react-hook-form"
+import { set, useForm } from "react-hook-form"
 import { useCallback } from "react"
 
 import styleBoxModal from "../styles/BoxModal.module.css"
@@ -53,7 +53,12 @@ const JournalDetails = () => {
   // Modal
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
+  const handleClose = () => {
+    setOpen(false)
+    setTitle()
+    setDescription()
+    setMood()
+  }
 
   const {
     data: notes,
@@ -104,7 +109,7 @@ const JournalDetails = () => {
         createNote,
         payload,
         "Nota creada",
-        "Error al crear la nota.",
+        "Error al crear la nota",
         refetch
       ),
     update: (payload) =>
@@ -188,11 +193,8 @@ const JournalDetails = () => {
 
   const keys = stats ? Object.keys(stats) : []
   const values = stats ? Object.values(stats) : []
-  const days = values ? values.reduce((a, b) => a + b, 0): []
-  const percentages = values ? values.map(x => (x / days) * 100) : []
-
-  console.log("Key: ", keys)
-  console.log("Value: ", values)
+  const days = values ? values.reduce((a, b) => a + b, 0) : []
+  const percentages = values ? values.map((x) => (x / days) * 100) : []
 
   useEffect(() => {
     checkCurrentDate()
@@ -427,7 +429,13 @@ const JournalDetails = () => {
           </Grid>
         </Grid>
         {notes !== undefined ? (
-          <Grid container display="flex" justifyContent="space-evenly" mt={4} gap={5}>
+          <Grid
+            container
+            display="flex"
+            justifyContent="space-evenly"
+            mt={4}
+            gap={5}
+          >
             <Grid item xs={12} md={7} display="flex" justifyContent="center">
               <BarChart scores={values} labels={keys}></BarChart>
             </Grid>

@@ -7,12 +7,17 @@ import { useNavigate } from "react-router-dom"
 import JournalCard from "../components/JournalCard"
 import {
   useCreateJournalMutation,
+  useDeleteJournalMutation,
   useGetJournalsByUserIdQuery,
+  useUpdateJournalMutation,
 } from "../libraries/api/apiSlice"
 import { CheckRequest } from "../components/CheckRequest"
 import { toast } from "react-toastify"
-import { useState } from "react"
+import React, { useState } from "react"
 import { useForm } from "react-hook-form"
+
+import ModeEditIcon from "@mui/icons-material/ModeEdit"
+import DeleteSharpIcon from "@mui/icons-material/DeleteSharp"
 
 import styleBoxModal from "../styles/BoxModal.module.css"
 
@@ -20,11 +25,24 @@ const Journal = () => {
   const navigate = useNavigate()
   const user = useSelector((state) => state.user)
   const userId = user.data.id
+  const [selectJournal, setSelectJournal] = useState()
 
   // Modal
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
+  const handleClose = () => {
+    setOpen(false)
+    setSelectJournal()
+    setTitle()
+  }
+
+  const [openEdit, setOpenEdit] = useState(false)
+  const handleOpenEdit = () => setOpenEdit(true)
+  const handleCloseEdit = () => {
+    setOpenEdit(false)
+    setSelectJournal()
+    setTitle()
+  }
 
   const [title, setTitle] = useState("")
 
@@ -36,12 +54,20 @@ const Journal = () => {
   } = useGetJournalsByUserIdQuery(user.data.id)
 
   const [createJournal] = useCreateJournalMutation()
+  const [updateJournal] = useUpdateJournalMutation()
+  const [deleteJournal] = useDeleteJournalMutation()
 
-  const handleCreateJournal = (payload, callback = () => null) => {
-    createJournal(payload)
+  const getPromiseResource = (
+    promise,
+    payload,
+    success,
+    error,
+    callback = () => null
+  ) => {
+    promise(payload)
       .unwrap()
       .then(() => {
-        toast.success("Diario creado", {
+        toast.success(`${success}`, {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -54,7 +80,7 @@ const Journal = () => {
         callback()
       })
       .catch(() =>
-        toast.error("Error al crear el diario", {
+        toast.error(`${error} `, {
           position: "top-right",
           autoClose: 4000,
           hideProgressBar: false,
@@ -65,10 +91,66 @@ const Journal = () => {
           theme: "colored",
         })
       )
-    refetch()
+  }
+
+  const requestJournals = {
+    create: (payload, callback = () => null) =>
+      getPromiseResource(
+        createJournal,
+        payload,
+        "Diario creado",
+        "Error al crear el diario",
+        () => {
+          refetch()
+          callback()
+        }
+      ),
+    update: (payload, callback = () => null) =>
+      getPromiseResource(
+        updateJournal,
+        payload,
+        "Diario actualizado",
+        "Error al actualizar el diario",
+        () => {
+          refetch()
+          callback()
+        }
+      ),
+    delete: (payload) =>
+      getPromiseResource(
+        deleteJournal,
+        payload,
+        "Diario eliminado",
+        "Error al eliminar el diario",
+        refetch
+      ),
+  }
+
+  const handleJournals = (options, journalId = "") => {
+    switch (options) {
+      case "create":
+        requestJournals.create({ owner: userId, title }, handleClose)
+        break
+
+      case "update":
+        requestJournals.update({ _id: journalId, title }, handleCloseEdit)
+        break
+
+      case "delete":
+        requestJournals.delete(journalId)
+        break
+
+      default:
+        break
+    }
   }
 
   const { register, handleSubmit } = useForm()
+  const {
+    register: registerEdit,
+    handleSubmit: handleSubmitEdit,
+    setValue,
+  } = useForm()
 
   return (
     <Box
@@ -126,21 +208,88 @@ const Journal = () => {
               alignItems="center"
             >
               <Header title={"Lista de diarios"} />
-              <Grid
-                container
-                display="flex"
-                justifyContent={"center"}
-                gap={4}
-                marginTop={2}
-              >
+              <Grid container display="flex" justifyContent="center" gap={2}>
                 {journals !== undefined ? (
                   journals.data.map((journal) => (
-                    <JournalCard key={journal._id} journal={journal} />
+                    <React.Fragment key={journal._id}>
+                      <JournalCard journal={journal} />
+                      <Box
+                        component="div"
+                        display="flex"
+                        flexDirection={{ xs: "row", md: "column" }}
+                        justifyContent="center"
+                        alignItems="center"
+                        mt={3}
+                      >
+                        <Button
+                          variant="text"
+                          onClick={() => {
+                            setValue("titleEdit", title)
+                            setSelectJournal(journal._id)
+                            handleOpenEdit()
+                          }}
+                        >
+                          <ModeEditIcon
+                            sx={{ fontSize: "2rem", color: "#5c80c7" }}
+                          ></ModeEditIcon>
+                        </Button>
+                        <Button
+                          variant="text"
+                          onClick={() => handleJournals("delete", journal._id)}
+                        >
+                          <DeleteSharpIcon
+                            sx={{ fontSize: "2rem", color: "#f94144" }}
+                          ></DeleteSharpIcon>
+                        </Button>
+                      </Box>
+                    </React.Fragment>
                   ))
                 ) : (
                   <></>
                 )}
               </Grid>
+              <Modal
+                open={openEdit}
+                onClose={handleCloseEdit}
+                aria-labelledby="modal-journal-edit"
+                aria-describedby="modal-journal-edit-title"
+              >
+                <Box
+                  className={styleBoxModal.boxModal}
+                  component="form"
+                  onSubmit={handleSubmitEdit(() =>
+                    handleJournals("update", selectJournal)
+                  )}
+                >
+                  <TextField
+                    {...registerEdit("titleEdit", {
+                      required: true,
+                    })}
+                    required
+                    name="titleEdit"
+                    id="titleEdit"
+                    label="Título"
+                    variant="outlined"
+                    fullWidth
+                    onChange={(e) => {
+                      setTitle(e.target.value)
+                    }}
+                  />
+                  <Button
+                    type="submit"
+                    color="primary"
+                    variant="contained"
+                    fullWidth
+                    sx={{
+                      fontWeight: "bold",
+                      fontSize: "1rem",
+                      marginTop: "1rem",
+                    }}
+                  >
+                    Actualizar diario
+                  </Button>
+                </Box>
+              </Modal>
               <Button
                 type="submit"
                 color="primary"
@@ -158,24 +307,22 @@ const Journal = () => {
               <Modal
                 open={open}
                 onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
+                aria-labelledby="modal-journal-create"
+                aria-describedby="modal-journal-create-title"
               >
                 <Box
                   className={styleBoxModal.boxModal}
                   component="form"
-                  onClick={handleSubmit(() =>
-                    handleCreateJournal({ owner: userId, title })
-                  )}
+                  onSubmit={handleSubmit(() => handleJournals("create"))}
                 >
                   <TextField
-                    {...register("username", {
+                    {...register("title", {
                       required: true,
                     })}
                     required
-                    name="username"
-                    id="username"
-                    label="Nombre de usuario"
+                    name="title"
+                    id="title"
+                    label="Título"
                     variant="outlined"
                     fullWidth
                     onChange={(e) => {
@@ -190,7 +337,7 @@ const Journal = () => {
                     sx={{
                       fontWeight: "bold",
                       fontSize: "1rem",
-                      marginTop: "1rem"
+                      marginTop: "1rem",
                     }}
                   >
                     Crear diario
