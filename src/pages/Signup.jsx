@@ -1,5 +1,4 @@
 import Button from "@mui/material/Button"
-import CssBaseline from "@mui/material/CssBaseline"
 import TextField from "@mui/material/TextField"
 import Link from "@mui/material/Link"
 import Grid from "@mui/material/Grid"
@@ -10,7 +9,6 @@ import Container from "@mui/material/Container"
 
 import PersonIcon from "@mui/icons-material/Person"
 
-import background from "../images/undraw_authentication_re_svpt.svg"
 import { useRegister } from "../hooks/useRegister"
 import { useState } from "react"
 
@@ -103,7 +101,7 @@ const Signup = () => {
                       color: "red",
                     }}
                   >
-                    Escriba un nombre válido. Minimo 
+                    Escriba un nombre válido. Minimo
                   </Typography>
                 )}
               </Grid>
