@@ -18,11 +18,11 @@ export default function StickyFooter() {
         backgroundColor: "var(--secondaryColor)",
         position: 'relative',
         bottom: '0',
-        marginTop: '3rem'
+        marginTop: '3rem',
       }}
     >
       <CssBaseline />
-      <Container component="main" sx={{ padding:5 }} maxWidth="sm">
+      <Container component="main" sx={{ padding:5 }} maxWidth='md'>
         <Typography
           variant="h4"
           component="h1"
@@ -42,6 +42,7 @@ export default function StickyFooter() {
           className={styles.footerBoxLink}
         >
           <Link to="/" className={styles.footerItemLink}>Inicio</Link>
+          <Link to="/journal" className={styles.footerItemLink}>Diario</Link>
           <Link to="/advice" className={styles.footerItemLink}>Consejos</Link>
           <Link to="/breathing" className={styles.footerItemLink}>Respiración</Link>
           <Link to="/meditation" className={styles.footerItemLink}>Meditación</Link>

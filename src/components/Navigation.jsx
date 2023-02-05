@@ -57,7 +57,7 @@ const Navigation = () => {
                 Inicio
               </Link>
               <Link to="/journal" className={styles.items}>
-                Diario personal
+                Diario
               </Link>
               <Link to="/advice" className={styles.items}>
                 Consejos

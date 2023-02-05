@@ -29,6 +29,7 @@ const Signup = () => {
   } = useForm()
 
   const handleSubmitRegister = () => {
+    console.log(username, email.toLowerCase(), password)
     signUpUser(username, email.toLowerCase(), password)
   }
 
@@ -98,12 +99,11 @@ const Signup = () => {
                 />
                 {errors.username && (
                   <Typography
-                    fullWidth
                     sx={{
                       color: "red",
                     }}
                   >
-                    Escriba un nombre válido.
+                    Escriba un nombre válido. Minimo 
                   </Typography>
                 )}
               </Grid>
@@ -128,7 +128,6 @@ const Signup = () => {
                 />
                 {errors.email && (
                   <Typography
-                    fullWidth
                     sx={{
                       color: "red",
                     }}
@@ -160,7 +159,6 @@ const Signup = () => {
                 />
                 {errors.password && (
                   <Typography
-                    fullWidth
                     sx={{
                       color: "red",
                     }}

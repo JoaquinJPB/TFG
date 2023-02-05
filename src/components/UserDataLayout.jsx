@@ -27,14 +27,6 @@ const UserDataLayout = ({ userName, fullName, userEmail}) => {
               <h2>{userName}</h2>
               <span>{userEmail}</span>
             </div>
-              <Button
-                type="submit"
-                variant="contained"
-                fullWidth
-                sx={{ fontWeight: "bold" }}
-              >
-                Cambiar detalles de la cuenta
-              </Button>
           </div>
         </div>
       </Grid>
