@@ -1,55 +1,57 @@
-import Button from "@mui/material/Button";
-import Header from "./Header";
-import ItemCard from "./ItemCard";
+import { Box, Grid, Typography } from "@mui/material"
+import Header from "./Header"
 
-import userImg from "../images/Profile_Avatar.png";
-import profileBackground from "../images/Profile_Background.png";
+import styles from "../styles/UserDataLayout.module.css"
+import userImg from "../images/Profile_Avatar.png"
+import profileBackground from "../images/undraw_profile_details_re_ch9r.svg"
 
-import styles from "../styles/UserDataLayout.module.css";
-import stylesGrid from "../styles/ItemsGrid.module.css";
-
-
-const UserDataLayout = ({ userName, fullName, userEmail, itemsFav }) => {
+const UserDataLayout = ({ userName, userEmail }) => {
   return (
-    <article className={styles.articleProfile}>
-      <section>
-        <Header title={"Mi perfil"} subtitle={""} />
-        <div className={styles.userDataSection}>
-          <img src={userImg} alt="Imagen de perfil" />
-          <div>
-            <h2>{userName}</h2>
-            <span>{fullName}</span>
-            <span>{userEmail}</span>
-            <Button
-              variant="contained"
-              sx={{
-                mt: 2.5,
-                backgroundColor: "var(--secondaryColor)",
-                fontWeight: "bold",
-                fontSize: "1rem",
-                "&:hover": {
-                  backgroundColor: "var(--primaryColor)",
-                },
-              }}
-            >
-              Cambiar detalles de la cuenta
-            </Button>
-          </div>
-        </div>
-        <Header title={"Contenido favorito"} subtitle={""} />
-        <section className={styles.favItems}>
-          <ul className={stylesGrid.itemsGrid}>
-            {itemsFav.map((item) => (
-              <ItemCard key={item.id} item={item} />
-            ))}
-          </ul>
-        </section>
-      </section>
-      <section>
-        <img src={profileBackground} alt="Fondo detalles de la cuenta" />
-      </section>
-    </article>
-  );
-};
+    <Grid container px={5} mt={1}>
+      <Grid
+        item
+        xs={12}
+        md={6}
+        display={"flex"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+        flexDirection={"column"}
+      >
+        <Box>
+          <Header title={"Mi perfil"} subtitle={""} />
+          <img src={userImg} alt="Imagen de perfil" className={styles.profileImg}/>
+          <Typography
+            component="h2"
+            variant="h2"
+            fontSize="2rem"
+            fontWeight="400"
+            textAlign="center"
+            mt={2}
+          >
+            {userName}
+          </Typography>
+          <Typography component="h5" variant="h5" textAlign="center" mt={2}>
+            {userEmail}
+          </Typography>
+        </Box>
+      </Grid>
+      <Grid
+        item
+        xs={12}
+        md={6}
+        display={"flex"}
+        justifyContent={"center"}
+        alignItems={"center"}
+        mt={2}
+      >
+        <img
+          className={styles.profileBackground}
+          src={profileBackground}
+          alt="Fondo detalles de la cuenta"
+        />
+      </Grid>
+    </Grid>
+  )
+}
 
-export default UserDataLayout;
+export default UserDataLayout

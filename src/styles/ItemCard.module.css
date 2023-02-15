@@ -1,93 +1,80 @@
-.itemCard {
-  width: 200px;
-  height: 250px;
-  border-radius: 1em;
-  padding: 1.9rem;
-  background: #f5f5f5;
-  position: relative;
+.card {
+  width: 100%;
+  height: 275px;
+  transition: all 300ms;
+  border-radius: .5rem;
   display: flex;
-  align-items: flex-end;
-  transition: 0.4s ease-out;
-  box-shadow: 0px 7px 20px rgba(43, 8, 37, 0.2);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border: 5px solid var(--primaryColor);
 }
 
-.itemCard:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  transition: 0.5s;
-}
-
-.itemCardInfo {
-  position: relative;
-  z-index: 3;
-  color: #f5f5f5;
-  opacity: 0;
-  transform: translateY(20%);
-  transition: 0.5s;
-}
-/*Text*/
-.textTitle {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: black;
-}
-
-.textSubtitle {
-  letter-spacing: 1px;
-  font-size: 0.9rem;
-  margin: 5px 0 15px 0;
-  color: black;
-}
-
-/*Button*/
-.cardButton {
-  padding: 0.6rem;
-  outline: none;
-  border: none;
-  border-radius: 4px;
-  background: var(--secondaryColor);
-  color: white;
-  font-weight: bold;
-  transition: 0.4s ease;
-}
-
-/*Image*/
-.itemImage {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-radius: 1em;
-}
-
-/*Hover*/
-.itemCard:hover {
-  transform: translateY(5%);
-}
-
-.itemCard:hover img {
-  opacity: 0.2;
-}
-
-.itemCard:hover:before {
-  opacity: 1;
-}
-
-.itemCard:hover .itemCardInfo {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.cardButton:hover {
-  background: var(--primaryColor);
-  opacity: 0.4;
-  color: #f5f5f5;
+.card:hover {
+  transform: scale(1.1);
   cursor: pointer;
+}
+
+.title {
+  font-size: 1.75rem;
+  color: var(--primaryColor);
+}
+
+.textSubtitle{
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.description{
+  font-size: 1.25rem;
+}
+
+.title, .textSubtitle, .description{
+  text-align: center;
+  padding: .25rem;
+}
+
+.boxModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  max-height: calc(100vh - 10px);
+  overflow-y: auto;
+  border: 3px solid var(--primaryColor) !important;
+  padding: 1.5rem;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  border-radius: .5rem;
+}
+
+.imgBackground {
+  width:100%;
+  height: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  
+  .card{
+    margin-top: 1.5rem;
+    height: 350px;
+  }
+
+  .boxModal{
+    width: 75%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  
+  .card{
+    margin-top: 1.5rem;
+    height: 400px;
+  }
+
 }

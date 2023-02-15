@@ -1,0 +1,23 @@
+.boxModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  max-height: calc(100vh - 10px);
+  overflow-y: auto;
+  border: 3px solid var(--primaryColor) !important;
+  padding: 1.5rem;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  border-radius: 0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .boxModal {
+    width: 75%;
+  }
+}

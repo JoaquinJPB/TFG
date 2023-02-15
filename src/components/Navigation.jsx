@@ -1,71 +1,132 @@
-import style from "../styles/Navigation.module.css";
-import { Link, Outlet, useLocation } from "react-router-dom";
-import iconWebPage from "../images/iconWebPage.png";
+import styles from "../styles/Navigation.module.css"
+import { Link, Outlet, useLocation } from "react-router-dom"
+import iconWebPage from "../images/iconWebPage.png"
 
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
+import MenuIcon from "@mui/icons-material/Menu"
+import CloseIcon from "@mui/icons-material/Close"
 
-import React, { useState, useEffect } from "react";
-import { IconButton } from "@mui/material";
-import { useRef } from "react";
+import React, { useState, useEffect } from "react"
+import { Button, IconButton } from "@mui/material"
+import { useRef } from "react"
+import { useSelector } from "react-redux"
+import { useLogout } from "../hooks/useLogout"
 
 const Navigation = () => {
-  const [toggleMenu, setToggleMenu] = useState(false);
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [toggleMenu, setToggleMenu] = useState(false)
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth)
 
-  let location = useLocation();
+  const { logout } = useLogout()
+
+  const user = useSelector((state) => state.user)
+  console.log(user)
+
+  let location = useLocation()
   let inmutableLocation = useRef(location)
-  
+
   const toggleNav = () => {
-    setToggleMenu(!toggleMenu);
-  };
+    setToggleMenu(!toggleMenu)
+  }
 
   useEffect(() => {
     const changeWidth = () => {
-      setScreenWidth(window.innerWidth);
-    };
+      setScreenWidth(window.innerWidth)
+    }
 
-    if (location !== inmutableLocation){
-      setToggleMenu(false);
+    if (location !== inmutableLocation) {
+      setToggleMenu(false)
       inmutableLocation.current = location
     }
 
-    window.addEventListener("resize", changeWidth);
+    window.addEventListener("resize", changeWidth)
 
     return () => {
-      window.removeEventListener("resize", changeWidth);
-    };
-  }, [location]);
+      window.removeEventListener("resize", changeWidth)
+    }
+  }, [location])
 
   return (
-    <div>
-      <nav className={style.navigation}>
+    <>
+      <nav className={styles.navigation}>
         <div>
           <img src={iconWebPage} alt="Icon Web Page" />
         </div>
         {(toggleMenu || screenWidth > 1024) && (
-          <div className={style.navItems}>
-            <ul className={style.list}>
-              <Link to="/" className={style.items}>Inicio</Link>
-              <Link to="/breathing" className={style.items}>Respiración</Link>
-              <Link to="/meditation" className={style.items}>Meditación</Link>
-              <Link to="/recommendations" className={style.items}>Recomendaciones</Link>
-              <Link to="/advice" className={style.items}>Consejos</Link>
-              <Link to="/user_id" className={style.items}>Mi Perfil</Link>
+          <div className={styles.navItems}>
+            <ul className={styles.list}>
+              <Link to="/" className={styles.items}>
+                Inicio
+              </Link>
+              <Link to="/journal" className={styles.items}>
+                Diario
+              </Link>
+              <Link to="/advice" className={styles.items}>
+                Consejos
+              </Link>
+              <Link to="/breathing" className={styles.items}>
+                Respiración
+              </Link>
+              <Link to="/meditation" className={styles.items}>
+                Meditación
+              </Link>
+              <Link to="/recommendations" className={styles.items}>
+                Recomendaciones
+              </Link>
+              {user.token !== undefined ? (
+                <>
+                  <Link to="/user_id" className={styles.items}>
+                    Mi Perfil
+                  </Link>
+                  <Button
+                    onClick={logout}
+                    type="submit"
+                    variant="text"
+                    sx={{ color: "#f94144", fontWeight: "bold" }}
+                  >
+                    Cerrar sesión
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Link to="/login" className={styles.items}>
+                    Iniciar sesión
+                  </Link>
+                  <Link to="/signup" className={styles.items}>
+                    Registrarse
+                  </Link>
+                </>
+              )}
+              {user.token !== undefined && user.data.roles.find(element => element.name === "admin") ? (
+                <>
+                  <Link to="/admin" className={styles.items}>
+                    Admin
+                  </Link>
+                </>
+              ) : (
+                <></>
+              )}
+              {user.token !== undefined && user.data.roles.find(element => element.name === "moderator") ? (
+                <>
+                  <Link to="/moderator" className={styles.items}>
+                    Moderador
+                  </Link>
+                </>
+              ) : (
+                <></>
+              )}
             </ul>
           </div>
         )}
-        <div className={style.buttonContainer}>
-          <IconButton onClick={toggleNav} className={style.btn} size="large" >
-            {!toggleMenu ? <MenuIcon/> : <CloseIcon />}
+        <div className={styles.buttonContainer}>
+          <IconButton onClick={toggleNav} className={styles.btn} size="large">
+            {!toggleMenu ? <MenuIcon /> : <CloseIcon />}
           </IconButton>
         </div>
       </nav>
-      <main className={style.content}>
+      <main className={styles.content}>
         <Outlet />
       </main>
-    </div>
-  );
-};
+    </>
+  )
+}
 
-export default Navigation;
+export default Navigation

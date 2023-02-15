@@ -1,11 +1,24 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Ubuntu', sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif !important;
 }
 
 :root {
-    --primaryColor: #EC615B;
-    --secondaryColor: #5222D0;
+  --primaryColor: #8e6bbf;
+  --secondaryColor: #2c2c44;
+  --h1FontSize: 2.25rem;
+}
+
+h1 {
+  font-size: var(--h1FontSize);
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  background-color: #f9f9f9;
 }

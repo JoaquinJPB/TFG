@@ -1,14 +1,30 @@
-import styles from "../styles/Header.module.css";
+import { Box, Typography } from "@mui/material"
 
-const Header = ({ title, subtitle }) => {
+const Header = ({ title }) => {
   return (
-    <header>
-      <div className={styles.header}>
-        <h1 className={styles.title}>{title}</h1>
-      </div>
-      <p className={styles.subtitle}>{subtitle}</p>
-    </header>
-  );
-};
+    <Box component="header">
+      <Box
+        display="flex"
+        flex-direction="column"
+        align-items="center"
+        justifyContent="center"
+      >
+        <Typography
+          component="h1"
+          variant="h1"
+          sx={{
+            margin: "1rem 0",
+            textAlign: "center",
+            color: "var(--primaryColor)",
+            fontSize: "2.25rem",
+            fontWeight: "bold",
+          }}
+        >
+          {title}
+        </Typography>
+      </Box>
+    </Box>
+  )
+}
 
-export default Header;
+export default Header

@@ -1,15 +1,28 @@
-import { Link } from "react-router-dom";
-import styles from "../styles/SectionCard.module.css";
+import styles from "../styles/SectionCard.module.css"
+import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { Zoom } from "@mui/material"
 
 const SectionCard = ({ title, img, route }) => {
-  return (
-    <Link to={"/recommendations/" + route}>
-      <div className={styles.sectionsCardBody}>
-        <img src={img} alt={title} />
-        <h3>{title}</h3>
-      </div>
-    </Link>
-  );
-};
+  const navigate = useNavigate()
 
-export default SectionCard;
+  const [checked, setChecked] = useState(false)
+
+  useEffect(() => {
+    setChecked(true)
+  }, [checked])
+
+  return (
+    <Zoom in={checked}>
+      <div
+        className={styles.sectionsCardBody}
+        onClick={() => navigate("/recommendations/" + route)}
+      >
+        <img src={img} alt={title} />
+        <h2>{title}</h2>
+      </div>
+    </Zoom>
+  )
+}
+
+export default SectionCard

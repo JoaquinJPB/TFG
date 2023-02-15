@@ -1,11 +1,12 @@
 .navigation {
-  position: fixed;
+  position: sticky;
+  top: 0;
   display: flex;
   flex-direction: row;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   width: 100%;
   z-index: 10;
   background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 .navigation div{
@@ -20,7 +21,7 @@
 }
 
 .navigation div:nth-child(1) img {
-  width: 100px;
+  width: 60px;
   margin-left: 0.5rem;
 }
 
@@ -31,14 +32,14 @@
 }
 
 .navigation a {
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
-  color: var(--primaryColor);
+  color: var(--secondaryColor);
   transition: border-bottom 0.1s;
 }
 
 .navigation a:hover {
-  border-bottom: 4px solid var(--secondaryColor);
+  border-bottom: 4px solid var(--primaryColor);
 }
 
 .list {
@@ -53,10 +54,6 @@
 
 .buttonContainer {
   display: none !important;
-}
-
-.content section{
-  margin-top: 98px;
 }
 
 @media screen and (max-width: 1024px){
@@ -96,7 +93,7 @@
   }
 
   .navigation a:hover {
-    border-bottom: 4px solid var(--secondaryColor);
+    border-bottom: 4px solid var(--primaryColor);
   }
 
   .content section{
