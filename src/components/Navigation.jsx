@@ -18,7 +18,6 @@ const Navigation = () => {
   const { logout } = useLogout()
 
   const user = useSelector((state) => state.user)
-  console.log(user)
 
   let location = useLocation()
   let inmutableLocation = useRef(location)
