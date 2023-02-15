@@ -17,9 +17,13 @@ const UserDataLayout = ({ userName, userEmail }) => {
         alignItems={"center"}
         flexDirection={"column"}
       >
-        <Box>
+        <Box display={"flex"} flexDirection={"column"}>
           <Header title={"Mi perfil"} subtitle={""} />
-          <img src={userImg} alt="Imagen de perfil" className={styles.profileImg}/>
+          <img
+            src={userImg}
+            alt="Imagen de perfil"
+            className={styles.profileImg}
+          />
           <Typography
             component="h2"
             variant="h2"
