@@ -11,6 +11,6 @@ El backend de la aplicación se encuentra en el repositorio API_TFG, el cual ha 
 Para instalar la aplicación, primero es necesario clonar este repositorio y luego instalar las dependencias necesarias. Para ello, sigue los siguientes pasos:
 
 1. Clona el repositorio en tu ordenador.
-2. Instala las dependencias de la API con el comando npm install.
-3. Configura las variables de entorno necesarias para la ejecución de la API.
+2. Instala las dependencias de la aplicación con el comando npm install.
+3. Configura las variables de entorno necesarias para la ejecución de la aplicación.
 4. Inicia la apliación con el comando npm run start.
